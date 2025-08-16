@@ -1,34 +1,217 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+body {
+  font-family: 'Baloo 2', 'Noto Sans Telugu', cursive, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.App {
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.App-link {
-    color: #61dafb;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Smooth animations */
+.transform {
+  transition: transform 0.3s ease-in-out;
+}
+
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Button hover effects */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+/* Gradient text */
+.bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Animation keyframes */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom card styles */
+.card-hover {
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Telugu text support */
+[lang="te"], .telugu-text {
+  font-family: 'Noto Sans Telugu', 'Baloo 2', sans-serif;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+/* Large tap targets for children */
+.child-button {
+  min-height: 60px;
+  min-width: 120px;
+  font-size: 1.25rem;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.child-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.child-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive text sizes */
+@media (max-width: 768px) {
+  .text-4xl {
+    font-size: 2rem;
+  }
+  
+  .text-5xl {
+    font-size: 2.5rem;
+  }
+  
+  .text-6xl {
+    font-size: 3rem;
+  }
+}
+
+/* Story viewer specific styles */
+.story-content {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.slide-enter {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.slide-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.slide-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-exit-active {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Accessibility improvements */
+button:focus,
+.cursor-pointer:focus {
+  outline: 3px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .bg-gradient-to-br {
+    background: white;
+    border: 2px solid #000;
+  }
+  
+  .text-purple-700 {
+    color: #000;
+  }
+  
+  .text-blue-700 {
+    color: #000;
+  }
+  
+  .text-green-700 {
+    color: #000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-bounce,
+  .animate-pulse,
+  .transform,
+  .transition-all {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .App {
+    background: white;
+  }
+  
+  .bg-gradient-to-br {
+    background: white;
+  }
 }
