@@ -94,14 +94,20 @@ const Confetti = () => {
 // Splash Screen
 const SplashScreen = ({ onComplete }) => {
   const [showConfetti, setShowConfetti] = useState(false);
+  const [showStars, setShowStars] = useState(false);
+  const [showHearts, setShowHearts] = useState(false);
 
   useEffect(() => {
     const timer1 = setTimeout(() => setShowConfetti(true), 500);
-    const timer2 = setTimeout(() => onComplete(), 4000);
+    const timer2 = setTimeout(() => setShowStars(true), 1000);
+    const timer3 = setTimeout(() => setShowHearts(true), 1500);
+    const timer4 = setTimeout(() => onComplete(), 5000);
     
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
+      clearTimeout(timer3);
+      clearTimeout(timer4);
     };
   }, [onComplete]);
 
@@ -109,19 +115,74 @@ const SplashScreen = ({ onComplete }) => {
     <div className="min-h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 flex flex-col items-center justify-center relative overflow-hidden">
       {showConfetti && <Confetti />}
       
-      <div className="text-center space-y-8 max-w-md mx-auto px-6">
-        <div className="text-6xl animate-bounce">🎉</div>
+      {/* Animated Stars */}
+      {showStars && (
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute text-yellow-300 text-2xl animate-bounce"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 2}s`,
+                animationDuration: `${2 + Math.random() * 2}s`
+              }}
+            >
+              ⭐
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Animated Hearts */}
+      {showHearts && (
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(15)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute text-red-400 text-lg animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${1 + Math.random() * 2}s`
+              }}
+            >
+              💖
+            </div>
+          ))}
+        </div>
+      )}
+      
+      <div className="text-center space-y-8 max-w-md mx-auto px-6 z-10">
+        <div className="text-8xl animate-bounce animate-infinite">🎉</div>
         
-        <div className="space-y-4">
-          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent animate-pulse">
+        <div className="space-y-6">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent animate-pulse">
             Happy 4th Birthday
           </h1>
-          <h2 className="text-4xl md:text-5xl font-bold text-pink-600 animate-pulse">
+          <h2 className="text-5xl md:text-6xl font-bold text-pink-600 animate-bounce">
             Aarna Nyra ❤️
           </h2>
+          <p className="text-xl text-purple-600 font-semibold animate-fade-in">
+            Your magical storybook awaits! ✨
+          </p>
         </div>
         
-        <div className="text-2xl animate-pulse">🎂✨🎈</div>
+        <div className="flex justify-center space-x-4 text-3xl">
+          <span className="animate-bounce" style={{animationDelay: '0s'}}>🎂</span>
+          <span className="animate-bounce" style={{animationDelay: '0.2s'}}>✨</span>
+          <span className="animate-bounce" style={{animationDelay: '0.4s'}}>🎈</span>
+          <span className="animate-bounce" style={{animationDelay: '0.6s'}}>🎁</span>
+          <span className="animate-bounce" style={{animationDelay: '0.8s'}}>🌟</span>
+        </div>
+
+        <div className="mt-8">
+          <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-pink-400 to-purple-500 text-white rounded-full animate-pulse">
+            <span className="text-lg font-bold">Loading your magical stories...</span>
+          </div>
+        </div>
       </div>
     </div>
   );
