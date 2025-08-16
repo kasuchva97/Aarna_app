@@ -101,3 +101,129 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: |
+  Enhance the Telugu storytelling app with:
+  1. Add Telugu narration improvements
+  2. Replace all "story coming soon" labels with actual stories (10-12 stories per section)
+  3. Add new "Aarna" section with indigenous/universal brave and adventurous stories featuring Aarna as main character with parents RAM and LAHARI
+  4. Add Ramayana and Mahabharata stories as History cards on Home screen (child-friendly versions with moral lessons)
+  5. Expand all existing mythology and moral story categories to have 10-12 complete stories each
+
+backend:
+  - task: "Add Aarna category and stories to backend"
+    implemented: false
+    working: false
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Need to add new Aarna category with 10+ universal adventure stories featuring Aarna, RAM, and LAHARI"
+
+  - task: "Add History category with Ramayana/Mahabharata stories"
+    implemented: false
+    working: false
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Need to add child-friendly versions of epic stories with moral lessons"
+
+  - task: "Expand mythology categories with 10-12 stories each"
+    implemented: false
+    working: false
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Each mythology category (Krishna, Hanuman, Ganesha, etc.) needs 10+ complete stories"
+
+  - task: "Expand moral story categories with 10-12 stories each"
+    implemented: false
+    working: false
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Each moral category (Panchatantra, Animal Fables, etc.) needs 10+ complete stories"
+
+frontend:
+  - task: "Add Aarna section to Home screen navigation"
+    implemented: false
+    working: false
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Need to add Aarna card to home screen alongside Mythology and Moral stories"
+
+  - task: "Add History section to Home screen navigation"
+    implemented: false
+    working: false
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Need to add History card for Ramayana/Mahabharata stories"
+
+  - task: "Update story lists to show all new stories"
+    implemented: false
+    working: false
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Replace 'story coming soon' placeholders with actual story data"
+
+  - task: "Enhance Telugu TTS narration"
+    implemented: false
+    working: false
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Improve Telugu text-to-speech functionality"
+
+metadata:
+  created_by: "main_agent"
+  version: "2.0"
+  test_sequence: 0
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Add Aarna category and stories to backend"
+    - "Add History category with Ramayana/Mahabharata stories"
+    - "Add Aarna section to Home screen navigation"
+    - "Add History section to Home screen navigation"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: "Starting comprehensive expansion of storybook app with new Aarna and History sections, plus 10-12 stories per existing category. Will work on backend story data first, then frontend navigation updates."
