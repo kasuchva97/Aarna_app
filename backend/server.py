@@ -165,6 +165,13 @@ async def initialize_sample_data():
     # Clear existing data for fresh start
     await db.stories.delete_many({})
     
+    
+    # Use the comprehensive stories from our external file
+    for story_data in COMPREHENSIVE_STORIES:
+        story = Story(**story_data)
+        await db.stories.insert_one(story.dict())
+    
+    return {"message": f"Initialized {len(COMPREHENSIVE_STORIES)} comprehensive stories"}
 
 # Include the router in the main app
 app.include_router(api_router)
