@@ -922,10 +922,14 @@ function App() {
         return <SplashScreen onComplete={() => setCurrentScreen('home')} />;
       case 'home':
         return <HomeScreen onNavigate={navigate} />;
+      case 'aarna':
+        return <AarnaGrid onNavigate={navigate} onBack={goBack} />;
       case 'mythology':
         return <MythologyGrid onNavigate={navigate} onBack={goBack} />;
       case 'moral':
         return <MoralGrid onNavigate={navigate} onBack={goBack} />;
+      case 'history':
+        return <HistoryGrid onNavigate={navigate} onBack={goBack} />;
       case 'stories':
         return <StoriesList category={currentCategory} onNavigate={navigate} onBack={goBack} />;
       case 'story':
