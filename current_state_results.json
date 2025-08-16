@@ -1,0 +1,249 @@
+{
+  "init_data": {
+    "status": "success",
+    "response": {
+      "message": "Initialized 10 comprehensive stories"
+    }
+  },
+  "total_stories": {
+    "count": 10,
+    "categories": {
+      "aarna-adventures": 2,
+      "krishna": 2,
+      "hanuman": 2,
+      "animal-fables": 1,
+      "panchatantra": 1,
+      "ramayana": 1,
+      "mahabharata": 1
+    }
+  },
+  "mythology_categories": {
+    "count": 8,
+    "categories": [
+      {
+        "id": "krishna",
+        "name": "Krishna",
+        "type": "mythology",
+        "emoji": "\ud83e\udd9a"
+      },
+      {
+        "id": "hanuman",
+        "name": "Hanuman",
+        "type": "mythology",
+        "emoji": "\ud83d\udc12"
+      },
+      {
+        "id": "ganesha",
+        "name": "Ganesha",
+        "type": "mythology",
+        "emoji": "\ud83d\udc18"
+      },
+      {
+        "id": "rama",
+        "name": "Rama",
+        "type": "mythology",
+        "emoji": "\ud83c\udff9"
+      },
+      {
+        "id": "shiva",
+        "name": "Shiva",
+        "type": "mythology",
+        "emoji": "\ud83d\udd31"
+      },
+      {
+        "id": "durga",
+        "name": "Durga",
+        "type": "mythology",
+        "emoji": "\ud83d\udc51"
+      },
+      {
+        "id": "lakshmi",
+        "name": "Lakshmi",
+        "type": "mythology",
+        "emoji": "\ud83e\udeb7"
+      },
+      {
+        "id": "saraswati",
+        "name": "Saraswati",
+        "type": "mythology",
+        "emoji": "\ud83c\udfbc"
+      }
+    ]
+  },
+  "moral_categories": {
+    "count": 5,
+    "categories": [
+      {
+        "id": "panchatantra",
+        "name": "Panchatantra Tales",
+        "type": "moral",
+        "emoji": "\ud83e\udd8a"
+      },
+      {
+        "id": "animal-fables",
+        "name": "Animal Fables",
+        "type": "moral",
+        "emoji": "\ud83e\udd81"
+      },
+      {
+        "id": "classic-moral",
+        "name": "Classic Moral Stories",
+        "type": "moral",
+        "emoji": "\ud83d\udcda"
+      },
+      {
+        "id": "friendship-stories",
+        "name": "Friendship Stories",
+        "type": "moral",
+        "emoji": "\ud83e\udd1d"
+      },
+      {
+        "id": "kindness-stories",
+        "name": "Kindness Stories",
+        "type": "moral",
+        "emoji": "\ud83d\udc9d"
+      }
+    ]
+  },
+  "aarna_categories": {
+    "count": 1,
+    "categories": [
+      {
+        "id": "aarna-adventures",
+        "name": "Aarna's Adventures",
+        "type": "aarna",
+        "emoji": "\ud83c\udf1f"
+      }
+    ]
+  },
+  "history_categories": {
+    "count": 2,
+    "categories": [
+      {
+        "id": "ramayana",
+        "name": "Ramayana Stories",
+        "type": "history",
+        "emoji": "\ud83c\udff9"
+      },
+      {
+        "id": "mahabharata",
+        "name": "Mahabharata Stories",
+        "type": "history",
+        "emoji": "\u2694\ufe0f"
+      }
+    ]
+  },
+  "stories_by_category": {
+    "aarna-adventures": {
+      "count": 2,
+      "has_slides": true,
+      "has_telugu": true,
+      "has_english": true,
+      "titles": [
+        "Aarna's Magic Forest Adventure",
+        "Aarna's Flying Adventure"
+      ]
+    },
+    "krishna": {
+      "count": 2,
+      "has_slides": true,
+      "has_telugu": true,
+      "has_english": true,
+      "titles": [
+        "Krishna and the Butter Pot",
+        "Krishna Lifts Mount Govardhan"
+      ]
+    },
+    "hanuman": {
+      "count": 2,
+      "has_slides": true,
+      "has_telugu": true,
+      "has_english": true,
+      "titles": [
+        "Hanuman Flies to the Sun",
+        "Hanuman and the Sanjivani Mountain"
+      ]
+    },
+    "ganesha": {
+      "count": 0
+    },
+    "rama": {
+      "count": 0
+    },
+    "shiva": {
+      "count": 0
+    },
+    "durga": {
+      "count": 0
+    },
+    "lakshmi": {
+      "count": 0
+    },
+    "saraswati": {
+      "count": 0
+    },
+    "panchatantra": {
+      "count": 1,
+      "has_slides": true,
+      "has_telugu": true,
+      "has_english": true,
+      "titles": [
+        "The Monkey and the Crocodile"
+      ]
+    },
+    "animal-fables": {
+      "count": 1,
+      "has_slides": true,
+      "has_telugu": true,
+      "has_english": true,
+      "titles": [
+        "The Lion and the Mouse"
+      ]
+    },
+    "classic-moral": {
+      "count": 0
+    },
+    "friendship-stories": {
+      "count": 0
+    },
+    "kindness-stories": {
+      "count": 0
+    },
+    "ramayana": {
+      "count": 1,
+      "has_slides": true,
+      "has_telugu": true,
+      "has_english": true,
+      "titles": [
+        "The Birth of Prince Rama"
+      ]
+    },
+    "mahabharata": {
+      "count": 1,
+      "has_slides": true,
+      "has_telugu": true,
+      "has_english": true,
+      "titles": [
+        "Arjuna and Ekalavya"
+      ]
+    }
+  },
+  "story_aarna-magic-forest": {
+    "found": true,
+    "title": "Aarna's Magic Forest Adventure",
+    "category": "aarna-adventures",
+    "slide_count": 8
+  },
+  "story_hanuman-sun": {
+    "found": true,
+    "title": "Hanuman Flies to the Sun",
+    "category": "hanuman",
+    "slide_count": 8
+  },
+  "story_lion-mouse": {
+    "found": true,
+    "title": "The Lion and the Mouse",
+    "category": "animal-fables",
+    "slide_count": 8
+  }
+}
