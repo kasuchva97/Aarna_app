@@ -1520,6 +1520,16 @@ function App() {
         return <MoralGrid onNavigate={navigate} onBack={goBack} />;
       case 'history':
         return <HistoryGrid onNavigate={navigate} onBack={goBack} />;
+      case 'poems':
+        return <PoemsGrid onNavigate={navigate} onBack={goBack} />;
+      case 'poems-list':
+        return <PoemsList category={currentCategory} onNavigate={navigate} onBack={goBack} />;
+      case 'poem':
+        return <PoemViewer poemId={currentStoryId} onBack={goBack} />;
+      case 'funzone':
+        return <FunZoneGrid onNavigate={navigate} onBack={goBack} />;
+      case 'game':
+        return <GameViewer gameId={currentStoryId} onBack={goBack} />;
       case 'stories':
         return <StoriesList category={currentCategory} onNavigate={navigate} onBack={goBack} />;
       case 'story':
