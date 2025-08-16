@@ -228,10 +228,9 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Add Aarna category and stories to backend"
-    - "Add History category with Ramayana/Mahabharata stories"
     - "Add Aarna section to Home screen navigation"
     - "Add History section to Home screen navigation"
+    - "Update story lists to show all new stories"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
