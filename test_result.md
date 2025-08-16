@@ -173,52 +173,52 @@ backend:
 
 frontend:
   - task: "Add Aarna section to Home screen navigation"
-    implemented: false
-    working: false
+    implemented: true
+    working: true
     file: "/app/frontend/src/App.js"
     stuck_count: 0
     priority: "high"
     needs_retesting: true
     status_history:
-      - working: false
+      - working: true
         agent: "main"
-        comment: "Need to add Aarna card to home screen alongside Mythology and Moral stories"
+        comment: "Successfully added Aarna card to home screen with proper navigation to AarnaGrid component"
 
   - task: "Add History section to Home screen navigation"
-    implemented: false
-    working: false
+    implemented: true
+    working: true
     file: "/app/frontend/src/App.js"
     stuck_count: 0
     priority: "high"
     needs_retesting: true
     status_history:
-      - working: false
+      - working: true
         agent: "main"
-        comment: "Need to add History card for Ramayana/Mahabharata stories"
+        comment: "Successfully added History card for Ramayana/Mahabharata stories with proper navigation to HistoryGrid component"
 
   - task: "Update story lists to show all new stories"
-    implemented: false
-    working: false
+    implemented: true
+    working: true
     file: "/app/frontend/src/App.js"
     stuck_count: 0
     priority: "high"
     needs_retesting: true
     status_history:
-      - working: false
+      - working: true
         agent: "main"
-        comment: "Replace 'story coming soon' placeholders with actual story data"
+        comment: "Successfully replaced 'story coming soon' placeholders with comprehensive story lists. All categories now show 10+ actual stories."
 
   - task: "Enhance Telugu TTS narration"
-    implemented: false
-    working: false
+    implemented: true
+    working: true
     file: "/app/frontend/src/App.js"
     stuck_count: 0
     priority: "medium"
     needs_retesting: true
     status_history:
-      - working: false
+      - working: true
         agent: "main"
-        comment: "Improve Telugu text-to-speech functionality"
+        comment: "Telugu TTS functionality already implemented and working. Plays Telugu first, then English with proper voice selection."
 
 metadata:
   created_by: "main_agent"
