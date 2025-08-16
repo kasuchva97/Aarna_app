@@ -1096,251 +1096,107 @@ const StoriesList = ({ category, onNavigate, onBack }) => {
   );
 };
 
-// Story Viewer
+// Story Viewer Component
 const StoryViewer = ({ storyId, onBack }) => {
+  const [story, setStory] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isSpeaking, setIsSpeaking] = useState(false);
-  const audioRef = useRef(null);
-
-  const stories = {
-    // Enhanced Hanuman Sun Story with more slides
-    'hanuman-sun': {
-      title: 'Hanuman Flies to the Sun',
-      slides: [
-        {
-          image: 'https://images.unsplash.com/photo-1730191567375-e82ce67160df',
-          telugu: 'చిన్న హనుమాన్ ఒక తెలివైన మరియు బలమైన వానర బాలుడు. అతను ఎల్లప్పుడూ ఆట మరియు రోమాంచకమైన సాహసాలను వెతుకుతూ ఉండేవాడు.',
-          english: 'Little Hanuman was a clever and strong monkey child. He was always looking for games and exciting adventures.',
-          audio: 'hanuman-slide-1.mp3'
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1525490829609-d166ddb58678',
-          telugu: 'ఒక ఉదయం హనుమాన్ ఆకాశంలో మెరుస్తున్న పెద్ద ఎర్రని సూర్యుడిని చూశాడు. "అది ఎంత అందమైన పండు!" అని అనుకున్నాడు.',
-          english: 'One morning, Hanuman saw the big, bright red sun shining in the sky. "What a beautiful fruit!" he thought.',
-          audio: 'hanuman-slide-2.mp3'
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1654463085571-85d4edcea4dc',
-          telugu: 'హనుమాన్ గాలిలో దూకి, తన దైవిక శక్తులను ఉపయోగించి సూర్యుడి వైపు వేగంగా ఎగరడం మొదలుపెట్టాడు. అతను మేఘాలను దాటి వెళ్ళాడు.',
-          english: 'Hanuman jumped into the air and started flying fast towards the sun using his divine powers. He soared past the clouds.',
-          audio: 'hanuman-slide-3.mp3'
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1604949210966-9440c324823f',
-          telugu: 'హనుమాన్ వేగంగా ఎగురుతుండగా, సూర్యుడు మరింత పెద్దదిగా మరియు మరింత వేడిమిగా అయ్యాడు. కానీ హనుమాన్ భయపడలేదు.',
-          english: 'As Hanuman flew faster, the sun became bigger and hotter. But Hanuman was not afraid.',
-          audio: 'hanuman-slide-4.mp3'
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1579539447503-ec82f0aab843',
-          telugu: 'అప్పుడు దేవతలు హనుమాన్‌ని చూశారు. వారు చాలా ఆశ్చర్యపోయారు మరియు భయపడ్డారు. "ఈ చిన్న వానరుడు సూర్యుడిని తింటే ప్రపంచం చీకటిలో మునిగిపోతుంది!" అని వారు అనుకున్నారు.',
-          english: 'Then the gods saw Hanuman. They were very surprised and worried. "If this little monkey eats the sun, the world will be in darkness!" they thought.',
-          audio: 'hanuman-slide-5.mp3'
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1654463084969-339ebab5c207',
-          telugu: 'ఇంద్రుడు తన వజ్రాయుధాన్ని హనుమాన్ మీద విసిరాడు. హనుమాన్ భూమి మీద పడ్డాడు, కానీ అతను గాయపడలేదు. అతని తల్లి అతనిని కౌగిలించుకుంది.',
-          english: 'Indra threw his thunderbolt at Hanuman. Hanuman fell to earth, but he was not badly hurt. His mother hugged him tight.',
-          audio: 'hanuman-slide-6.mp3'
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1696527014256-4755b3ac0b4a',
-          telugu: 'దేవతలు హనుమాన్‌కు చాలా ఆశీర్వాదాలు ఇచ్చారు. అప్పటి నుండి హనుమాన్ ఎల్లప్పుడూ మంచి కోసం తన శక్తులను ఉపయోగించాడు.',
-          english: 'The gods gave Hanuman many blessings. From that day on, Hanuman always used his powers for good.',
-          audio: 'hanuman-slide-7.mp3'
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1696527018053-3343b9853505',
-          telugu: 'నైతిక పాఠం: ధైర్యం మంచిది, కానీ జ్ఞానం మరియు వినయంతో కూడా ఉండాలి. మన శక్తులను ఎల్లప్పుడూ మంచి కార్యాలకు ఉపయోగించాలి.',
-          english: 'Moral: Courage is good, but it should be combined with wisdom and humility. We should always use our powers for good deeds.',
-          audio: 'hanuman-moral.mp3'
-        }
-      ]
-    },
+  
+  // Fetch story data from backend API
+  useEffect(() => {
+    if (!storyId) return;
     
-    // Enhanced Lion Mouse Story
-    'lion-mouse': {
-      title: 'The Lion and the Mouse',
-      slides: [
-        {
-          image: 'https://images.unsplash.com/photo-1694094537357-57cb4fb17bcc',
-          telugu: 'ఒక పెద్ద అడవిలో ఒక గర్వంగా ఉండే సింహం నివసించేది. అతను రాజులా గర్వంగా నడిచేవాడు మరియు అందరూ అతనికి భయపడేవారు.',
-          english: 'In a big forest lived a proud lion. He walked like a king with great pride, and everyone was afraid of him.',
-          audio: 'lion-slide-1.mp3'
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1525490829609-d166ddb58678',
-          telugu: 'ఒక వేడిమిగిన మధ్యాహ్నం, సింహం ఒక చెట్టు కింద నిద్రపోతూ ఉండేవాడు. అతను గల గలలాడుతూ గాఢనిద్రలో ఉండేవాడు.',
-          english: 'One hot afternoon, the lion was sleeping under a tree. He was snoring loudly in deep sleep.',
-          audio: 'lion-slide-2.mp3'
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1531943865082-287018833410',
-          telugu: 'ఒక చిన్న ఎలుక ఆట ఆడుతూ సింహం మీద పరిగెత్తింది. సింహం లేచి కోపంగా ఎలుకను పట్టుకున్నాడు.',
-          english: 'A tiny mouse was playing and ran across the lion. The lion woke up and angrily caught the little mouse.',
-          audio: 'lion-slide-3.mp3'
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1511172889608-21d24d0d1995',
-          telugu: '"దయచేసి నన్ను వదిలేయండి!" ఎలుక వేడుకుంది. "నేను చాలా చిన్నదాన్ని, కానీ ఒక రోజు మీకు సహాయం చేయగలను!" సింహం నవ్వి ఎలుకను వదిలేసాడు.',
-          english: '"Please let me go!" begged the mouse. "I am very small, but one day I might be able to help you!" The lion laughed and let the mouse go.',
-          audio: 'lion-slide-4.mp3'
-        },
-        {
-          image: 'https://images.pexels.com/photos/1431822/pexels-photo-1431822.jpeg',
-          telugu: 'కొన్ని రోజుల తరువాత, వేటగాళ్ళు సింహాన్ని వలలో పట్టుకున్నారు. సింహం గట్టిగా గర్జించాడు కానీ తప్పించుకోలేకపోయాడు.',
-          english: 'A few days later, hunters caught the lion in a net. The lion roared loudly but could not escape.',
-          audio: 'lion-slide-5.mp3'
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1531943865082-287018833410',
-          telugu: 'చిన్న ఎలుక సింహం గర్జన విని పరిగెత్తి వచ్చింది. ఆమె తన చిన్న దంతాలతో వలను కొరికి తెంచింది.',
-          english: 'The little mouse heard the lion roaring and ran to help. She chewed through the net with her tiny teeth.',
-          audio: 'lion-slide-6.mp3'
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1694094537357-57cb4fb17bcc',
-          telugu: 'సింహం స్వేచ్చగా బయటపడ్డాడు. "ధన్యవాదాలు, చిన్న స్నేహితుడా!" అతను అన్నాడు. "నీవు నిజంగా నాకు సహాయం చేశావు!"',
-          english: 'The lion was free! "Thank you, little friend!" he said. "You really did help me!"',
-          audio: 'lion-slide-7.mp3'
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1696527018053-3343b9853505',
-          telugu: 'నైతిక పాఠం: చిన్న సహాయం కూడా పెద్ద మార్పు తీసుకురాగలదు. ఎవరైనా చిన్న వారైనా లేదా పెద్దవారైనా, అందరూ ముఖ్యమైనవారు.',
-          english: 'Moral: Even small acts of kindness can make a big difference. Whether someone is small or big, everyone is important.',
-          audio: 'lion-moral.mp3'
+    const fetchStory = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/stories/${storyId}`);
+        
+        if (!response.ok) {
+          throw new Error(`Failed to load story: ${response.status}`);
         }
-      ]
-    },
+        
+        const storyData = await response.json();
+        setStory(storyData);
+      } catch (err) {
+        console.error('Error fetching story:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    // New Krishna story
-    'krishna-butter': {
-      title: 'Krishna and the Butter Pot',
-      slides: [
-        {
-          image: 'https://images.unsplash.com/photo-1641730259879-ad98e7db7bcb',
-          telugu: 'చిన్న కృష్ణుడు చాలా కృష్ణుడు మరియు చిలిపిగా ఉండేవాడు. అతను వెన్న తినడానికి చాలా ఇష్టపడేవాడు.',
-          english: 'Little Krishna was very playful and mischievous. He loved eating butter more than anything else.',
-          audio: 'krishna-butter-1.mp3'
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1655577480801-2781cb89d628',
-          telugu: 'ప్రతిరోజూ కృష్ణుడు తన స్నేహితులతో కలిసి ఇంట్లో ఉన్న వెన్న కుండలను దొంగిలించేవాడు.',
-          english: 'Every day Krishna would steal butter pots from houses with his friends.',
-          audio: 'krishna-butter-2.mp3'
-        },
-        {
-          image: 'https://images.pexels.com/photos/33444855/pexels-photo-33444855.jpeg',
-          telugu: 'ఒక రోజు యశోద మాత కృష్ణుడిని పట్టుకుని, చెట్టుకు కట్టేసింది. కానీ కృష్ణుడు రెండు చెట్లను లాగి పడగొట్టాడు.',
-          english: 'One day Mother Yashoda caught Krishna and tied him to a tree. But Krishna pulled down two trees.',
-          audio: 'krishna-butter-3.mp3'
-        },
-        {
-          image: 'https://images.unsplash.com/photo-1696527014256-4755b3ac0b4a',
-          telugu: 'నైతిక పాఠం: చిలిపితనం సరే కానీ తల్లిదండ్రుల మాట వినాలి.',
-          english: 'Moral: Mischief is okay, but we should listen to our parents.',
-          audio: 'krishna-butter-moral.mp3'
-        }
-      ]
+    fetchStory();
+  }, [storyId]);
+
+  const toggleAudio = () => {
+    if (!story || !story.slides || !story.slides[currentSlide]) return;
+
+    if (isPlaying) {
+      speechSynthesis.cancel();
+      setIsPlaying(false);
+    } else {
+      setIsPlaying(true);
+      const slide = story.slides[currentSlide];
+      
+      // Play Telugu first, then English
+      const teluguUtterance = speakText(slide.telugu, 'te-IN');
+      if (teluguUtterance) {
+        teluguUtterance.onend = () => {
+          const englishUtterance = speakText(slide.english, 'en-US');
+          if (englishUtterance) {
+            englishUtterance.onend = () => {
+              setIsPlaying(false);
+            };
+          }
+        };
+      }
     }
   };
 
-  const story = stories[storyId];
-  const currentSlideData = story?.slides[currentSlide];
-
   const nextSlide = () => {
-    if (currentSlide < story.slides.length - 1) {
+    if (story && currentSlide < story.slides.length - 1) {
       setCurrentSlide(currentSlide + 1);
-      setIsPlaying(false);
-      setIsSpeaking(false);
-      // Stop any ongoing speech
-      if (speechSynthesis.speaking) {
+      if (isPlaying) {
         speechSynthesis.cancel();
+        setIsPlaying(false);
       }
-    } else {
-      // Show "The End" confetti
-      setCurrentSlide('end');
     }
   };
 
   const prevSlide = () => {
     if (currentSlide > 0) {
       setCurrentSlide(currentSlide - 1);
-      setIsPlaying(false);
-      setIsSpeaking(false);
-      // Stop any ongoing speech
-      if (speechSynthesis.speaking) {
+      if (isPlaying) {
         speechSynthesis.cancel();
+        setIsPlaying(false);
       }
     }
   };
 
-  const toggleAudio = () => {
-    if (!currentSlideData) return;
+  // Loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl mb-4 animate-spin">📖</div>
+          <h1 className="text-3xl font-bold text-blue-600 mb-4">Loading Story...</h1>
+          <div className="animate-pulse text-lg text-blue-500">Please wait while we prepare your story!</div>
+        </div>
+      </div>
+    );
+  }
 
-    if (isSpeaking) {
-      speechSynthesis.cancel();
-      setIsSpeaking(false);
-      setIsPlaying(false);
-    } else {
-      setIsPlaying(true);
-      setIsSpeaking(true);
-      
-      // Speak Telugu first, then English
-      const teluguText = currentSlideData.telugu;
-      const englishText = currentSlideData.english;
-      
-      const teluguUtterance = speakText(teluguText, 'te-IN');
-      
-      if (teluguUtterance) {
-        teluguUtterance.onend = () => {
-          // Small pause, then speak English
-          setTimeout(() => {
-            const englishUtterance = speakText(englishText, 'en-US');
-            if (englishUtterance) {
-              englishUtterance.onend = () => {
-                setIsSpeaking(false);
-                setIsPlaying(false);
-              };
-            }
-          }, 500);
-        };
-      }
-    }
-  };
-
-  // Load voices when component mounts
-  useEffect(() => {
-    if ('speechSynthesis' in window) {
-      const loadVoices = () => {
-        speechSynthesis.getVoices();
-      };
-      speechSynthesis.addEventListener('voiceschanged', loadVoices);
-      loadVoices();
-      
-      return () => {
-        speechSynthesis.removeEventListener('voiceschanged', loadVoices);
-      };
-    }
-  }, []);
-
-  // Cleanup speech on unmount
-  useEffect(() => {
-    return () => {
-      if (speechSynthesis.speaking) {
-        speechSynthesis.cancel();
-      }
-    };
-  }, []);
-
-  if (!story) {
+  // Error state
+  if (error) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-red-100 to-pink-100 flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-6xl mb-4">📚</div>
-          <h1 className="text-3xl font-bold text-red-600 mb-4">Story Coming Soon!</h1>
-          <p className="text-lg text-red-500 mb-6">We're working on this wonderful story for you!</p>
+        <div className="text-center bg-white p-8 rounded-lg shadow-xl">
+          <div className="text-6xl mb-4">😔</div>
+          <h1 className="text-3xl font-bold text-red-600 mb-4">Story Not Found</h1>
+          <p className="text-lg text-red-500 mb-6">We couldn't load this story right now.</p>
           <Button onClick={onBack} className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full">
             <ArrowLeft className="w-6 h-6 mr-2" />
             Go Back
@@ -1350,86 +1206,84 @@ const StoryViewer = ({ storyId, onBack }) => {
     );
   }
 
-  if (currentSlide === 'end') {
+  // No story data
+  if (!story || !story.slides || story.slides.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-orange-100 to-pink-100 flex flex-col items-center justify-center relative overflow-hidden">
-        <Confetti />
-        <div className="text-center space-y-8 max-w-md mx-auto px-6">
-          <div className="text-6xl">🎭</div>
-          <h1 className="text-4xl font-bold text-purple-700">The End</h1>
-          <div className="text-4xl">✨🎉✨</div>
-          <Button 
-            onClick={onBack}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl rounded-full"
-          >
-            <Home className="w-6 h-6 mr-2" />
-            Back to Stories
+      <div className="min-h-screen bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
+        <div className="text-center bg-white p-8 rounded-lg shadow-xl">
+          <div className="text-6xl mb-4">📚</div>
+          <h1 className="text-3xl font-bold text-orange-600 mb-4">Story Coming Soon!</h1>
+          <p className="text-lg text-orange-500 mb-6">We're working on this wonderful story for you!</p>
+          <Button onClick={onBack} className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full">
+            <ArrowLeft className="w-6 h-6 mr-2" />
+            Go Back
           </Button>
         </div>
       </div>
     );
   }
 
+  const currentSlideData = story.slides[currentSlide];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-100 to-blue-100">
       <div className="container mx-auto px-4 py-6">
-        {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <Button onClick={onBack} className="bg-white hover:bg-gray-100 text-purple-700 border-2 border-purple-300">
             <ArrowLeft className="w-6 h-6 mr-2" />
             Back
           </Button>
           <h1 className="text-2xl font-bold text-purple-700">{story.title}</h1>
-          <div className="text-lg font-medium text-purple-600">
+          <div className="text-sm text-purple-600">
             {currentSlide + 1} / {story.slides.length}
           </div>
         </div>
 
-        {/* Story Content */}
-        <Card className="max-w-4xl mx-auto p-6 shadow-2xl bg-white">
-          <div className="space-y-6">
-            {/* Image */}
-            <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden bg-gradient-to-br from-purple-100 to-pink-100">
+        <Card className="max-w-4xl mx-auto p-8 shadow-2xl bg-white">
+          <div className="space-y-8">
+            {/* Story Image */}
+            <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden">
               <img 
-                key={currentSlide} // Force image update on slide change
                 src={currentSlideData.image} 
-                alt={`Slide ${currentSlide + 1}`}
-                className="w-full h-full object-cover transition-opacity duration-500"
+                alt={story.title}
+                className="w-full h-full object-cover"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.nextSibling.style.display = 'flex';
                 }}
               />
-              <div className="w-full h-full hidden items-center justify-center text-6xl">
-                🎨
+              <div className="w-full h-full hidden items-center justify-center text-6xl bg-gradient-to-br from-blue-100 to-purple-100">
+                📖
               </div>
             </div>
 
-            {/* Text Content */}
-            <div className="space-y-4">
-              <div className="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-400">
-                <p className="text-lg font-medium text-orange-800 telugu-text" style={{ fontFamily: 'Noto Sans Telugu, sans-serif' }}>
-                  {currentSlideData.telugu}
-                </p>
-              </div>
-              <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
-                <p className="text-lg text-blue-800">
-                  {currentSlideData.english}
-                </p>
-              </div>
+            {/* Telugu Text */}
+            <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-400">
+              <h3 className="text-xl font-bold text-orange-800 mb-4">📖 తెలుగు:</h3>
+              <p className="text-lg text-orange-800 leading-relaxed font-['Noto Sans Telugu', sans-serif]">
+                {currentSlideData.telugu}
+              </p>
             </div>
 
-            {/* Audio Control */}
-            <div className="text-center">
+            {/* English Text */}
+            <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-400">
+              <h3 className="text-xl font-bold text-blue-800 mb-4">📖 English:</h3>
+              <p className="text-lg text-blue-800 leading-relaxed">
+                {currentSlideData.english}
+              </p>
+            </div>
+
+            {/* Audio Controls */}
+            <div className="text-center space-y-4">
               <Button 
                 onClick={toggleAudio}
                 className={`${
-                  isSpeaking 
+                  isPlaying 
                     ? 'bg-red-600 hover:bg-red-700' 
                     : 'bg-green-600 hover:bg-green-700'
-                } text-white px-6 py-3 rounded-full text-lg`}
+                } text-white px-8 py-4 text-xl rounded-full`}
               >
-                {isSpeaking ? (
+                {isPlaying ? (
                   <>
                     <VolumeX className="w-6 h-6 mr-2" />
                     Stop Story
@@ -1441,34 +1295,46 @@ const StoryViewer = ({ storyId, onBack }) => {
                   </>
                 )}
               </Button>
-              {isSpeaking && (
-                <div className="mt-2 text-sm text-green-600 animate-pulse">
-                  🔊 Reading story aloud...
+              {isPlaying && (
+                <div className="text-sm text-purple-600 animate-pulse">
+                  🎵 Reading story aloud...
                 </div>
               )}
             </div>
+
+            {/* Navigation */}
+            <div className="flex justify-between items-center">
+              <Button 
+                onClick={prevSlide}
+                disabled={currentSlide === 0}
+                className="bg-purple-600 hover:bg-purple-700 disabled:bg-gray-300 text-white px-6 py-3 rounded-full"
+              >
+                <ArrowLeft className="w-6 h-6 mr-2" />
+                Previous
+              </Button>
+
+              <div className="flex space-x-2">
+                {story.slides.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`w-3 h-3 rounded-full ${
+                      index === currentSlide ? 'bg-purple-600' : 'bg-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <Button 
+                onClick={nextSlide}
+                disabled={currentSlide === story.slides.length - 1}
+                className="bg-purple-600 hover:bg-purple-700 disabled:bg-gray-300 text-white px-6 py-3 rounded-full"
+              >
+                Next
+                <ArrowRight className="w-6 h-6 ml-2" />
+              </Button>
+            </div>
           </div>
         </Card>
-
-        {/* Navigation */}
-        <div className="flex justify-between items-center mt-8 max-w-4xl mx-auto">
-          <Button 
-            onClick={prevSlide}
-            disabled={currentSlide === 0}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <ArrowLeft className="w-8 h-8 mr-2" />
-            Previous
-          </Button>
-          
-          <Button 
-            onClick={nextSlide}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 text-xl rounded-full"
-          >
-            Next
-            <ArrowRight className="w-8 h-8 ml-2" />
-          </Button>
-        </div>
       </div>
     </div>
   );
