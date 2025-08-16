@@ -139,9 +139,20 @@ const HomeScreen = ({ onNavigate }) => {
           <p className="text-xl text-purple-600 font-medium">Choose your adventure!</p>
         </div>
         
-        <div className="flex flex-col md:flex-row gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           <Card 
-            className="flex-1 p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br from-blue-100 to-indigo-200 border-4 border-blue-300"
+            className="p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br from-pink-100 to-rose-200 border-4 border-pink-300"
+            onClick={() => onNavigate('aarna')}
+          >
+            <div className="text-center space-y-6">
+              <div className="text-6xl">🌟</div>
+              <h2 className="text-3xl font-bold text-pink-700">Aarna's Adventures</h2>
+              <p className="text-lg text-pink-600">Amazing adventures with Aarna, Ram, and Lahari!</p>
+            </div>
+          </Card>
+          
+          <Card 
+            className="p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br from-blue-100 to-indigo-200 border-4 border-blue-300"
             onClick={() => onNavigate('mythology')}
           >
             <div className="text-center space-y-6">
@@ -152,13 +163,24 @@ const HomeScreen = ({ onNavigate }) => {
           </Card>
           
           <Card 
-            className="flex-1 p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br from-green-100 to-emerald-200 border-4 border-green-300"
+            className="p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br from-green-100 to-emerald-200 border-4 border-green-300"
             onClick={() => onNavigate('moral')}
           >
             <div className="text-center space-y-6">
               <div className="text-6xl">🦁</div>
               <h2 className="text-3xl font-bold text-green-700">Moral Stories</h2>
               <p className="text-lg text-green-600">Learn valuable lessons through fun tales!</p>
+            </div>
+          </Card>
+          
+          <Card 
+            className="p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br from-amber-100 to-yellow-200 border-4 border-amber-300"
+            onClick={() => onNavigate('history')}
+          >
+            <div className="text-center space-y-6">
+              <div className="text-6xl">📚</div>
+              <h2 className="text-3xl font-bold text-amber-700">History Stories</h2>
+              <p className="text-lg text-amber-600">Epic tales from Ramayana and Mahabharata!</p>
             </div>
           </Card>
         </div>
