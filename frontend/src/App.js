@@ -678,6 +678,153 @@ All through the town!`,
 };
 
 // Fun Zone Grid
+const FunZoneGrid = ({ onNavigate, onBack }) => {
+  const games = [
+    { id: 'picture-match', name: 'Picture Match', emoji: '🎯', color: 'from-cyan-100 to-blue-200', description: 'Match gods and animals!' },
+    { id: 'jigsaw-puzzle', name: 'Jigsaw Puzzle', emoji: '🧩', color: 'from-green-100 to-emerald-200', description: '2-4 piece puzzles!' },
+    { id: 'find-object', name: 'Find the Object', emoji: '🔍', color: 'from-yellow-100 to-orange-200', description: 'Tap hidden objects!' },
+    { id: 'simple-riddles', name: 'Simple Riddles', emoji: '🤔', color: 'from-purple-100 to-pink-200', description: 'Fun riddles with hints!' },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-teal-100 via-cyan-100 to-blue-100">
+      <div className="container mx-auto px-6 py-8">
+        <div className="flex items-center mb-8">
+          <Button onClick={onBack} className="mr-4 bg-white hover:bg-gray-100 text-teal-700 border-2 border-teal-300">
+            <ArrowLeft className="w-6 h-6 mr-2" />
+            Back
+          </Button>
+          <h1 className="text-3xl font-bold text-teal-700">Fun Zone - Games & Puzzles</h1>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {games.map((game) => (
+            <Card 
+              key={game.id}
+              className={`p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br ${game.color} border-4 border-teal-200`}
+              onClick={() => onNavigate('game', game.id)}
+            >
+              <div className="text-center space-y-6">
+                <div className="text-8xl">{game.emoji}</div>
+                <h3 className="text-3xl font-bold text-teal-700">{game.name}</h3>
+                <p className="text-xl text-teal-600">{game.description}</p>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Picture Match Game Component
+const PictureMatchGame = ({ onBack }) => {
+  const [gameItems] = useState([
+    { id: 1, name: 'Krishna', emoji: '🦚', matched: false },
+    { id: 2, name: 'Hanuman', emoji: '🐒', matched: false },
+    { id: 3, name: 'Ganesha', emoji: '🐘', matched: false },
+    { id: 4, name: 'Lion', emoji: '🦁', matched: false },
+  ]);
+  
+  const [matches, setMatches] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [score, setScore] = useState(0);
+  const [gameComplete, setGameComplete] = useState(false);
+
+  const handleItemClick = (item) => {
+    if (selectedItem && selectedItem.id === item.id) {
+      // Same item clicked, mark as matched
+      setMatches([...matches, item.id]);
+      setSelectedItem(null);
+      setScore(score + 10);
+      
+      if (matches.length + 1 === gameItems.length) {
+        setGameComplete(true);
+      }
+    } else if (selectedItem) {
+      // Different item, reset selection
+      setSelectedItem(item);
+    } else {
+      // First selection
+      setSelectedItem(item);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-cyan-100 to-blue-200 p-6">
+      <div className="container mx-auto">
+        <div className="flex items-center justify-between mb-8">
+          <Button onClick={onBack} className="bg-white hover:bg-gray-100 text-cyan-700 border-2 border-cyan-300">
+            <ArrowLeft className="w-6 h-6 mr-2" />
+            Back
+          </Button>
+          <h1 className="text-4xl font-bold text-cyan-800">Picture Match Game</h1>
+          <div className="text-2xl font-bold text-cyan-800">Score: {score}</div>
+        </div>
+
+        {gameComplete && (
+          <div className="text-center mb-8 p-6 bg-green-100 rounded-lg border-4 border-green-300">
+            <h2 className="text-4xl font-bold text-green-800 mb-4">🎉 Great Job! 🎉</h2>
+            <p className="text-2xl text-green-700">You matched all the pictures!</p>
+          </div>
+        )}
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          {gameItems.map((item) => (
+            <Card
+              key={item.id}
+              className={`p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl border-4 ${
+                matches.includes(item.id) 
+                  ? 'bg-green-200 border-green-400' 
+                  : selectedItem?.id === item.id 
+                    ? 'bg-yellow-200 border-yellow-400'
+                    : 'bg-white border-cyan-300 hover:border-cyan-400'
+              }`}
+              onClick={() => handleItemClick(item)}
+            >
+              <div className="text-center space-y-4">
+                <div className="text-8xl">{item.emoji}</div>
+                <h3 className="text-2xl font-bold text-cyan-800">{item.name}</h3>
+              </div>
+            </Card>
+          ))}
+        </div>
+
+        <div className="text-center mt-8">
+          <p className="text-xl text-cyan-800 mb-4">
+            {gameComplete 
+              ? "Amazing! You completed the game!" 
+              : "Tap the same picture twice to match it!"}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Simple Game Router Component
+const GameViewer = ({ gameId, onBack }) => {
+  if (gameId === 'picture-match') {
+    return <PictureMatchGame onBack={onBack} />;
+  }
+
+  // Placeholder for other games
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-teal-100 to-cyan-200 flex items-center justify-center">
+      <div className="text-center bg-white p-8 rounded-lg shadow-xl">
+        <div className="text-6xl mb-4">🎮</div>
+        <h1 className="text-3xl font-bold text-teal-700 mb-4">Game Coming Soon!</h1>
+        <p className="text-lg text-teal-600 mb-6">This fun game is being prepared for you!</p>
+        <Button onClick={onBack} className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-full">
+          <ArrowLeft className="w-6 h-6 mr-2" />
+          Back to Fun Zone
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+// Moral Stories Grid
 const MoralGrid = ({ onNavigate, onBack }) => {
   const categories = [
     { id: 'panchatantra', name: 'Panchatantra Tales', emoji: '🦊', color: 'from-orange-100 to-red-200' },
