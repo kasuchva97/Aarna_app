@@ -368,6 +368,8 @@ const HistoryGrid = ({ onNavigate, onBack }) => {
     </div>
   );
 };
+
+// Moral Stories Grid
 const MoralGrid = ({ onNavigate, onBack }) => {
   const categories = [
     { id: 'panchatantra', name: 'Panchatantra Tales', emoji: '🦊', color: 'from-orange-100 to-red-200' },
