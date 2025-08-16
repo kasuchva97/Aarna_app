@@ -60,7 +60,7 @@ async def health_check():
 # Categories endpoints
 @api_router.get("/categories/{category_type}")
 async def get_categories(category_type: str):
-    """Get all categories for a specific type (mythology or moral)"""
+    """Get all categories for a specific type (mythology, moral, aarna, or history)"""
     mythology_categories = [
         {"id": "krishna", "name": "Krishna", "type": "mythology", "emoji": "🦚"},
         {"id": "hanuman", "name": "Hanuman", "type": "mythology", "emoji": "🐒"},
@@ -80,10 +80,23 @@ async def get_categories(category_type: str):
         {"id": "kindness-stories", "name": "Kindness Stories", "type": "moral", "emoji": "💝"},
     ]
     
+    aarna_categories = [
+        {"id": "aarna-adventures", "name": "Aarna's Adventures", "type": "aarna", "emoji": "🌟"},
+    ]
+    
+    history_categories = [
+        {"id": "ramayana", "name": "Ramayana Stories", "type": "history", "emoji": "🏹"},
+        {"id": "mahabharata", "name": "Mahabharata Stories", "type": "history", "emoji": "⚔️"},
+    ]
+    
     if category_type == "mythology":
         return mythology_categories
     elif category_type == "moral":
         return moral_categories
+    elif category_type == "aarna":
+        return aarna_categories
+    elif category_type == "history":
+        return history_categories
     else:
         raise HTTPException(status_code=404, detail="Category type not found")
 
