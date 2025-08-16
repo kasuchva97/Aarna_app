@@ -974,16 +974,43 @@ const StoriesList = ({ category, onNavigate, onBack }) => {
       </div>
     );
   }
-      { id: 'sita-abduction', title: 'Sita\'s Abduction', description: 'Ravana kidnaps Sita', emoji: '😢' },
-      { id: 'hanuman-meets-rama', title: 'Hanuman Meets Rama', description: 'The beginning of eternal devotion', emoji: '🤝' },
-      { id: 'lanka-war', title: 'The Great War of Lanka', description: 'Good versus evil in epic battle', emoji: '⚔️' },
-      { id: 'ravana-defeat', title: 'Ravana\'s Defeat', description: 'The end of the demon king', emoji: '👹' },
-      { id: 'sita-rescue', title: 'Sita\'s Rescue', description: 'Rama saves his beloved wife', emoji: '💕' },
-      { id: 'rama-coronation', title: 'Rama\'s Coronation', description: 'The rightful king takes his throne', emoji: '👑' },
-      { id: 'rama-ayodhya', title: 'Return to Ayodhya', description: 'The joyous homecoming', emoji: '🏰' },
-      { id: 'bharata-devotion', title: 'Bharata\'s Devotion', description: 'A brother\'s love and sacrifice', emoji: '❤️' },
-      { id: 'lakshmana-loyalty', title: 'Lakshmana\'s Loyalty', description: 'The devoted younger brother', emoji: '👬' }
-    ],
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-orange-100 to-pink-100">
+      <div className="container mx-auto px-6 py-8">
+        <div className="flex items-center mb-8">
+          <Button onClick={onBack} className="mr-4 bg-white hover:bg-gray-100 text-purple-700 border-2 border-purple-300">
+            <ArrowLeft className="w-6 h-6 mr-2" />
+            Back
+          </Button>
+          <h1 className="text-3xl font-bold text-purple-700">
+            {categoryNames[category] || category} ({stories.length} stories)
+          </h1>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          {stories.map((story) => (
+            <Card 
+              key={story.id}
+              className="p-6 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl bg-white border-3 border-purple-200"
+              onClick={() => onNavigate('story', story.id)}
+            >
+              <div className="text-center space-y-4">
+                <div className="text-4xl">📖</div>
+                <div>
+                  <h3 className="text-xl font-bold text-purple-700 mb-2">{story.title}</h3>
+                  <p className="text-purple-600 text-sm">{story.description}</p>
+                  <div className="mt-3 text-xs text-purple-500">
+                    {story.slides ? `${story.slides.length} slides` : '8 slides'}
+                  </div>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
     // Mahabharata Stories (12 stories)
     mahabharata: [
