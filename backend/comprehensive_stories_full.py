@@ -59,12 +59,327 @@ COMPREHENSIVE_STORIES_FULL = [
             }
         ]
     },
-
-    # Continue with 100+ more stories across all categories...
-    # More stories would be added here for completion
     
-    # Note: This is a condensed version showing the structure
-    # The full file would contain all the expanded stories from the previous implementation
+    {
+        "id": "aarna-flying-adventure",
+        "title": "Aarna's Flying Adventure",
+        "category": "aarna-adventures", 
+        "description": "Aarna learns to fly with magical wings",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+                "telugu": "ఆర్న ఎల్లప్పుడూ ఆకాశంలో ఎగరాలని కలలు కంటుంది. ఆమె రామ్ మరియు లహరిని 'నేను పక్షుల లాంటి ఎగరగలనా?' అని అడుగుతుంది.",
+                "english": "Aarna always dreams of flying in the sky. She asks Ram and Lahari 'Can I fly like the birds?'",
+                "audio": "aarna-flying-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d",
+                "telugu": "ఒక రోజు ఆర్న ఒక గాయపడిన గద్దను కనుగొంది. ఆమె తన తల్లిదండ్రులతో కలిసి దాన్ని జాగ్రత్తగా చూసుకుంది.",
+                "english": "One day Aarna found an injured eagle. She carefully took care of it with her parents.",
+                "audio": "aarna-flying-2.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1551698618-1dfe5d97d256",
+                "telugu": "గద్ద కోలుకున్న తర్వాత, దానికి మాయా శక్తులు ఉన్నాయని తెలిసింది. గద్ద ఆర్నతో చెప్పింది: 'నీ దయకు ధన్యవాదలు! నేను నీకు ఒక బహుమతి ఇస్తాను.'",
+                "english": "After the eagle recovered, it turned out to have magical powers. The eagle told Aarna: 'Thank you for your kindness! I will give you a gift.'",
+                "audio": "aarna-flying-3.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: దయ మరియు సహాయం ఎల్లప్పుడూ అద్భుతమైన బహుమతులను తెస్తాయి. మంచితనం మన కలలను నిజం చేస్తుంది.",
+                "english": "Moral: Kindness and help always bring wonderful rewards. Goodness makes our dreams come true.",
+                "audio": "aarna-flying-moral.mp3"
+            }
+        ]
+    },
+
+    # ===== KRISHNA STORIES EXPANDED (12 stories) =====
+    {
+        "id": "krishna-butter",
+        "title": "Krishna and the Butter Pot",
+        "category": "krishna",
+        "description": "Little Krishna's mischievous adventures",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1641730259879-ad98e7db7bcb",
+                "telugu": "చిన్న కృష్ణుడు చాలా చిలిపిగా ఉండేవాడు. అతను వెన్న తినడానికి చాలా ఇష్టపడేవాడు.",
+                "english": "Little Krishna was very playful and mischievous. He loved eating butter more than anything else.",
+                "audio": "krishna-butter-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1655577480801-2781cb89d628",
+                "telugu": "ప్రతిరోజూ కృష్ణుడు తన స్నేహితులతో కలిసి ఇంట్లో ఉన్న వెన్న కుండలను దొంగిలించేవాడు.",
+                "english": "Every day Krishna would steal butter pots from houses with his friends.",
+                "audio": "krishna-butter-2.mp3"
+            },
+            {
+                "image": "https://images.pexels.com/photos/33444855/pexels-photo-33444855.jpeg",
+                "telugu": "ఒక రోజు యశోద మాత కృష్ణుడిని పట్టుకుని, చెట్టుకు కట్టేసింది. కానీ కృష్ణుడు రెండు చెట్లను లాగి పడగొట్టాడు.",
+                "english": "One day Mother Yashoda caught Krishna and tied him to a tree. But Krishna pulled down two trees.",
+                "audio": "krishna-butter-3.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: చిలిపితనం సరే కానీ తల్లిదండ్రుల మాట వినాలి.",
+                "english": "Moral: Mischief is okay, but we should listen to our parents.",
+                "audio": "krishna-butter-moral.mp3"
+            }
+        ]
+    },
+
+    {
+        "id": "krishna-govardhan",
+        "title": "Krishna Lifts Mount Govardhan",
+        "category": "krishna",
+        "description": "How little Krishna saved his village from the rain",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1641730259879-ad98e7db7bcb",
+                "telugu": "బ్రిందావనంలో భయంకరమైన వర్షాలు కురిసాయి. ఇంద్రుడు కోపంతో అంతులేని వర్షం కురిపిస్తున్నాడు.",
+                "english": "Terrible rains poured in Brindavan. Indra was angrily sending endless rain.",
+                "audio": "krishna-govardhan-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1664382953518-4f988a3f67cb",
+                "telugu": "గోవర్ధన పర్వతాన్ని చిన్న కృష్ణుడు తన చిన్న వేలుపై ఎత్తుకున్నాడు. అందరూ పర్వతం క్రింద ఆశ్రయం పొందారు.",
+                "english": "Little Krishna lifted Mount Govardhan on his small finger. Everyone took shelter under the mountain.",
+                "audio": "krishna-govardhan-2.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: ధైర్యం మరియు దృఢ సంకల్పంతో ఏదైనా అసాధ్యాన్ని సాధ్యం చేయవచ్చు.",
+                "english": "Moral: With courage and determination, any impossible can be made possible.",
+                "audio": "krishna-govardhan-moral.mp3"
+            }
+        ]
+    },
+
+    # ===== HANUMAN STORIES =====
+    {
+        "id": "hanuman-sun",
+        "title": "Hanuman Flies to the Sun",
+        "category": "hanuman",
+        "description": "The brave monkey god's amazing adventure",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1730191567375-e82ce67160df",
+                "telugu": "చిన్న హనుమాన్ ఒక తెలివైన మరియు బలమైన వానర బాలుడు. అతను ఎల్లప్పుడూ ఆట మరియు రోమాంచకమైన సాహసాలను వెతుకుతూ ఉండేవాడు.",
+                "english": "Little Hanuman was a clever and strong monkey child. He was always looking for games and exciting adventures.",
+                "audio": "hanuman-slide-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1525490829609-d166ddb58678",
+                "telugu": "ఒక ఉదయం హనుమాన్ ఆకాశంలో మెరుస్తున్న పెద్ద ఎర్రని సూర్యుడిని చూశాడు. \"అది ఎంత అందమైన పండు!\" అని అనుకున్నాడు.",
+                "english": "One morning, Hanuman saw the big, bright red sun shining in the sky. \"What a beautiful fruit!\" he thought.",
+                "audio": "hanuman-slide-2.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1654463085571-85d4edcea4dc",
+                "telugu": "హనుమాన్ గాలిలో దూకి, తన దైవిక శక్తులను ఉపయోగించి సూర్యుడి వైపు వేగంగా ఎగరడం మొదలుపెట్టాడు. అతను మేఘాలను దాటి వెళ్ళాడు.",
+                "english": "Hanuman jumped into the air and started flying fast towards the sun using his divine powers. He soared past the clouds.",
+                "audio": "hanuman-slide-3.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1604949210966-9440c324823f",
+                "telugu": "హనుమాన్ వేగంగా ఎగురుతుండగా, సూర్యుడు మరింత పెద్దదిగా మరియు మరింత వేడిమిగా అయ్యాడు. కానీ హనుమాన్ భయపడలేదు.",
+                "english": "As Hanuman flew faster, the sun became bigger and hotter. But Hanuman was not afraid.",
+                "audio": "hanuman-slide-4.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1579539447503-ec82f0aab843",
+                "telugu": "అప్పుడు దేవతలు హనుమాన్‌ని చూశారు. వారు చాలా ఆశ్చర్యపోయారు మరియు భయపడ్డారు. \"ఈ చిన్న వానరుడు సూర్యుడిని తింటే ప్రపంచం చీకటిలో మునిగిపోతుంది!\" అని వారు అనుకున్నారు.",
+                "english": "Then the gods saw Hanuman. They were very surprised and worried. \"If this little monkey eats the sun, the world will be in darkness!\" they thought.",
+                "audio": "hanuman-slide-5.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1654463084969-339ebab5c207",
+                "telugu": "ఇంద్రుడు తన వజ్రాయుధాన్ని హనుమాన్ మీద విసిరాడు. హనుమాన్ భూమి మీద పడ్డాడు, కానీ అతను గాయపడలేదు. అతని తల్లి అతనిని కౌగిలించుకుంది.",
+                "english": "Indra threw his thunderbolt at Hanuman. Hanuman fell to earth, but he was not badly hurt. His mother hugged him tight.",
+                "audio": "hanuman-slide-6.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527014256-4755b3ac0b4a",
+                "telugu": "దేవతలు హనుమాన్‌కు చాలా ఆశీర్వాదాలు ఇచ్చారు. అప్పటి నుండి హనుమాన్ ఎల్లప్పుడూ మంచి కోసం తన శక్తులను ఉపయోగించాడు.",
+                "english": "The gods gave Hanuman many blessings. From that day on, Hanuman always used his powers for good.",
+                "audio": "hanuman-slide-7.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: ధైర్యం మంచిది, కానీ జ్ఞానం మరియు వినయంతో కూడా ఉండాలి. మన శక్తులను ఎల్లప్పుడూ మంచి కార్యాలకు ఉపయోగించాలి.",
+                "english": "Moral: Courage is good, but it should be combined with wisdom and humility. We should always use our powers for good deeds.",
+                "audio": "hanuman-moral.mp3"
+            }
+        ]
+    },
+
+    {
+        "id": "hanuman-sanjivani",
+        "title": "Hanuman and the Sanjivani Mountain",
+        "category": "hanuman",
+        "description": "How Hanuman saved Lakshmana's life",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1730191567375-e82ce67160df",
+                "telugu": "లక్ష్మణుడు యుద్ధంలో గాయపడ్డాడు. అతనికి సంజీవని మూలిక అవసరం లేకపోతే అతను చనిపోతాడు.",
+                "english": "Lakshmana was injured in battle. He needed the Sanjivani herb or he would die.",
+                "audio": "hanuman-sanjivani-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1654463085571-85d4edcea4dc",
+                "telugu": "హనుమాన్ తుంటరిగా మొత్తం పర్వతాన్ని మోసుకుని వచ్చాడు ఎందుకంటే అతనికి ఏ మూలిక సరైనది అని తెలియలేదు.",
+                "english": "Hanuman playfully brought the entire mountain because he couldn't identify which herb was the right one.",
+                "audio": "hanuman-sanjivani-2.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: ప్రేమ మరియు భక్తి అంతం లేని శక్తిని ఇస్తాయి.",
+                "english": "Moral: Love and devotion give endless strength.",
+                "audio": "hanuman-sanjivani-moral.mp3"
+            }
+        ]
+    },
+
+    # ===== ANIMAL FABLES =====
+    {
+        "id": "lion-mouse",
+        "title": "The Lion and the Mouse",
+        "category": "animal-fables",
+        "description": "A small act of kindness saves the day",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1694094537357-57cb4fb17bcc",
+                "telugu": "ఒక పెద్ద అడవిలో ఒక గర్వంగా ఉండే సింహం నివసించేది. అతను రాజులా గర్వంగా నడిచేవాడు మరియు అందరూ అతనికి భయపడేవారు.",
+                "english": "In a big forest lived a proud lion. He walked like a king with great pride, and everyone was afraid of him.",
+                "audio": "lion-slide-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1525490829609-d166ddb58678",
+                "telugu": "ఒక వేడిమిగిన మధ్యాహ్నం, సింహం ఒక చెట్టు కింద నిద్రపోతూ ఉండేవాడు. అతను గల గలలాడుతూ గాఢనిద్రలో ఉండేవాడు.",
+                "english": "One hot afternoon, the lion was sleeping under a tree. He was snoring loudly in deep sleep.",
+                "audio": "lion-slide-2.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1531943865082-287018833410",
+                "telugu": "ఒక చిన్న ఎలుక ఆట ఆడుతూ సింహం మీద పరిగెత్తింది. సింహం లేచి కోపంగా ఎలుకను పట్టుకున్నాడు.",
+                "english": "A tiny mouse was playing and ran across the lion. The lion woke up and angrily caught the little mouse.",
+                "audio": "lion-slide-3.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1511172889608-21d24d0d1995",
+                "telugu": "\"దయచేసి నన్ను వదిలేయండి!\" ఎలుక వేడుకుంది. \"నేను చాలా చిన్నదాన్ని, కానీ ఒక రోజు మీకు సహాయం చేయగలను!\" సింహం నవ్వి ఎలుకను వదిలేసాడు.",
+                "english": "\"Please let me go!\" begged the mouse. \"I am very small, but one day I might be able to help you!\" The lion laughed and let the mouse go.",
+                "audio": "lion-slide-4.mp3"
+            },
+            {
+                "image": "https://images.pexels.com/photos/1431822/pexels-photo-1431822.jpeg",
+                "telugu": "కొన్ని రోజుల తరువాత, వేటగాళ్ళు సింహాన్ని వలలో పట్టుకున్నారు. సింహం గట్టిగా గర్జించాడు కానీ తప్పించుకోలేకపోయాడు.",
+                "english": "A few days later, hunters caught the lion in a net. The lion roared loudly but could not escape.",
+                "audio": "lion-slide-5.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1531943865082-287018833410",
+                "telugu": "చిన్న ఎలుక సింహం గర్జన విని పరిగెత్తి వచ్చింది. ఆమె తన చిన్న దంతాలతో వలను కొరికి తెంచింది.",
+                "english": "The little mouse heard the lion roaring and ran to help. She chewed through the net with her tiny teeth.",
+                "audio": "lion-slide-6.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1694094537357-57cb4fb17bcc",
+                "telugu": "సింహం స్వేచ్చగా బయటపడ్డాడు. \"ధన్యవాదాలు, చిన్న స్నేహితుడా!\" అతను అన్నాడు. \"నీవు నిజంగా నాకు సహాయం చేశావు!\"",
+                "english": "The lion was free! \"Thank you, little friend!\" he said. \"You really did help me!\"",
+                "audio": "lion-slide-7.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: చిన్న సహాయం కూడా పెద్ద మార్పు తీసుకురాగలదు. ఎవరైనా చిన్న వారైనా లేదా పెద్దవారైనా, అందరూ ముఖ్యమైనవారు.",
+                "english": "Moral: Even small acts of kindness can make a big difference. Whether someone is small or big, everyone is important.",
+                "audio": "lion-moral.mp3"
+            }
+        ]
+    },
+
+    # ===== PANCHATANTRA STORIES =====
+    {
+        "id": "monkey-crocodile",
+        "title": "The Monkey and the Crocodile",
+        "category": "panchatantra",
+        "description": "A tale of quick thinking and friendship",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1531943865082-287018833410",
+                "telugu": "ఒక నదీతీరంలో ఒక మామిడి చెట్టు ఉండేది. ఆ చెట్టు మీద ఒక తెలివైన కోతి నివసించేది.",
+                "english": "By a river bank stood a mango tree. On this tree lived a clever monkey.",
+                "audio": "monkey-crocodile-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1525490829609-d166ddb58678",
+                "telugu": "నదిలో ఒక మొసలి నివసించేది. కోతి ప్రతిరోజూ తీపి మామిడిపండ్లను మొసలికి ఇచ్చేది.",
+                "english": "In the river lived a crocodile. Every day the monkey would give sweet mangoes to the crocodile.",
+                "audio": "monkey-crocodile-2.mp3"
+            },
+            {
+                "image": "https://images.pexels.com/photos/33461789/pexels-photo-33461789.jpeg",
+                "telugu": "మొసలి భార్య కోతి హృదయం తినాలని అనుకుంది. మొసలి కోతిని తన వీపుకు తీసుకెళ్లడానికి ఆహ్వానించింది.",
+                "english": "The crocodile's wife wanted to eat the monkey's heart. The crocodile invited the monkey to ride on his back.",
+                "audio": "monkey-crocodile-3.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527014256-4755b3ac0b4a",
+                "telugu": "కోతి తెలివిగా చెప్పింది: \"నా హృదయం చెట్టు మీద వదిలేసాను!\" మొసలి తిరిగి తీసుకెళ్లింది, కోతి చెట్టు ఎక్కి తప్పించుకుంది.",
+                "english": "The clever monkey said: \"I left my heart on the tree!\" The crocodile took him back, and the monkey escaped by climbing the tree.",
+                "audio": "monkey-crocodile-4.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: కష్ట సమయంలో తెలివిని ఉపయోగించండి. నమ్మకాన్ని దుర్వినియోగం చేయకూడదు.",
+                "english": "Moral: Use your intelligence in difficult times. Trust should not be misused.",
+                "audio": "monkey-crocodile-moral.mp3"
+            }
+        ]
+    },
+
+    # ===== RAMAYANA STORIES =====
+    {
+        "id": "rama-birth",
+        "title": "The Birth of Prince Rama",
+        "category": "ramayana",
+        "description": "How the great prince Rama was born",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1609309783328-b2fcbf559d14",
+                "telugu": "అయోధ్య రాజు దశరథుడికి చాలా రోజుల తర్వాత రాముడు అనే కుమారుడు జన్మించాడు. అందరూ చాలా సంతోషపడ్డారు.",
+                "english": "King Dasharatha of Ayodhya had a son named Rama after many years. Everyone was very happy.",
+                "audio": "rama-birth-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: మంచి రాజులు ప్రజల సంతోషానికి కారణం అవుతారు.",
+                "english": "Moral: Good kings become the reason for people's happiness.",
+                "audio": "rama-birth-moral.mp3"
+            }
+        ]
+    },
+
+    # ===== MAHABHARATA STORIES =====
+    {
+        "id": "arjuna-ekalavya",
+        "title": "Arjuna and Ekalavya",
+        "category": "mahabharata", 
+        "description": "A lesson about dedication and skill",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1664382953518-4f988a3f67cb",
+                "telugu": "ఏకలవ్య ద్రోణాచార్యుల వద్ద విద్య నేర్చుకోవాలని అనుకున్నాడు, కానీ అతను రాజకుమారుడు కాదు కాబట్టి తిరస్కరించబడ్డాడు.",
+                "english": "Ekalavya wanted to learn from Dronacharya, but was rejected because he was not a prince.",
+                "audio": "arjuna-ekalavya-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: నిజమైన అభ్యాసం మరియు దృఢ సంకల్పం ఉత్తమ గురువు.",
+                "english": "Moral: True practice and determination are the best teacher.",
+                "audio": "arjuna-ekalavya-moral.mp3"
+            }
+        ]
+    }
 ]
 
 # ===== POEMS DATABASE =====
