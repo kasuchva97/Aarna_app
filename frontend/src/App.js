@@ -412,64 +412,199 @@ const MoralGrid = ({ onNavigate, onBack }) => {
 // Stories List
 const StoriesList = ({ category, onNavigate, onBack }) => {
   const stories = {
-    // Hindu God Stories
+    // Aarna Adventure Stories (12 stories)
+    'aarna-adventures': [
+      { id: 'aarna-magic-forest', title: 'Aarna\'s Magic Forest Adventure', description: 'Aarna discovers a magical forest with her parents', emoji: '🌳' },
+      { id: 'aarna-flying-adventure', title: 'Aarna\'s Flying Adventure', description: 'Aarna learns to fly with magical wings', emoji: '✈️' },
+      { id: 'aarna-underwater-kingdom', title: 'Aarna and the Underwater Kingdom', description: 'Aarna discovers a magical underwater world', emoji: '🧜‍♀️' },
+      { id: 'aarna-mountain-climb', title: 'Aarna Climbs the Highest Mountain', description: 'Aarna\'s brave mountain climbing adventure', emoji: '🏔️' },
+      { id: 'aarna-space-journey', title: 'Aarna\'s Space Journey', description: 'Aarna travels to space and meets friendly aliens', emoji: '🚀' },
+      { id: 'aarna-time-travel', title: 'Aarna\'s Time Travel Adventure', description: 'Aarna travels through time with her parents', emoji: '⏰' },
+      { id: 'aarna-invisible-day', title: 'Aarna\'s Invisible Day', description: 'Aarna becomes invisible and learns important lessons', emoji: '👻' },
+      { id: 'aarna-talking-animals', title: 'Aarna and the Talking Animals', description: 'Aarna helps talking animals solve their problems', emoji: '🐾' },
+      { id: 'aarna-weather-controller', title: 'Aarna Controls the Weather', description: 'Aarna gets the power to control weather and helps farmers', emoji: '⛈️' },
+      { id: 'aarna-book-world', title: 'Aarna Enters the Book World', description: 'Aarna jumps into storybooks and meets fairy tale characters', emoji: '📚' },
+      { id: 'aarna-giant-friend', title: 'Aarna and the Friendly Giant', description: 'Aarna befriends a lonely giant and helps him find happiness', emoji: '👹' },
+      { id: 'aarna-rainbow-bridge', title: 'Aarna and the Rainbow Bridge', description: 'Aarna builds a bridge to help forest creatures', emoji: '🌈' }
+    ],
+
+    // Hindu God Stories (Expanded to 10+ each)
     krishna: [
       { id: 'krishna-butter', title: 'Krishna and the Butter Pot', description: 'Little Krishna\'s mischievous adventures', emoji: '🧈' },
-      { id: 'krishna-kaliya', title: 'Krishna and the Serpent Kaliya', description: 'How Krishna defeated the mighty serpent', emoji: '🐍' }
+      { id: 'krishna-govardhan', title: 'Krishna Lifts Mount Govardhan', description: 'How little Krishna saved his village from the rain', emoji: '⛰️' },
+      { id: 'krishna-kaliya', title: 'Krishna and the Serpent Kaliya', description: 'How Krishna defeated the mighty serpent', emoji: '🐍' },
+      { id: 'krishna-putana', title: 'Baby Krishna and Putana', description: 'How baby Krishna defeated the demon Putana', emoji: '👶' },
+      { id: 'krishna-cart-wheels', title: 'Krishna and the Cart Demon', description: 'Baby Krishna destroys the demon hiding in a cart', emoji: '🛞' },
+      { id: 'krishna-yamalarjuna', title: 'Krishna and the Two Trees', description: 'How Krishna freed two cursed souls', emoji: '🌳' },
+      { id: 'krishna-flute', title: 'Krishna\'s Magical Flute', description: 'The enchanting music that mesmerized everyone', emoji: '🎵' },
+      { id: 'krishna-cowherds', title: 'Krishna and the Cowherd Boys', description: 'Adventures with friends in the forest', emoji: '🐄' },
+      { id: 'krishna-vrindavan', title: 'Krishna in Vrindavan', description: 'Life and joy in the sacred village', emoji: '🏘️' },
+      { id: 'krishna-radha', title: 'Krishna and Radha', description: 'The divine love story', emoji: '💕' },
+      { id: 'krishna-mathura', title: 'Krishna Goes to Mathura', description: 'The journey that changed everything', emoji: '🛤️' },
+      { id: 'krishna-kamsa', title: 'Krishna Defeats Kamsa', description: 'The ultimate victory of good over evil', emoji: '⚔️' }
     ],
     hanuman: [
       { id: 'hanuman-sun', title: 'Hanuman Flies to the Sun', description: 'The brave monkey god\'s amazing adventure', emoji: '☀️' },
-      { id: 'hanuman-mountain', title: 'Hanuman Lifts the Mountain', description: 'How Hanuman saved Lakshmana\'s life', emoji: '⛰️' }
-    ],
-    ganesha: [
-      { id: 'ganesha-moon', title: 'Ganesha and the Moon', description: 'Why Ganesha cursed the moon', emoji: '🌙' },
-      { id: 'ganesha-writer', title: 'Ganesha the Great Writer', description: 'How Ganesha became the scribe of the Mahabharata', emoji: '✍️' }
-    ],
-    rama: [
-      { id: 'rama-bow', title: 'Rama Breaks the Bow', description: 'How Prince Rama won Sita\'s hand', emoji: '🏹' },
-      { id: 'rama-forest', title: 'Rama in the Forest', description: 'Rama\'s exile and adventures in the forest', emoji: '🌲' }
-    ],
-    shiva: [
-      { id: 'shiva-dance', title: 'Shiva\'s Cosmic Dance', description: 'The dance that creates and destroys the universe', emoji: '💃' },
-      { id: 'shiva-ganges', title: 'Shiva and the River Ganges', description: 'How Shiva brought the holy river to earth', emoji: '🌊' }
-    ],
-    durga: [
-      { id: 'durga-demon', title: 'Durga and the Buffalo Demon', description: 'How Goddess Durga defeated Mahishasura', emoji: '⚔️' },
-      { id: 'durga-power', title: 'Durga\'s Divine Power', description: 'The story of the fierce goddess\'s strength', emoji: '💪' }
-    ],
-    lakshmi: [
-      { id: 'lakshmi-ocean', title: 'Lakshmi from the Ocean', description: 'How the goddess of wealth emerged from the sea', emoji: '🌊' },
-      { id: 'lakshmi-vishnu', title: 'Lakshmi and Vishnu', description: 'The eternal love story of divine couple', emoji: '💕' }
-    ],
-    saraswati: [
-      { id: 'saraswati-music', title: 'Saraswati\'s Gift of Music', description: 'How the goddess blessed the world with music', emoji: '🎵' },
-      { id: 'saraswati-knowledge', title: 'Saraswati and the Gift of Knowledge', description: 'The story of wisdom and learning', emoji: '📚' }
+      { id: 'hanuman-sanjivani', title: 'Hanuman and the Sanjivani Mountain', description: 'How Hanuman saved Lakshmana\'s life', emoji: '🏥' },
+      { id: 'hanuman-ocean-leap', title: 'Hanuman\'s Ocean Leap', description: 'The magnificent jump across the ocean', emoji: '🌊' },
+      { id: 'hanuman-ashoka-grove', title: 'Hanuman in Ashoka Grove', description: 'Finding Sita in Lanka', emoji: '🌺' },
+      { id: 'hanuman-lanka-burn', title: 'Hanuman Burns Lanka', description: 'Setting fire to Ravana\'s kingdom', emoji: '🔥' },
+      { id: 'hanuman-childhood', title: 'Baby Hanuman\'s Adventures', description: 'Mischievous tales of young Hanuman', emoji: '🐒' },
+      { id: 'hanuman-bhima', title: 'Hanuman Meets Bhima', description: 'The meeting of two strong brothers', emoji: '💪' },
+      { id: 'hanuman-devotion', title: 'Hanuman\'s Devotion', description: 'The ultimate bhakti story', emoji: '🙏' },
+      { id: 'hanuman-messenger', title: 'Hanuman the Messenger', description: 'Carrying Rama\'s message to Sita', emoji: '💌' },
+      { id: 'hanuman-strength', title: 'Hanuman\'s Divine Strength', description: 'Discovering his powers', emoji: '⚡' },
+      { id: 'hanuman-sindoor', title: 'Hanuman and the Sindoor', description: 'Why Hanuman applied sindoor all over', emoji: '🔴' },
+      { id: 'hanuman-kaliyuga', title: 'Hanuman in Kaliyuga', description: 'The eternal protector', emoji: '🛡️' }
     ],
 
-    // Moral Story Categories
+    // Ramayana Stories (12 stories)
+    ramayana: [
+      { id: 'rama-birth', title: 'The Birth of Prince Rama', description: 'How the great prince Rama was born', emoji: '👑' },
+      { id: 'rama-bow-break', title: 'Rama Breaks Shiva\'s Bow', description: 'How Prince Rama won Sita\'s hand', emoji: '🏹' },
+      { id: 'rama-exile', title: 'Rama\'s Exile to Forest', description: 'The 14-year journey begins', emoji: '🌲' },
+      { id: 'sita-abduction', title: 'Sita\'s Abduction', description: 'Ravana kidnaps Sita', emoji: '😢' },
+      { id: 'hanuman-meets-rama', title: 'Hanuman Meets Rama', description: 'The beginning of eternal devotion', emoji: '🤝' },
+      { id: 'lanka-war', title: 'The Great War of Lanka', description: 'Good versus evil in epic battle', emoji: '⚔️' },
+      { id: 'ravana-defeat', title: 'Ravana\'s Defeat', description: 'The end of the demon king', emoji: '👹' },
+      { id: 'sita-rescue', title: 'Sita\'s Rescue', description: 'Rama saves his beloved wife', emoji: '💕' },
+      { id: 'rama-coronation', title: 'Rama\'s Coronation', description: 'The rightful king takes his throne', emoji: '👑' },
+      { id: 'rama-ayodhya', title: 'Return to Ayodhya', description: 'The joyous homecoming', emoji: '🏰' },
+      { id: 'bharata-devotion', title: 'Bharata\'s Devotion', description: 'A brother\'s love and sacrifice', emoji: '❤️' },
+      { id: 'lakshmana-loyalty', title: 'Lakshmana\'s Loyalty', description: 'The devoted younger brother', emoji: '👬' }
+    ],
+
+    // Mahabharata Stories (12 stories)
+    mahabharata: [
+      { id: 'arjuna-ekalavya', title: 'Arjuna and Ekalavya', description: 'A lesson about dedication and skill', emoji: '🏹' },
+      { id: 'bhima-hidimba', title: 'Bhima and Hidimba', description: 'The strong Pandava\'s forest adventure', emoji: '👹' },
+      { id: 'draupadi-swayamvara', title: 'Draupadi\'s Swayamvara', description: 'The princess chooses her husband', emoji: '👸' },
+      { id: 'krishna-arjuna', title: 'Krishna and Arjuna\'s Friendship', description: 'The divine friendship', emoji: '🤝' },
+      { id: 'pandava-exile', title: 'The Pandavas\' Exile', description: '13 years in the forest', emoji: '🌲' },
+      { id: 'abhimanyu-chakravyuh', title: 'Abhimanyu and the Chakravyuh', description: 'The brave young warrior\'s sacrifice', emoji: '⚡' },
+      { id: 'bhishma-devotion', title: 'Bhishma\'s Sacrifice', description: 'The grandfather\'s ultimate sacrifice', emoji: '🙏' },
+      { id: 'karna-generosity', title: 'Karna\'s Generosity', description: 'The warrior with a golden heart', emoji: '💰' },
+      { id: 'yudhishthira-dharma', title: 'Yudhishthira\'s Dharma', description: 'The righteous king\'s trials', emoji: '⚖️' },
+      { id: 'gandhari-sacrifice', title: 'Gandhari\'s Sacrifice', description: 'A mother\'s love and blindfold', emoji: '👩‍👦' },
+      { id: 'kurukshetra-war', title: 'The Great War of Kurukshetra', description: 'The epic battle for righteousness', emoji: '⚔️' },
+      { id: 'pandava-heaven', title: 'The Pandavas\' Journey to Heaven', description: 'The final spiritual journey', emoji: '☁️' }
+    ],
+
+    // Moral Story Categories (Expanded to 10+ each)
     'panchatantra': [
       { id: 'monkey-crocodile', title: 'The Monkey and the Crocodile', description: 'A tale of quick thinking and friendship', emoji: '🐒' },
+      { id: 'four-friends-elephant', title: 'The Four Friends and the Elephant', description: 'Unity is strength story', emoji: '🐘' },
       { id: 'tortoise-geese', title: 'The Tortoise and the Geese', description: 'Why we should listen to wise advice', emoji: '🐢' },
-      { id: 'brahmin-goat', title: 'The Brahmin and the Goat', description: 'Don\'t believe everything you hear', emoji: '🐐' }
+      { id: 'brahmin-goat', title: 'The Brahmin and the Goat', description: 'Don\'t believe everything you hear', emoji: '🐐' },
+      { id: 'lion-jackal', title: 'The Lion and the Jackal', description: 'Cleverness over strength', emoji: '🦁' },
+      { id: 'mouse-elephant', title: 'The Mouse and the Elephant', description: 'Small friends, big help', emoji: '🐭' },
+      { id: 'wise-crow', title: 'The Wise Crow', description: 'Intelligence solves problems', emoji: '🐦‍⬛' },
+      { id: 'greedy-dog', title: 'The Greedy Dog', description: 'Greed leads to loss', emoji: '🐕' },
+      { id: 'blue-jackal', title: 'The Blue Jackal', description: 'Truth always comes out', emoji: '🔵' },
+      { id: 'musical-donkey', title: 'The Musical Donkey', description: 'Wrong time, wrong place', emoji: '🫏' },
+      { id: 'merchant-iron', title: 'The Merchant and the Iron', description: 'Dishonesty doesn\'t pay', emoji: '⚖️' },
+      { id: 'snake-frogs', title: 'The Snake and the Frogs', description: 'Be careful who you trust', emoji: '🐸' }
     ],
     'animal-fables': [
       { id: 'lion-mouse', title: 'The Lion and the Mouse', description: 'A small act of kindness saves the day', emoji: '🦁' },
+      { id: 'clever-fox-crow', title: 'The Clever Fox and the Crow', description: 'A lesson about flattery and pride', emoji: '🦊' },
       { id: 'ant-grasshopper', title: 'The Ant and the Grasshopper', description: 'The importance of hard work and planning', emoji: '🐜' },
-      { id: 'fox-grapes', title: 'The Fox and the Grapes', description: 'Don\'t give up too easily on your dreams', emoji: '🦊' },
-      { id: 'rabbit-tortoise', title: 'The Rabbit and the Tortoise', description: 'Slow and steady wins the race', emoji: '🐰' }
+      { id: 'fox-grapes', title: 'The Fox and the Grapes', description: 'Don\'t give up too easily on your dreams', emoji: '🍇' },
+      { id: 'rabbit-tortoise', title: 'The Rabbit and the Tortoise', description: 'Slow and steady wins the race', emoji: '🐰' },
+      { id: 'wolf-sheep', title: 'The Wolf in Sheep\'s Clothing', description: 'Don\'t judge by appearance', emoji: '🐺' },
+      { id: 'dog-bone', title: 'The Dog and His Bone', description: 'Be happy with what you have', emoji: '🦴' },
+      { id: 'city-mouse-country', title: 'The City Mouse and Country Mouse', description: 'Simple life vs fancy life', emoji: '🏘️' },
+      { id: 'eagle-wren', title: 'The Eagle and the Wren', description: 'Size doesn\'t matter', emoji: '🦅' },
+      { id: 'bear-bees', title: 'The Bear and the Bees', description: 'Think before you act', emoji: '🐻' },
+      { id: 'owl-birds', title: 'The Owl and Other Birds', description: 'Wisdom comes with experience', emoji: '🦉' },
+      { id: 'frog-ox', title: 'The Frog and the Ox', description: 'Don\'t try to be someone else', emoji: '🐸' }
     ],
     'classic-moral': [
       { id: 'boy-wolf', title: 'The Boy Who Cried Wolf', description: 'Always tell the truth', emoji: '🐺' },
       { id: 'golden-eggs', title: 'The Goose with Golden Eggs', description: 'Don\'t be too greedy', emoji: '🪿' },
-      { id: 'country-city-mouse', title: 'The Country Mouse and City Mouse', description: 'Simple life can be better than fancy life', emoji: '🐭' }
+      { id: 'country-city-mouse', title: 'The Country Mouse and City Mouse', description: 'Simple life can be better than fancy life', emoji: '🐭' },
+      { id: 'honest-woodcutter', title: 'The Honest Woodcutter', description: 'Honesty is the best policy', emoji: '🪓' },
+      { id: 'king-new-clothes', title: 'The King\'s New Clothes', description: 'Speak the truth even when others don\'t', emoji: '👑' },
+      { id: 'wise-old-man', title: 'The Wise Old Man', description: 'Experience teaches valuable lessons', emoji: '👴' },
+      { id: 'patient-farmer', title: 'The Patient Farmer', description: 'Good things come to those who wait', emoji: '👨‍🌾' },
+      { id: 'generous-baker', title: 'The Generous Baker', description: 'Sharing brings happiness', emoji: '🧑‍🍳' },
+      { id: 'brave-little-girl', title: 'The Brave Little Girl', description: 'Courage comes in all sizes', emoji: '👧' },
+      { id: 'thankful-heart', title: 'The Thankful Heart', description: 'Gratitude makes everything better', emoji: '❤️' },
+      { id: 'helping-hands', title: 'The Helping Hands', description: 'Many hands make light work', emoji: '🤝' },
+      { id: 'golden-rule', title: 'The Golden Rule', description: 'Treat others as you want to be treated', emoji: '⭐' }
     ],
     'friendship-stories': [
       { id: 'dog-elephant', title: 'The Dog and the Elephant', description: 'True friends come in all sizes', emoji: '🐕' },
-      { id: 'birds-together', title: 'The Birds Who Stayed Together', description: 'Unity is strength', emoji: '🐦' }
+      { id: 'birds-together', title: 'The Birds Who Stayed Together', description: 'Unity is strength', emoji: '🐦' },
+      { id: 'cat-mouse-friends', title: 'The Cat and Mouse Who Became Friends', description: 'Enemies can become friends', emoji: '🐱' },
+      { id: 'lonely-tree', title: 'The Lonely Tree', description: 'Everyone needs friends', emoji: '🌳' },
+      { id: 'sharing-toys', title: 'The Children Who Shared Toys', description: 'Sharing makes friendships stronger', emoji: '🧸' },
+      { id: 'playground-heroes', title: 'The Playground Heroes', description: 'Standing up for friends', emoji: '🛝' },
+      { id: 'lost-puppy', title: 'The Lost Puppy', description: 'Friends help in times of need', emoji: '🐶' },
+      { id: 'birthday-surprise', title: 'The Birthday Surprise', description: 'Thoughtful friends make life special', emoji: '🎂' },
+      { id: 'new-student', title: 'The New Student', description: 'Welcoming new friends', emoji: '🎒' },
+      { id: 'forgiveness-friends', title: 'Friends Who Forgive', description: 'True friends forgive mistakes', emoji: '🤗' },
+      { id: 'adventure-buddies', title: 'The Adventure Buddies', description: 'Adventures are better with friends', emoji: '🗺️' },
+      { id: 'rainy-day-friends', title: 'Rainy Day Friends', description: 'Friends make any day better', emoji: '☔' }
     ],
     'kindness-stories': [
       { id: 'kind-woodcutter', title: 'The Kind Woodcutter', description: 'Honesty is always rewarded', emoji: '🪓' },
-      { id: 'helpful-sparrow', title: 'The Helpful Little Sparrow', description: 'Small acts of kindness matter', emoji: '🐦' }
+      { id: 'helpful-sparrow', title: 'The Helpful Little Sparrow', description: 'Small acts of kindness matter', emoji: '🐦' },
+      { id: 'caring-nurse', title: 'The Caring Nurse', description: 'Helping others feel better', emoji: '👩‍⚕️' },
+      { id: 'generous-shopkeeper', title: 'The Generous Shopkeeper', description: 'Kindness comes back to you', emoji: '🏪' },
+      { id: 'gentle-giant', title: 'The Gentle Giant', description: 'Big hearts in big people', emoji: '👹' },
+      { id: 'animal-rescuer', title: 'The Animal Rescuer', description: 'Caring for creatures in need', emoji: '🐾' },
+      { id: 'grandmother-cookies', title: 'Grandmother\'s Cookies', description: 'Love shared through food', emoji: '🍪' },
+      { id: 'student-teacher', title: 'The Student Who Helped Teacher', description: 'Kindness in the classroom', emoji: '📚' },
+      { id: 'street-cleaner', title: 'The Street Cleaner\'s Smile', description: 'Every job deserves respect', emoji: '🧹' },
+      { id: 'flower-garden', title: 'The Flower Garden Helper', description: 'Beauty grows with care', emoji: '🌸' },
+      { id: 'library-volunteer', title: 'The Library Volunteer', description: 'Sharing knowledge freely', emoji: '📖' },
+      { id: 'soup-kitchen', title: 'The Soup Kitchen Story', description: 'Feeding those in need', emoji: '🥣' }
+    ],
+
+    // Additional categories for remaining gods...
+    ganesha: [
+      { id: 'ganesha-moon', title: 'Ganesha and the Moon', description: 'Why Ganesha cursed the moon', emoji: '🌙' },
+      { id: 'ganesha-writer', title: 'Ganesha the Great Writer', description: 'How Ganesha became the scribe of the Mahabharata', emoji: '✍️' },
+      { id: 'ganesha-modak', title: 'Ganesha and the Modaks', description: 'The elephant god\'s favorite sweet', emoji: '🍬' },
+      { id: 'ganesha-mouse', title: 'Ganesha and His Mouse', description: 'How the mighty mouse became Ganesha\'s vehicle', emoji: '🐭' },
+      { id: 'ganesha-wisdom', title: 'Ganesha\'s Wisdom Test', description: 'The contest between Ganesha and Kartikeya', emoji: '🧠' },
+      { id: 'ganesha-obstacles', title: 'Ganesha the Obstacle Remover', description: 'Why we pray to Ganesha first', emoji: '🚧' },
+      { id: 'ganesha-broken-tusk', title: 'Ganesha\'s Broken Tusk', description: 'The story of sacrifice for knowledge', emoji: '🦷' },
+      { id: 'ganesha-birth', title: 'The Birth of Ganesha', description: 'How Parvati created her son', emoji: '👶' },
+      { id: 'ganesha-kubera', title: 'Ganesha and Kubera', description: 'A lesson about pride and humility', emoji: '💰' },
+      { id: 'ganesha-devotee', title: 'Ganesha\'s Devotee', description: 'The power of true devotion', emoji: '🙏' }
+    ],
+    
+    // Add more categories as needed...
+    rama: [
+      { id: 'rama-bow', title: 'Rama Breaks the Bow', description: 'How Prince Rama won Sita\'s hand', emoji: '🏹' },
+      { id: 'rama-forest', title: 'Rama in the Forest', description: 'Rama\'s exile and adventures in the forest', emoji: '🌲' }
+      // More Rama stories would be added here
+    ],
+    
+    shiva: [
+      { id: 'shiva-dance', title: 'Shiva\'s Cosmic Dance', description: 'The dance that creates and destroys the universe', emoji: '💃' },
+      { id: 'shiva-ganges', title: 'Shiva and the River Ganges', description: 'How Shiva brought the holy river to earth', emoji: '🌊' }
+      // More Shiva stories would be added here
+    ],
+    
+    durga: [
+      { id: 'durga-demon', title: 'Durga and the Buffalo Demon', description: 'How Goddess Durga defeated Mahishasura', emoji: '⚔️' },
+      { id: 'durga-power', title: 'Durga\'s Divine Power', description: 'The story of the fierce goddess\'s strength', emoji: '💪' }
+      // More Durga stories would be added here
+    ],
+    
+    lakshmi: [
+      { id: 'lakshmi-ocean', title: 'Lakshmi from the Ocean', description: 'How the goddess of wealth emerged from the sea', emoji: '🌊' },
+      { id: 'lakshmi-vishnu', title: 'Lakshmi and Vishnu', description: 'The eternal love story of divine couple', emoji: '💕' }
+      // More Lakshmi stories would be added here
+    ],
+    
+    saraswati: [
+      { id: 'saraswati-music', title: 'Saraswati\'s Gift of Music', description: 'How the goddess blessed the world with music', emoji: '🎵' },
+      { id: 'saraswati-knowledge', title: 'Saraswati and the Gift of Knowledge', description: 'The story of wisdom and learning', emoji: '📚' }
+      // More Saraswati stories would be added here
     ]
   };
 
