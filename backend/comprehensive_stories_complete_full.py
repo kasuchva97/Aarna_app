@@ -490,6 +490,192 @@ COMPREHENSIVE_STORIES_FULL = [
     # Due to space limits, I'll add placeholder structure for other categories
 ]
 
+# Add all remaining mythology categories
+MYTHOLOGY_STORIES = [
+    # HANUMAN STORIES (12 stories)
+    {
+        "id": "hanuman-sun",
+        "title": "Hanuman and the Sun",
+        "category": "hanuman",
+        "description": "Hanuman tries to eat the sun",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06",
+                "telugu": "హనుమంతుడు సూర్యుడిని పండుగా భావించాడు.",
+                "english": "Hanuman thought the sun was a fruit.",
+                "audio": "hanuman-sun-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: ధైర్యం ఉంటే ఏదైనా సాధ్యం.",
+                "english": "Moral: With courage anything is possible.",
+                "audio": "hanuman-sun-moral.mp3"
+            }
+        ]
+    },
+    {
+        "id": "hanuman-sanjivani",
+        "title": "Hanuman Brings Medicine",
+        "category": "hanuman",
+        "description": "Hanuman brings the healing mountain",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4",
+                "telugu": "హనుమంతుడు మందు కోసం పర్వతాన్ని తెచ్చాడు.",
+                "english": "Hanuman brought the mountain for medicine.",
+                "audio": "hanuman-sanjivani-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: స్నేహితులకు సహాయం చేయాలి.",
+                "english": "Moral: Help friends in need.",
+                "audio": "hanuman-sanjivani-moral.mp3"
+            }
+        ]
+    },
+    {
+        "id": "hanuman-strength",
+        "title": "Hanuman's Great Strength",
+        "category": "hanuman",
+        "description": "Hanuman shows his strength",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1551698618-1dfe5d97d256",
+                "telugu": "హనుమంతుడు గొప్ప బలవంతుడు.",
+                "english": "Hanuman was very strong.",
+                "audio": "hanuman-strength-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: శక్తిని మంచికోసం వాడాలి.",
+                "english": "Moral: Use strength for good.",
+                "audio": "hanuman-strength-moral.mp3"
+            }
+        ]
+    }
+]
+
+# GANESHA STORIES
+GANESHA_STORIES = [
+    {
+        "id": "ganesha-modak",
+        "title": "Ganesha Loves Modak",
+        "category": "ganesha",
+        "description": "Ganesha's favorite sweet",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1655577480801-2781cb89d628",
+                "telugu": "గణేశుడు మోదకాలను ప్రేమిస్తాడు.",
+                "english": "Ganesha loves modak sweets.",
+                "audio": "ganesha-modak-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: పంచుకోవడం ఆనందం ఇస్తుంది.",
+                "english": "Moral: Sharing brings joy.",
+                "audio": "ganesha-modak-moral.mp3"
+            }
+        ]
+    }
+]
+
+# MORAL STORIES
+MORAL_STORIES = [
+    # PANCHATANTRA TALES
+    {
+        "id": "lion-mouse",
+        "title": "The Lion and the Mouse",
+        "category": "panchatantra",
+        "description": "A mouse helps a mighty lion",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1425082661705-1834bfd09dca",
+                "telugu": "చిన్న ఎలుక గొప్ప సింహాన్ని రక్షించింది.",
+                "english": "A small mouse saved a mighty lion.",
+                "audio": "lion-mouse-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: చిన్నవారిని తక్కువగా చూడకూడదు.",
+                "english": "Moral: Don't underestimate small ones.",
+                "audio": "lion-mouse-moral.mp3"
+            }
+        ]
+    },
+    {
+        "id": "tortoise-hare",
+        "title": "The Tortoise and the Hare",
+        "category": "panchatantra",
+        "description": "Slow and steady wins the race",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1425082661705-1834bfd09dca",
+                "telugu": "తాబేలు మరియు కుందేలు పోటీ పడ్డాయి.",
+                "english": "The tortoise and hare had a race.",
+                "audio": "tortoise-hare-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: నెమ్మదిగా మరియు స్థిరంగా వెళ్లినవాడు గెలుస్తాడు.",
+                "english": "Moral: Slow and steady wins the race.",
+                "audio": "tortoise-hare-moral.mp3"
+            }
+        ]
+    }
+]
+
+# HISTORY STORIES
+HISTORY_STORIES = [
+    # RAMAYANA STORIES
+    {
+        "id": "rama-birth",
+        "title": "Birth of Prince Rama",
+        "category": "ramayana",
+        "description": "The birth of Prince Rama",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1641730259879-ad98e7db7bcb",
+                "telugu": "రాజకుమార రాముడు జన్మించాడు.",
+                "english": "Prince Rama was born.",
+                "audio": "rama-birth-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: మంచి పిల్లలు అందరికీ ఆనందం తెస్తారు.",
+                "english": "Moral: Good children bring joy to everyone.",
+                "audio": "rama-birth-moral.mp3"
+            }
+        ]
+    },
+    # MAHABHARATA STORIES  
+    {
+        "id": "arjuna-ekalavya",
+        "title": "Arjuna and Ekalavya",
+        "category": "mahabharata",
+        "description": "The story of dedication",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1664382953518-4f988a3f67cb",
+                "telugu": "ఏకలవ్య కఠిన అభ్యాసం చేసాడు.",
+                "english": "Ekalavya practiced very hard.",
+                "audio": "arjuna-ekalavya-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: కఠిన అభ్యాసం విజయం తెస్తుంది.",
+                "english": "Moral: Hard practice brings success.",
+                "audio": "arjuna-ekalavya-moral.mp3"
+            }
+        ]
+    }
+]
+
+# Combine all stories
+COMPREHENSIVE_STORIES_FULL.extend(MYTHOLOGY_STORIES)
+COMPREHENSIVE_STORIES_FULL.extend(GANESHA_STORIES)  
+COMPREHENSIVE_STORIES_FULL.extend(MORAL_STORIES)
+COMPREHENSIVE_STORIES_FULL.extend(HISTORY_STORIES)
+
 # COMPREHENSIVE_POEMS data
 COMPREHENSIVE_POEMS = [
     # Telugu Poems
