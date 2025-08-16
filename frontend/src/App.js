@@ -296,7 +296,78 @@ const MythologyGrid = ({ onNavigate, onBack }) => {
   );
 };
 
-// Moral Stories Grid
+// Aarna Adventures Grid
+const AarnaGrid = ({ onNavigate, onBack }) => {
+  const categories = [
+    { id: 'aarna-adventures', name: "Aarna's Adventures", emoji: '🌟', color: 'from-pink-100 to-rose-200' },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-pink-100 via-rose-100 to-red-100">
+      <div className="container mx-auto px-6 py-8">
+        <div className="flex items-center mb-8">
+          <Button onClick={onBack} className="mr-4 bg-white hover:bg-gray-100 text-pink-700 border-2 border-pink-300">
+            <ArrowLeft className="w-6 h-6 mr-2" />
+            Back
+          </Button>
+          <h1 className="text-3xl font-bold text-pink-700">Aarna's Adventures</h1>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {categories.map((category) => (
+            <Card 
+              key={category.id}
+              className={`p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br ${category.color} border-4 border-pink-200`}
+              onClick={() => onNavigate('stories', category.id)}
+            >
+              <div className="text-center space-y-6">
+                <div className="text-6xl">{category.emoji}</div>
+                <h3 className="text-2xl font-bold text-pink-700">{category.name}</h3>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// History Stories Grid
+const HistoryGrid = ({ onNavigate, onBack }) => {
+  const categories = [
+    { id: 'ramayana', name: 'Ramayana Stories', emoji: '🏹', color: 'from-amber-100 to-orange-200' },
+    { id: 'mahabharata', name: 'Mahabharata Stories', emoji: '⚔️', color: 'from-yellow-100 to-amber-200' },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-amber-100 via-yellow-100 to-orange-100">
+      <div className="container mx-auto px-6 py-8">
+        <div className="flex items-center mb-8">
+          <Button onClick={onBack} className="mr-4 bg-white hover:bg-gray-100 text-amber-700 border-2 border-amber-300">
+            <ArrowLeft className="w-6 h-6 mr-2" />
+            Back
+          </Button>
+          <h1 className="text-3xl font-bold text-amber-700">Epic History Stories</h1>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {categories.map((category) => (
+            <Card 
+              key={category.id}
+              className={`p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br ${category.color} border-4 border-amber-200`}
+              onClick={() => onNavigate('stories', category.id)}
+            >
+              <div className="text-center space-y-6">
+                <div className="text-6xl">{category.emoji}</div>
+                <h3 className="text-2xl font-bold text-amber-700">{category.name}</h3>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 const MoralGrid = ({ onNavigate, onBack }) => {
   const categories = [
     { id: 'panchatantra', name: 'Panchatantra Tales', emoji: '🦊', color: 'from-orange-100 to-red-200' },
