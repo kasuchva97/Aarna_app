@@ -159,8 +159,8 @@ async def initialize_sample_data():
     
     # Check if data already exists
     existing_stories = await db.stories.count_documents({})
-    if existing_stories > 10:  # Allow re-init if we have fewer stories
-        return {"message": "Sample data already exists"}
+    if existing_stories > 50:  # Allow re-init if we have fewer stories
+        return {"message": "Comprehensive story data already exists"}
     
     # Clear existing data for fresh start
     await db.stories.delete_many({})
