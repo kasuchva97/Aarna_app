@@ -76,6 +76,8 @@ async def get_categories(category_type: str):
         {"id": "panchatantra", "name": "Panchatantra Tales", "type": "moral", "emoji": "🦊"},
         {"id": "animal-fables", "name": "Animal Fables", "type": "moral", "emoji": "🦁"},
         {"id": "classic-moral", "name": "Classic Moral Stories", "type": "moral", "emoji": "📚"},
+        {"id": "friendship-stories", "name": "Friendship Stories", "type": "moral", "emoji": "🤝"},
+        {"id": "kindness-stories", "name": "Kindness Stories", "type": "moral", "emoji": "💝"},
     ]
     
     if category_type == "mythology":
@@ -136,17 +138,21 @@ async def delete_story(story_id: str):
         raise HTTPException(status_code=404, detail="Story not found")
     return {"message": "Story deleted successfully"}
 
-# Initialize sample data
+# Initialize comprehensive sample data
 @api_router.post("/init-data")
 async def initialize_sample_data():
-    """Initialize the database with sample stories"""
+    """Initialize the database with comprehensive sample stories"""
     
     # Check if data already exists
     existing_stories = await db.stories.count_documents({})
-    if existing_stories > 0:
+    if existing_stories > 10:  # Allow re-init if we have fewer stories
         return {"message": "Sample data already exists"}
     
+    # Clear existing data for fresh start
+    await db.stories.delete_many({})
+    
     sample_stories = [
+        # Hindu Mythology Stories
         {
             "id": "hanuman-sun",
             "title": "Hanuman Flies to the Sun",
@@ -154,31 +160,89 @@ async def initialize_sample_data():
             "description": "The brave monkey god's amazing adventure",
             "slides": [
                 {
-                    "image": "https://images.pexels.com/photos/8051165/pexels-photo-8051165.jpeg",
-                    "telugu": "హనుమాన్ ఒక చిన్న వానరుడు. అతను సూర్యుడిని పండుగ అని అనుకున్నాడు.",
-                    "english": "Little Hanuman saw the bright sun and thought it was a delicious fruit.",
+                    "image": "https://images.unsplash.com/photo-1730191567375-e82ce67160df",
+                    "telugu": "చిన్న హనుమాన్ ఒక తెలివైన మరియు బలమైన వానర బాలుడు. అతను ఎల్లప్పుడూ ఆట మరియు రోమాంచకమైన సాహసాలను వెతుకుతూ ఉండేవాడు.",
+                    "english": "Little Hanuman was a clever and strong monkey child. He was always looking for games and exciting adventures.",
                     "audio": "hanuman-slide-1.mp3"
                 },
                 {
-                    "image": "https://images.unsplash.com/photo-1743964451734-90a90b395a84",
-                    "telugu": "హనుమాన్ సూర్యుడి వైపు దూకాడు. అతను చాలా వేగంగా ఎగిరాడు.",
-                    "english": "Brave Hanuman leaped towards the sun, flying faster and faster through the sky.",
+                    "image": "https://images.unsplash.com/photo-1525490829609-d166ddb58678",
+                    "telugu": "ఒక ఉదయం హనుమాన్ ఆకాశంలో మెరుస్తున్న పెద్ద ఎర్రని సూర్యుడిని చూశాడు. \"అది ఎంత అందమైన పండు!\" అని అనుకున్నాడు.",
+                    "english": "One morning, Hanuman saw the big, bright red sun shining in the sky. \"What a beautiful fruit!\" he thought.",
                     "audio": "hanuman-slide-2.mp3"
                 },
                 {
-                    "image": "https://images.unsplash.com/photo-1632302937441-3dcd8af686e5",
-                    "telugu": "దేవతలు భయపడ్డారు. వారు హనుమాన్‌ను ఆపాలని అనుకున్నారు.",
-                    "english": "The gods were worried and decided they must stop little Hanuman.",
+                    "image": "https://images.unsplash.com/photo-1654463085571-85d4edcea4dc",
+                    "telugu": "హనుమాన్ గాలిలో దూకి, తన దైవిక శక్తులను ఉపయోగించి సూర్యుడి వైపు వేగంగా ఎగరడం మొదలుపెట్టాడు. అతను మేఘాలను దాటి వెళ్ళాడు.",
+                    "english": "Hanuman jumped into the air and started flying fast towards the sun using his divine powers. He soared past the clouds.",
                     "audio": "hanuman-slide-3.mp3"
                 },
                 {
+                    "image": "https://images.unsplash.com/photo-1604949210966-9440c324823f",
+                    "telugu": "హనుమాన్ వేగంగా ఎగురుతుండగా, సూర్యుడు మరింత పెద్దదిగా మరియు మరింత వేడిమిగా అయ్యాడు. కానీ హనుమాన్ భయపడలేదు.",
+                    "english": "As Hanuman flew faster, the sun became bigger and hotter. But Hanuman was not afraid.",
+                    "audio": "hanuman-slide-4.mp3"
+                },
+                {
+                    "image": "https://images.unsplash.com/photo-1579539447503-ec82f0aab843",
+                    "telugu": "అప్పుడు దేవతలు హనుమాన్‌ని చూశారు. వారు చాలా ఆశ్చర్యపోయారు మరియు భయపడ్డారు. \"ఈ చిన్న వానరుడు సూర్యుడిని తింటే ప్రపంచం చీకటిలో మునిగిపోతుంది!\" అని వారు అనుకున్నారు.",
+                    "english": "Then the gods saw Hanuman. They were very surprised and worried. \"If this little monkey eats the sun, the world will be in darkness!\" they thought.",
+                    "audio": "hanuman-slide-5.mp3"
+                },
+                {
+                    "image": "https://images.unsplash.com/photo-1654463084969-339ebab5c207",
+                    "telugu": "ఇంద్రుడు తన వజ్రాయుధాన్ని హనుమాన్ మీద విసిరాడు. హనుమాన్ భూమి మీద పడ్డాడు, కానీ అతను గాయపడలেదు. అతని తల్లి అతనిని కౌగిలించుకుంది.",
+                    "english": "Indra threw his thunderbolt at Hanuman. Hanuman fell to earth, but he was not badly hurt. His mother hugged him tight.",
+                    "audio": "hanuman-slide-6.mp3"
+                },
+                {
                     "image": "https://images.unsplash.com/photo-1696527014256-4755b3ac0b4a",
-                    "telugu": "నైతిక పాఠం: ధైర్యం మంచిది, కానీ జ్ఞానంతో కూడా ఉండాలి.",
-                    "english": "Moral: Courage is good, but it should be combined with wisdom.",
+                    "telugu": "దేవతలు హనుమాన్‌కు చాలా ఆశీర్వాదాలు ఇచ్చారు. అప్పటి నుండి హనుమాన్ ఎల్లప్పుడూ మంచి కోసం తన శక్తులను ఉపయోగించాడు.",
+                    "english": "The gods gave Hanuman many blessings. From that day on, Hanuman always used his powers for good.",
+                    "audio": "hanuman-slide-7.mp3"
+                },
+                {
+                    "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                    "telugu": "నైతిక పాఠం: ధైర్యం మంచిది, కానీ జ్ఞానం మరియు వినయంతో కూడా ఉండాలి. మన శక్తులను ఎల్లప్పుడూ మంచి కార్యాలకు ఉపయోగించాలి.",
+                    "english": "Moral: Courage is good, but it should be combined with wisdom and humility. We should always use our powers for good deeds.",
                     "audio": "hanuman-moral.mp3"
                 }
             ]
         },
+        {
+            "id": "krishna-butter",
+            "title": "Krishna and the Butter Pot",
+            "category": "krishna",
+            "description": "Little Krishna's mischievous adventures",
+            "slides": [
+                {
+                    "image": "https://images.unsplash.com/photo-1641730259879-ad98e7db7bcb",
+                    "telugu": "చిన్న కృష్ణుడు చాలా కృష్ణుడు మరియు చిలిపిగా ఉండేవాడు. అతను వెన్న తినడానికి చాలా ఇష్టపడేవాడు.",
+                    "english": "Little Krishna was very playful and mischievous. He loved eating butter more than anything else.",
+                    "audio": "krishna-butter-1.mp3"
+                },
+                {
+                    "image": "https://images.unsplash.com/photo-1655577480801-2781cb89d628",
+                    "telugu": "ప్రతిరోజూ కృష్ణుడు తన స్నేహితులతో కలిసి ఇంట్లో ఉన్న వెన్న కుండలను దొంగిలించేవాడు.",
+                    "english": "Every day Krishna would steal butter pots from houses with his friends.",
+                    "audio": "krishna-butter-2.mp3"
+                },
+                {
+                    "image": "https://images.pexels.com/photos/33444855/pexels-photo-33444855.jpeg",
+                    "telugu": "ఒక రోజు యశోద మాత కృష్ణుడిని పట్టుకుని, చెట్టుకు కట్టేసింది. కానీ కృష్ణుడు రెండు చెట్లను లాగి పడగొట్టాడు.",
+                    "english": "One day Mother Yashoda caught Krishna and tied him to a tree. But Krishna pulled down two trees.",
+                    "audio": "krishna-butter-3.mp3"
+                },
+                {
+                    "image": "https://images.unsplash.com/photo-1696527014256-4755b3ac0b4a",
+                    "telugu": "నైతిక పాఠం: చిలిపితనం సరే కానీ తల్లిదండ్రుల మాట వినాలి.",
+                    "english": "Moral: Mischief is okay, but we should listen to our parents.",
+                    "audio": "krishna-butter-moral.mp3"
+                }
+            ]
+        },
+        
+        # Enhanced Lion and Mouse Story
         {
             "id": "lion-mouse",
             "title": "The Lion and the Mouse",
@@ -186,28 +250,92 @@ async def initialize_sample_data():
             "description": "A small act of kindness saves the day",
             "slides": [
                 {
-                    "image": "https://images.unsplash.com/photo-1743964451734-90a90b395a84",
-                    "telugu": "ఒక పెద్ద సింహం అడవిలో నిద్రపోతూ ఉండేది.",
-                    "english": "A big lion was sleeping peacefully in the forest.",
+                    "image": "https://images.unsplash.com/photo-1694094537357-57cb4fb17bcc",
+                    "telugu": "ఒక పెద్ద అడవిలో ఒక గర్వంగా ఉండే సింహం నివసించేది. అతను రాజులా గర్వంగా నడిచేవాడు మరియు అందరూ అతనికి భయపడేవారు.",
+                    "english": "In a big forest lived a proud lion. He walked like a king with great pride, and everyone was afraid of him.",
                     "audio": "lion-slide-1.mp3"
                 },
                 {
-                    "image": "https://images.unsplash.com/photo-1742404894161-75ef71f65be0",
-                    "telugu": "ఒక చిన్న ఎలుక సింహం మీద పరిగెత్తింది.",
-                    "english": "A tiny mouse ran across the lion and woke him up.",
+                    "image": "https://images.unsplash.com/photo-1525490829609-d166ddb58678",
+                    "telugu": "ఒక వేడిమిగిన మధ్యాహ్నం, సింహం ఒక చెట్టు కింద నిద్రపోతూ ఉండేవాడు. అతను గల గలలాడుతూ గాఢనిద్రలో ఉండేవాడు.",
+                    "english": "One hot afternoon, the lion was sleeping under a tree. He was snoring loudly in deep sleep.",
                     "audio": "lion-slide-2.mp3"
                 },
                 {
-                    "image": "https://images.pexels.com/photos/33443603/pexels-photo-33443603.jpeg",
-                    "telugu": "ఎలుక సింహాన్ని కబళింపజేయకుండా వేటగాళ్ళ వలల నుండి రక్షించింది.",
-                    "english": "The little mouse helped free the lion from hunters' nets.",
+                    "image": "https://images.unsplash.com/photo-1531943865082-287018833410",
+                    "telugu": "ఒక చిన్న ఎలుక ఆట ఆడుతూ సింహం మీద పరిగెత్తింది. సింహం లేచి కోపంగా ఎలుకను పట్టుకున్నాడు.",
+                    "english": "A tiny mouse was playing and ran across the lion. The lion woke up and angrily caught the little mouse.",
                     "audio": "lion-slide-3.mp3"
                 },
                 {
+                    "image": "https://images.unsplash.com/photo-1511172889608-21d24d0d1995",
+                    "telugu": "\"దయచేసి నన్ను వదిలేయండి!\" ఎలుక వేడుకుంది. \"నేను చాలా చిన్నదాన్ని, కానీ ఒక రోజు మీకు సహాయం చేయగలను!\" సింహం నవ్వి ఎలుకను వదిలేసాడు.",
+                    "english": "\"Please let me go!\" begged the mouse. \"I am very small, but one day I might be able to help you!\" The lion laughed and let the mouse go.",
+                    "audio": "lion-slide-4.mp3"
+                },
+                {
+                    "image": "https://images.pexels.com/photos/1431822/pexels-photo-1431822.jpeg",
+                    "telugu": "కొన్ని రోజుల తరువాత, వేటగాళ్ళు సింహాన్ని వలలో పట్టుకున్నారు. సింహం గట్టిగా గర్జించాడు కానీ తప్పించుకోలేకపోయాడు.",
+                    "english": "A few days later, hunters caught the lion in a net. The lion roared loudly but could not escape.",
+                    "audio": "lion-slide-5.mp3"
+                },
+                {
+                    "image": "https://images.unsplash.com/photo-1531943865082-287018833410",
+                    "telugu": "చిన్న ఎలుక సింహం గర్జన విని పరిగెత్తి వచ్చింది. ఆమె తన చిన్న దంతాలతో వలను కొరికి తెంచింది.",
+                    "english": "The little mouse heard the lion roaring and ran to help. She chewed through the net with her tiny teeth.",
+                    "audio": "lion-slide-6.mp3"
+                },
+                {
+                    "image": "https://images.unsplash.com/photo-1694094537357-57cb4fb17bcc",
+                    "telugu": "సింహం స్వేచ్చగా బయటపడ్డాడు. \"ధన్యవాదాలు, చిన్న స్నేహితుడా!\" అతను అన్నాడు. \"నీవు నిజంగా నాకు సహాయం చేశావు!\"",
+                    "english": "The lion was free! \"Thank you, little friend!\" he said. \"You really did help me!\"",
+                    "audio": "lion-slide-7.mp3"
+                },
+                {
                     "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
-                    "telugu": "నైతిక పాఠం: చిన్న సహాయం కూడా పెద్ద మార్పు తీసుకురాగలదు.",
-                    "english": "Moral: Even small acts of kindness can make a big difference.",
+                    "telugu": "నైతిక పాఠం: చిన్న సహాయం కూడా పెద్ద మార్పు తీసుకురాగలదు. ఎవరైనా చిన్న వారైనా లేదా పెద్దవారైనా, అందరూ ముఖ్యమైనవారు.",
+                    "english": "Moral: Even small acts of kindness can make a big difference. Whether someone is small or big, everyone is important.",
                     "audio": "lion-moral.mp3"
+                }
+            ]
+        },
+
+        # New Panchatantra Story
+        {
+            "id": "monkey-crocodile",
+            "title": "The Monkey and the Crocodile",
+            "category": "panchatantra",
+            "description": "A tale of quick thinking and friendship",
+            "slides": [
+                {
+                    "image": "https://images.unsplash.com/photo-1531943865082-287018833410",
+                    "telugu": "ఒక నదీతీరంలో ఒక మామిడి చెట్టు ఉండేది. ఆ చెట్టు మీద ఒక తెలివైన కోతి నివసించేది.",
+                    "english": "By a river bank stood a mango tree. On this tree lived a clever monkey.",
+                    "audio": "monkey-crocodile-1.mp3"
+                },
+                {
+                    "image": "https://images.unsplash.com/photo-1525490829609-d166ddb58678",
+                    "telugu": "నదిలో ఒక మొసలి నివసించేది. కోతి ప్రతిరోజూ తీపి మామిడిపండ్లను మొసలికి ఇచ్చేది.",
+                    "english": "In the river lived a crocodile. Every day the monkey would give sweet mangoes to the crocodile.",
+                    "audio": "monkey-crocodile-2.mp3"
+                },
+                {
+                    "image": "https://images.pexels.com/photos/33461789/pexels-photo-33461789.jpeg",
+                    "telugu": "మొసలి భార్య కోతి హృదయం తినాలని అనుకుంది. మొసలి కోతిని తన వీపుకు తీసుకెళ్లడానికి ఆహ్వానించింది.",
+                    "english": "The crocodile's wife wanted to eat the monkey's heart. The crocodile invited the monkey to ride on his back.",
+                    "audio": "monkey-crocodile-3.mp3"
+                },
+                {
+                    "image": "https://images.unsplash.com/photo-1696527014256-4755b3ac0b4a",
+                    "telugu": "కోతి తెలివిగా చెప్పింది: \"నా హృదయం చెట్టు మీద వదిలేసాను!\" మొసలి తిరిగి తీసుకెళ్లింది, కోతి చెట్టు ఎక్కి తప్పించుకుంది.",
+                    "english": "The clever monkey said: \"I left my heart on the tree!\" The crocodile took him back, and the monkey escaped by climbing the tree.",
+                    "audio": "monkey-crocodile-4.mp3"
+                },
+                {
+                    "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                    "telugu": "నైతిక పాఠం: కష్ట సమయంలో తెలివిని ఉపయోగించండి. నమ్మకాన్ని దుర్వినియోగం చేయకూడదు.",
+                    "english": "Moral: Use your intelligence in difficult times. Trust should not be misused.",
+                    "audio": "monkey-crocodile-moral.mp3"
                 }
             ]
         }
