@@ -235,4 +235,194 @@ COMPREHENSIVE_STORIES_FULL = [
     # Continue with more complete stories...
 ]
 
+# Add more Aarna stories (total 12)
+aarna_stories_remaining = [
+    {
+        "id": "aarna-underwater-kingdom",
+        "title": "Aarna's Underwater Kingdom", 
+        "category": "aarna-adventures",
+        "description": "Aarna explores underwater kingdom with her parents",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1559827260-dc66d52bef19",
+                "telugu": "ఆర్న, రామ్ మరియు లహరి సముద్రతీరంలో ఆట ఆడుతున్నారు. అకస్మాత్తుగా ఒక మాయా శంఖం వారిని పిలిచింది.",
+                "english": "Aarna, Ram and Lahari were playing at the beach. Suddenly a magical conch shell called them.",
+                "audio": "aarna-underwater-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1582967788606-a171c1080cb0",
+                "telugu": "శంఖం వారికి నీట కింద శ్వాస తీసుకునే శక్తిని ఇచ్చింది. వారు మొత్తం కుటుంబంతో కలిసి సముద్రంలోకి దిగారు.",
+                "english": "The conch gave them the power to breathe underwater. The whole family went down into the ocean together.",
+                "audio": "aarna-underwater-2.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1583212292454-1fe6229603b7",
+                "telugu": "నీట కింద వారు అద్భుతమైన సముద్రపు రాజ్యాన్ని చూశారు. రంగురంగుల పగడాలు మరియు అందమైన చేపలు ఉన్నాయి.",
+                "english": "Under water they saw a wonderful underwater kingdom. There were colorful corals and beautiful fish.",
+                "audio": "aarna-underwater-3.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1559827260-dc66d52bef19",
+                "telugu": "అక్కడ వారు మాట్లాడే చేపలు, స్నేహపూర్వక సముద్రపు గుర్రాలు మరియు తెలివైన తాబేళ్లను కలుసుకున్నారు.",
+                "english": "There they met talking fish, friendly seahorses and wise turtles.",
+                "audio": "aarna-underwater-4.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1583212292454-1fe6229603b7",
+                "telugu": "ఆర్న సముద్రపు జంతువులందరితో స్నేహం చేసింది. వారు ఆమెకు సముద్రపు రాజ్యంలోని అన్ని రహస్యాలను చూపించారు.",
+                "english": "Aarna became friends with all the sea creatures. They showed her all the secrets of the underwater kingdom.",
+                "audio": "aarna-underwater-5.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1559827260-dc66d52bef19",
+                "telugu": "సముద్రపు రాజ ఆర్నను చూసి చాలా సంతోషించాడు. అతను ఆమెకు ముత్యాలతో చేసిన అందమైన కిరీటాన్ని బహుమతిగా ఇచ్చాడు.",
+                "english": "The sea king was very happy to see Aarna. He gave her a beautiful crown made of pearls as a gift.",
+                "audio": "aarna-underwater-6.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1582967788606-a171c1080cb0",
+                "telugu": "రామ్ మరియు లహరి కూడా సముద్రపు జీవులతో మంచి స్నేհం చేసుకున్నారు. వారందరూ కలిసి అందమైన సముద్రపు ఆటలు ఆడారు.",
+                "english": "Ram and Lahari also made good friends with sea creatures. They all played beautiful underwater games together.",
+                "audio": "aarna-underwater-7.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: కొత్త ప్రపంచాలను అన్వేషించడం మరియు కొత్త స్నేహితులను చేసుకోవడం జీవితాన్ని అందంగా చేస్తుంది.",
+                "english": "Moral: Exploring new worlds and making new friends makes life beautiful.",
+                "audio": "aarna-underwater-moral.mp3"
+            }
+        ]
+    }
+]
+
+# Add more Krishna stories (total 5)
+krishna_stories_remaining = [
+    {
+        "id": "krishna-govardhan-lift",
+        "title": "Krishna Lifts Govardhan Mountain",
+        "category": "krishna",
+        "description": "How Krishna saved everyone by lifting the mountain",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1664382953518-4f988a3f67cb",
+                "telugu": "బ్రిందావనంలో ప్రజలు ఇంద్రుడికి పూజలు చేసేవారు. కానీ కృష్ణుడు చెప్పాడు: 'మనం గోవర్ధన పర్వతానికి పూజ చేద్దాం.'",
+                "english": "People in Brindavan used to worship Indra. But Krishna said: 'Let us worship Govardhan mountain.'",
+                "audio": "krishna-govardhan-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1664382953518-4f988a3f67cb",
+                "telugu": "ఇంద్రుడికి చాలా కోపం వచ్చింది. అతను భయంకరమైన వర్షాలు మరియు గాలులతో బ్రిందావనాన్ని నాశనం చేయాలని అనుకున్నాడు.",
+                "english": "Indra became very angry. He decided to destroy Brindavan with terrible rains and winds.",
+                "audio": "krishna-govardhan-2.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4",
+                "telugu": "అంతులేని వర్షం కురిసింది. ప్రజలు, జంతువులు అందరూ భయపడ్డారు. వారి ఇళ్ళు మునిగిపోతున్నాయి.",
+                "english": "Endless rain poured down. People and animals were all scared. Their houses were getting flooded.",
+                "audio": "krishna-govardhan-3.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4",
+                "telugu": "అందరూ కృష్ణుడి దగ్గరకు వచ్చారు. 'కృష్ణా! దయచేసి మాకు సహాయం చేయి!' అని మనవి చేశారు.",
+                "english": "Everyone came to Krishna. 'Krishna! Please help us!' they pleaded.",
+                "audio": "krishna-govardhan-4.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4",
+                "telugu": "కృష్ణుడు గోవర్ధన పర్వతాన్ని తన చిన్న వేలుమీద ఎత్తాడు. అది ఒక గొడుగులా అందరిని రక్షించింది.",
+                "english": "Krishna lifted Govardhan mountain on his little finger. It protected everyone like an umbrella.",
+                "audio": "krishna-govardhan-5.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1664382953518-4f988a3f67cb",
+                "telugu": "ఏడు రోజుల పాటు కృష్ణుడు పర్వతాన్ని పట్టుకున్నాడు. అందరూ సురక్షితంగా ఉన్నారు. ఇంద్రుడు ఆశ్చర్యపోయాడు.",
+                "english": "For seven days Krishna held the mountain. Everyone was safe. Indra was amazed.",
+                "audio": "krishna-govardhan-6.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1664382953518-4f988a3f67cb",
+                "telugu": "ఇంద్రుడు తన తప్పు అర్థం చేసుకుని వర్షం ఆపేశాడు. అతను కృష్ణుడి దగ్గరకు వచ్చి క్షమాపణలు చెప్పాడు.",
+                "english": "Indra realized his mistake and stopped the rain. He came to Krishna and apologized.",
+                "audio": "krishna-govardhan-7.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: ధైర్యం మరియు దృఢ సంకల్పంతో అసాధ్యాన్ని సాధ్యం చేయవచ్చు. అహంకారం వల్ల ఎవరికైనా నష్టం వస్తుంది.",
+                "english": "Moral: With courage and determination impossible becomes possible. Pride can harm anyone.",
+                "audio": "krishna-govardhan-moral.mp3"
+            }
+        ]
+    }
+]
+
+# Add Panchatantra stories (total 6)
+panchatantra_remaining = [
+    {
+        "id": "tortoise-hare-race",
+        "title": "The Tortoise and the Hare",
+        "category": "panchatantra",
+        "description": "The famous race between slow tortoise and fast hare",
+        "slides": [
+            {
+                "image": "https://images.unsplash.com/photo-1425082661705-1834bfd09dca",
+                "telugu": "ఒక అడవిలో ఒక వేగవంతమైన కుందేలు మరియు నెమ్మదిగా వెళ్లే తాబేలు నివసించేవి. కుందేలు ఎల్లప్పుడూ తాబేలును ఎగతాళి చేసేది.",
+                "english": "In a forest lived a fast rabbit and a slow-moving tortoise. The rabbit always made fun of the tortoise.",
+                "audio": "tortoise-hare-1.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1425082661705-1834bfd09dca",
+                "telugu": "ఒక రోజు కుందేలు చెప్పింది: 'నీవు చాలా నెమ్మదిగా వెళ్తావు! నేను నిన్న కన్నా వేగంగా వెళ్తాను.' తాబేలు చెప్పింది: 'మనం రేసు పెట్టుకుందాం.'",
+                "english": "One day the rabbit said: 'You go so slow! I go much faster than you.' The tortoise said: 'Let us have a race.'",
+                "audio": "tortoise-hare-2.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1425082661705-1834bfd09dca",
+                "telugu": "రేసు మొదలైంది. కుందేలు చాలా వేగంగా పరిగెత్తింది మరియు తాబేలును చాలా వెనుకబాటు వేసింది. కుందేలు తాబేలును చూసి నవ్వింది.",
+                "english": "The race began. The rabbit ran very fast and left the tortoise far behind. The rabbit laughed at the tortoise.",
+                "audio": "tortoise-hare-3.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1425082661705-1834bfd09dca",
+                "telugu": "'నేను చాలా వేగంగా ఉన్నాను, కాసేపు విశ్రమించుకుందాం' అని కుందేలు అనుకుంది. అది ఒక చెట్టు కింద నిద్రపోయింది.",
+                "english": "'I am so fast, let me rest for a while' thought the rabbit. It fell asleep under a tree.",
+                "audio": "tortoise-hare-4.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1425082661705-1834bfd09dca",
+                "telugu": "తాబేలు నెమ్మదిగా కానీ ఆపకుండా నడుస్తున్నది. అది నిద్రపోతున్న కుందేలు దగ్గరికి వచ్చి దాన్ని దాటింది.",
+                "english": "The tortoise walked slowly but without stopping. It came near the sleeping rabbit and passed it.",
+                "audio": "tortoise-hare-5.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1425082661705-1834bfd09dca",
+                "telugu": "కుందేలు లేచి చూసింది తాబేలు దాని కంటే ముందుగా వెళ్లిపోయింది. అది వేగంగా పరిగెత్తింది కానీ చాలా ఆలస్యమైంది.",
+                "english": "The rabbit woke up and saw the tortoise had gone ahead. It ran fast but it was too late.",
+                "audio": "tortoise-hare-6.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1425082661705-1834bfd09dca",
+                "telugu": "తాబేలు మొదట ఫినిషింగ్ లైన్ చేరుకుంది మరియు రేసులో గెలిచింది. కుందేలు చాలా బాధపడింది.",
+                "english": "The tortoise reached the finishing line first and won the race. The rabbit felt very sad.",
+                "audio": "tortoise-hare-7.mp3"
+            },
+            {
+                "image": "https://images.unsplash.com/photo-1696527018053-3343b9853505",
+                "telugu": "నైతిక పాఠం: నెమ్మదిగా మరియు స్థిరంగా వెళ్లేవాడు గెలుస్తాడు. అధిక ఆత్మవిశ్వాసం మరియు అలసత్వం వల్ల వైఫల్యం వస్తుంది.",
+                "english": "Moral: Slow and steady wins the race. Overconfidence and laziness lead to failure.",
+                "audio": "tortoise-hare-moral.mp3"
+            }
+        ]
+    }
+]
+
+# Combine all stories
+COMPREHENSIVE_STORIES_FULL.extend(aarna_stories_remaining)
+COMPREHENSIVE_STORIES_FULL.extend(krishna_stories_remaining)
+COMPREHENSIVE_STORIES_FULL.extend(panchatantra_remaining)
+
+# Add more stories to reach 44 total (create templates for remaining categories)
+# Hanuman, Ganesha, Rama, Animal Fables (need to add actual content)
+
+print(f"Total stories: {len(COMPREHENSIVE_STORIES_FULL)}")
+
 COMPREHENSIVE_POEMS = []
