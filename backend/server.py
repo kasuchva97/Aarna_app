@@ -11,7 +11,7 @@ from pydantic import BaseModel, Field
 from typing import List, Optional
 import uuid
 from datetime import datetime
-from comprehensive_stories import COMPREHENSIVE_STORIES
+from comprehensive_stories_full import COMPREHENSIVE_STORIES_FULL
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -167,11 +167,11 @@ async def initialize_sample_data():
     
     
     # Use the comprehensive stories from our external file
-    for story_data in COMPREHENSIVE_STORIES:
+    for story_data in COMPREHENSIVE_STORIES_FULL:
         story = Story(**story_data)
         await db.stories.insert_one(story.dict())
     
-    return {"message": f"Initialized {len(COMPREHENSIVE_STORIES)} comprehensive stories"}
+    return {"message": f"Initialized {len(COMPREHENSIVE_STORIES_FULL)} comprehensive stories"}
 
 # Include the router in the main app
 app.include_router(api_router)
