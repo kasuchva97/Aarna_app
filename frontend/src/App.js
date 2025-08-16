@@ -866,58 +866,114 @@ const MoralGrid = ({ onNavigate, onBack }) => {
 
 // Stories List
 const StoriesList = ({ category, onNavigate, onBack }) => {
-  const stories = {
-    // Aarna Adventure Stories (12 stories)
-    'aarna-adventures': [
-      { id: 'aarna-magic-forest', title: 'Aarna\'s Magic Forest Adventure', description: 'Aarna discovers a magical forest with her parents', emoji: '🌳' },
-      { id: 'aarna-flying-adventure', title: 'Aarna\'s Flying Adventure', description: 'Aarna learns to fly with magical wings', emoji: '✈️' },
-      { id: 'aarna-underwater-kingdom', title: 'Aarna and the Underwater Kingdom', description: 'Aarna discovers a magical underwater world', emoji: '🧜‍♀️' },
-      { id: 'aarna-mountain-climb', title: 'Aarna Climbs the Highest Mountain', description: 'Aarna\'s brave mountain climbing adventure', emoji: '🏔️' },
-      { id: 'aarna-space-journey', title: 'Aarna\'s Space Journey', description: 'Aarna travels to space and meets friendly aliens', emoji: '🚀' },
-      { id: 'aarna-time-travel', title: 'Aarna\'s Time Travel Adventure', description: 'Aarna travels through time with her parents', emoji: '⏰' },
-      { id: 'aarna-invisible-day', title: 'Aarna\'s Invisible Day', description: 'Aarna becomes invisible and learns important lessons', emoji: '👻' },
-      { id: 'aarna-talking-animals', title: 'Aarna and the Talking Animals', description: 'Aarna helps talking animals solve their problems', emoji: '🐾' },
-      { id: 'aarna-weather-controller', title: 'Aarna Controls the Weather', description: 'Aarna gets the power to control weather and helps farmers', emoji: '⛈️' },
-      { id: 'aarna-book-world', title: 'Aarna Enters the Book World', description: 'Aarna jumps into storybooks and meets fairy tale characters', emoji: '📚' },
-      { id: 'aarna-giant-friend', title: 'Aarna and the Friendly Giant', description: 'Aarna befriends a lonely giant and helps him find happiness', emoji: '👹' },
-      { id: 'aarna-rainbow-bridge', title: 'Aarna and the Rainbow Bridge', description: 'Aarna builds a bridge to help forest creatures', emoji: '🌈' }
-    ],
+  const [stories, setStories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    // Hindu God Stories (Expanded to 10+ each)
-    krishna: [
-      { id: 'krishna-butter', title: 'Krishna and the Butter Pot', description: 'Little Krishna\'s mischievous adventures', emoji: '🧈' },
-      { id: 'krishna-govardhan', title: 'Krishna Lifts Mount Govardhan', description: 'How little Krishna saved his village from the rain', emoji: '⛰️' },
-      { id: 'krishna-kaliya', title: 'Krishna and the Serpent Kaliya', description: 'How Krishna defeated the mighty serpent', emoji: '🐍' },
-      { id: 'krishna-putana', title: 'Baby Krishna and Putana', description: 'How baby Krishna defeated the demon Putana', emoji: '👶' },
-      { id: 'krishna-cart-wheels', title: 'Krishna and the Cart Demon', description: 'Baby Krishna destroys the demon hiding in a cart', emoji: '🛞' },
-      { id: 'krishna-yamalarjuna', title: 'Krishna and the Two Trees', description: 'How Krishna freed two cursed souls', emoji: '🌳' },
-      { id: 'krishna-flute', title: 'Krishna\'s Magical Flute', description: 'The enchanting music that mesmerized everyone', emoji: '🎵' },
-      { id: 'krishna-cowherds', title: 'Krishna and the Cowherd Boys', description: 'Adventures with friends in the forest', emoji: '🐄' },
-      { id: 'krishna-vrindavan', title: 'Krishna in Vrindavan', description: 'Life and joy in the sacred village', emoji: '🏘️' },
-      { id: 'krishna-radha', title: 'Krishna and Radha', description: 'The divine love story', emoji: '💕' },
-      { id: 'krishna-mathura', title: 'Krishna Goes to Mathura', description: 'The journey that changed everything', emoji: '🛤️' },
-      { id: 'krishna-kamsa', title: 'Krishna Defeats Kamsa', description: 'The ultimate victory of good over evil', emoji: '⚔️' }
-    ],
-    hanuman: [
-      { id: 'hanuman-sun', title: 'Hanuman Flies to the Sun', description: 'The brave monkey god\'s amazing adventure', emoji: '☀️' },
-      { id: 'hanuman-sanjivani', title: 'Hanuman and the Sanjivani Mountain', description: 'How Hanuman saved Lakshmana\'s life', emoji: '🏥' },
-      { id: 'hanuman-ocean-leap', title: 'Hanuman\'s Ocean Leap', description: 'The magnificent jump across the ocean', emoji: '🌊' },
-      { id: 'hanuman-ashoka-grove', title: 'Hanuman in Ashoka Grove', description: 'Finding Sita in Lanka', emoji: '🌺' },
-      { id: 'hanuman-lanka-burn', title: 'Hanuman Burns Lanka', description: 'Setting fire to Ravana\'s kingdom', emoji: '🔥' },
-      { id: 'hanuman-childhood', title: 'Baby Hanuman\'s Adventures', description: 'Mischievous tales of young Hanuman', emoji: '🐒' },
-      { id: 'hanuman-bhima', title: 'Hanuman Meets Bhima', description: 'The meeting of two strong brothers', emoji: '💪' },
-      { id: 'hanuman-devotion', title: 'Hanuman\'s Devotion', description: 'The ultimate bhakti story', emoji: '🙏' },
-      { id: 'hanuman-messenger', title: 'Hanuman the Messenger', description: 'Carrying Rama\'s message to Sita', emoji: '💌' },
-      { id: 'hanuman-strength', title: 'Hanuman\'s Divine Strength', description: 'Discovering his powers', emoji: '⚡' },
-      { id: 'hanuman-sindoor', title: 'Hanuman and the Sindoor', description: 'Why Hanuman applied sindoor all over', emoji: '🔴' },
-      { id: 'hanuman-kaliyuga', title: 'Hanuman in Kaliyuga', description: 'The eternal protector', emoji: '🛡️' }
-    ],
+  useEffect(() => {
+    const fetchStories = async () => {
+      try {
+        setLoading(true);
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || import.meta.env.REACT_APP_BACKEND_URL;
+        const response = await fetch(`${backendUrl}/api/stories/category/${category}`);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        setStories(data);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching stories:', err);
+        setError(err.message);
+        setStories([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    // Ramayana Stories (12 stories)
-    ramayana: [
-      { id: 'rama-birth', title: 'The Birth of Prince Rama', description: 'How the great prince Rama was born', emoji: '👑' },
-      { id: 'rama-bow-break', title: 'Rama Breaks Shiva\'s Bow', description: 'How Prince Rama won Sita\'s hand', emoji: '🏹' },
-      { id: 'rama-exile', title: 'Rama\'s Exile to Forest', description: 'The 14-year journey begins', emoji: '🌲' },
+    if (category) {
+      fetchStories();
+    }
+  }, [category]);
+
+  // Category names for display
+  const categoryNames = {
+    'aarna-adventures': "Aarna's Adventures",
+    'krishna': 'Krishna Stories', 
+    'hanuman': 'Hanuman Stories',
+    'ganesha': 'Ganesha Stories',
+    'rama': 'Rama Stories',
+    'shiva': 'Shiva Stories',
+    'durga': 'Durga Stories',
+    'lakshmi': 'Lakshmi Stories',
+    'saraswati': 'Saraswati Stories',
+    'panchatantra': 'Panchatantra Tales',
+    'animal-fables': 'Animal Fables',
+    'classic-moral': 'Moral Stories',
+    'friendship-stories': 'Friendship Stories',
+    'kindness-stories': 'Kindness Stories',
+    'ramayana': 'Ramayana Stories',
+    'mahabharata': 'Mahabharata Stories'
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-orange-100 to-pink-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl mb-4">📚</div>
+          <div className="text-2xl font-bold text-purple-700">Loading stories...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-orange-100 to-pink-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl mb-4">😔</div>
+          <div className="text-2xl font-bold text-red-700 mb-4">Oops! Something went wrong</div>
+          <div className="text-lg text-red-600 mb-4">{error}</div>
+          <Button onClick={onBack} className="bg-purple-600 hover:bg-purple-700 text-white">
+            Go Back
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Show "Coming Soon" for categories with no stories
+  if (!stories || stories.length === 0) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-orange-100 to-pink-100">
+        <div className="container mx-auto px-6 py-8">
+          <div className="flex items-center mb-8">
+            <Button onClick={onBack} className="mr-4 bg-white hover:bg-gray-100 text-purple-700 border-2 border-purple-300">
+              <ArrowLeft className="w-6 h-6 mr-2" />
+              Back
+            </Button>
+            <h1 className="text-3xl font-bold text-purple-700">
+              {categoryNames[category] || category}
+            </h1>
+          </div>
+          
+          <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
+            <div className="text-8xl mb-8">🚧</div>
+            <h2 className="text-4xl font-bold text-purple-700 mb-4">Coming Soon!</h2>
+            <p className="text-xl text-purple-600 mb-8">
+              New stories are being added for this section. Check back soon!
+            </p>
+            <Button onClick={onBack} className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 text-lg">
+              <ArrowLeft className="w-5 h-5 mr-2" />
+              Go Back
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
       { id: 'sita-abduction', title: 'Sita\'s Abduction', description: 'Ravana kidnaps Sita', emoji: '😢' },
       { id: 'hanuman-meets-rama', title: 'Hanuman Meets Rama', description: 'The beginning of eternal devotion', emoji: '🤝' },
       { id: 'lanka-war', title: 'The Great War of Lanka', description: 'Good versus evil in epic battle', emoji: '⚔️' },
