@@ -165,7 +165,6 @@ async def initialize_sample_data():
     # Clear existing data for fresh start
     await db.stories.delete_many({})
     
-    
     # Use the comprehensive stories from our external file
     for story_data in COMPREHENSIVE_STORIES_FULL:
         story = Story(**story_data)
