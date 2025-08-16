@@ -391,7 +391,293 @@ const HistoryGrid = ({ onNavigate, onBack }) => {
   );
 };
 
-// Moral Stories Grid
+// Poems Grid
+const PoemsGrid = ({ onNavigate, onBack }) => {
+  const poemCategories = [
+    { id: 'telugu-poems', name: 'Telugu Poems', emoji: '🇮🇳', color: 'from-orange-100 to-red-200' },
+    { id: 'english-poems', name: 'English Poems', emoji: '🎼', color: 'from-blue-100 to-purple-200' },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-violet-100 to-pink-100">
+      <div className="container mx-auto px-6 py-8">
+        <div className="flex items-center mb-8">
+          <Button onClick={onBack} className="mr-4 bg-white hover:bg-gray-100 text-purple-700 border-2 border-purple-300">
+            <ArrowLeft className="w-6 h-6 mr-2" />
+            Back
+          </Button>
+          <h1 className="text-3xl font-bold text-purple-700">Beautiful Poems</h1>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {poemCategories.map((category) => (
+            <Card 
+              key={category.id}
+              className={`p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br ${category.color} border-4 border-purple-200`}
+              onClick={() => onNavigate('poems-list', category.id)}
+            >
+              <div className="text-center space-y-6">
+                <div className="text-6xl">{category.emoji}</div>
+                <h3 className="text-2xl font-bold text-purple-700">{category.name}</h3>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Poems List Component
+const PoemsList = ({ category, onNavigate, onBack }) => {
+  const poems = {
+    'telugu-poems': [
+      { id: 'chandamama', title: 'చందమామ', description: 'అందమైన చందమామ గురించి కవిత', emoji: '🌙' },
+      { id: 'nani-pillalu', title: 'నాని పిల్లలు', description: 'చిన్న పిల్లల ఆటల గురించి', emoji: '👶' },
+      { id: 'pakshulu', title: 'పక్షులు', description: 'రంగురంగుల పక్షుల గురించి కవిత', emoji: '🐦' },
+      { id: 'pushpalu', title: 'పుష్పాలు', description: 'అందమైన పూల గురించి కవిత', emoji: '🌺' },
+      { id: 'vana-jeevulu', title: 'వన జీవులు', description: 'అడవి జంతువుల గురించి కవిత', emoji: '🦁' },
+      { id: 'varshalu', title: 'వర్షాలు', description: 'వర్షం గురించి ఆనందకరమైన కవిత', emoji: '🌧️' }
+    ],
+    'english-poems': [
+      { id: 'twinkle-star', title: 'Twinkle Twinkle Little Star', description: 'Classic nursery rhyme about stars', emoji: '⭐' },
+      { id: 'wheels-bus', title: 'The Wheels on the Bus', description: 'Fun song about a bus ride', emoji: '🚌' },
+      { id: 'old-macdonald', title: 'Old MacDonald Had a Farm', description: 'Farm animals and their sounds', emoji: '🚜' },
+      { id: 'humpty-dumpty', title: 'Humpty Dumpty', description: 'Classic tale of Humpty Dumpty', emoji: '🥚' },
+      { id: 'mary-lamb', title: 'Mary Had a Little Lamb', description: 'Sweet story of Mary and her lamb', emoji: '🐑' },
+      { id: 'baa-black-sheep', title: 'Baa Baa Black Sheep', description: 'Traditional nursery rhyme', emoji: '🐑' }
+    ]
+  };
+
+  const categoryPoems = poems[category] || [];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-100 to-violet-100">
+      <div className="container mx-auto px-6 py-8">
+        <div className="flex items-center mb-8">
+          <Button onClick={onBack} className="mr-4 bg-white hover:bg-gray-100 text-purple-700 border-2 border-purple-300">
+            <ArrowLeft className="w-6 h-6 mr-2" />
+            Back
+          </Button>
+          <h1 className="text-3xl font-bold text-purple-700">Poems</h1>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {categoryPoems.map((poem) => (
+            <Card 
+              key={poem.id}
+              className="p-6 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-white border-3 border-purple-200"
+              onClick={() => onNavigate('poem', poem.id)}
+            >
+              <div className="space-y-4">
+                <div className="text-4xl text-center">{poem.emoji}</div>
+                <h3 className="text-2xl font-bold text-purple-700 text-center">{poem.title}</h3>
+                <p className="text-lg text-purple-600 text-center">{poem.description}</p>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Poem Viewer Component
+const PoemViewer = ({ poemId, onBack }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  
+  const poems = {
+    // Telugu Poems
+    'chandamama': {
+      title: 'చందమామ',
+      language: 'telugu',
+      content: `చందమామ దూరంగా ఉన్నావు ఎందుకు?
+చిన్న పిల్లలకోసం దిగి రాకు!
+రాత్రి అంతా వెలుగు ఇవ్వావు,
+తెల్లవారుఝామున దాక్కుంటావు.
+
+వెండి వెలుగుతో మెరుస్తున్నావు,
+చిన్న నక్షత్రాలతో ఆడుకుంటున్నావు.
+ఆకాశంలో ఎత్తుగా కూర్చున్నావు,
+మా కలల్లోకి వచ్చి వెళ్తున్నావు.`,
+      meaning: 'అర్థం: ఈ కవిత చంద్రుడి అందం గురించి చెబుతుంది. చంద్రుడు ఎందుకు దూరంగా ఉంటాడో, అతను రాత్రి వేళ ఎలా వెలుగు ఇస్తాడో చిన్న పిల్లలకు తెలియజేస్తుంది.',
+      illustration: 'https://images.unsplash.com/photo-1502134249126-9f3755a50d78'
+    },
+    'nani-pillalu': {
+      title: 'నాని పిల్లలు',
+      language: 'telugu',
+      content: `నాని పిల్లలు ఆట ఆడుతున్నారు,
+చిన్న చేతుల్తో తాళి కొట్టుకుంటున్నారు.
+నవ్వుల్తో నిండిన ముఖాలు,
+ఆనందంతో చేస్తున్న వింతలు.
+
+అమ్మ చేసిన లాలి పాట విని,
+తల్లి ప్రేమలో మునిగి తేలి,
+కళ్లు మూసుకుని నిద్రపోతున్నారు,
+కలల రాజ్యంలోకి వెళ్తున్నారు.`,
+      meaning: 'అర్థం: ఈ కవిత చిన్న పిల్లల అమాయకత్వం గురించి చెబుతుంది. వారు ఎలా ఆట ఆడతారో, తల్లుల ప్రేమను ఎలా అనుభవిస్తారో తెలియజేస్తుంది.',
+      illustration: 'https://images.unsplash.com/photo-1544776527-0818bd051bec'
+    },
+    
+    // English Poems
+    'twinkle-star': {
+      title: 'Twinkle Twinkle Little Star',
+      language: 'english',
+      content: `Twinkle, twinkle, little star,
+How I wonder what you are!
+Up above the world so high,
+Like a diamond in the sky.
+
+Twinkle, twinkle, little star,
+How I wonder what you are!
+
+When the blazing sun is gone,
+When he nothing shines upon,
+Then you show your little light,
+Twinkle, twinkle, all the night.`,
+      meaning: 'Meaning: This classic nursery rhyme expresses wonder about stars. It teaches children to observe and appreciate the beauty of nature, especially the night sky filled with twinkling stars that look like diamonds.',
+      illustration: 'https://images.unsplash.com/photo-1502134249126-9f3755a50d78'
+    },
+    'wheels-bus': {
+      title: 'The Wheels on the Bus',
+      language: 'english',
+      content: `The wheels on the bus go round and round,
+Round and round, round and round,
+The wheels on the bus go round and round,
+All through the town!
+
+The wipers on the bus go swish, swish, swish,
+Swish, swish, swish, swish, swish, swish,
+The wipers on the bus go swish, swish, swish,
+All through the town!
+
+The horn on the bus goes beep, beep, beep,
+Beep, beep, beep, beep, beep, beep,
+The horn on the bus goes beep, beep, beep,
+All through the town!`,
+      meaning: 'Meaning: This fun song helps children learn about different parts of a bus and their sounds. It encourages movement and helps develop motor skills through actions that match the words.',
+      illustration: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957'
+    }
+  };
+
+  const poem = poems[poemId];
+
+  const toggleAudio = () => {
+    if (!poem) return;
+
+    if (isPlaying) {
+      speechSynthesis.cancel();
+      setIsPlaying(false);
+    } else {
+      setIsPlaying(true);
+      const utterance = speakText(poem.content, poem.language === 'telugu' ? 'te-IN' : 'en-US');
+      if (utterance) {
+        utterance.onend = () => {
+          setIsPlaying(false);
+        };
+      }
+    }
+  };
+
+  if (!poem) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-red-100 to-pink-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl mb-4">🎵</div>
+          <h1 className="text-3xl font-bold text-red-600 mb-4">Poem Coming Soon!</h1>
+          <Button onClick={onBack} className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full">
+            <ArrowLeft className="w-6 h-6 mr-2" />
+            Go Back
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-100 to-violet-100">
+      <div className="container mx-auto px-4 py-6">
+        <div className="flex items-center justify-between mb-6">
+          <Button onClick={onBack} className="bg-white hover:bg-gray-100 text-purple-700 border-2 border-purple-300">
+            <ArrowLeft className="w-6 h-6 mr-2" />
+            Back
+          </Button>
+          <h1 className="text-2xl font-bold text-purple-700">{poem.title}</h1>
+          <div className="w-20"></div>
+        </div>
+
+        <Card className="max-w-4xl mx-auto p-8 shadow-2xl bg-white">
+          <div className="space-y-8">
+            {/* Illustration */}
+            <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden">
+              <img 
+                src={poem.illustration} 
+                alt={poem.title}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+              <div className="w-full h-full hidden items-center justify-center text-6xl bg-gradient-to-br from-purple-100 to-pink-100">
+                🎵
+              </div>
+            </div>
+
+            {/* Poem Content */}
+            <div className="text-center">
+              <h2 className="text-4xl font-bold text-purple-800 mb-8">{poem.title}</h2>
+              <div className={`text-2xl leading-relaxed font-medium ${poem.language === 'telugu' ? 'font-["Noto Sans Telugu", sans-serif] text-orange-800' : 'text-blue-800'} bg-${poem.language === 'telugu' ? 'orange' : 'blue'}-50 p-8 rounded-lg whitespace-pre-line`}>
+                {poem.content}
+              </div>
+            </div>
+
+            {/* Audio Control */}
+            <div className="text-center">
+              <Button 
+                onClick={toggleAudio}
+                className={`${
+                  isPlaying 
+                    ? 'bg-red-600 hover:bg-red-700' 
+                    : 'bg-purple-600 hover:bg-purple-700'
+                } text-white px-8 py-4 text-xl rounded-full`}
+              >
+                {isPlaying ? (
+                  <>
+                    <VolumeX className="w-6 h-6 mr-2" />
+                    Stop Poem
+                  </>
+                ) : (
+                  <>
+                    <Volume2 className="w-6 h-6 mr-2" />
+                    Play Poem
+                  </>
+                )}
+              </Button>
+              {isPlaying && (
+                <div className="mt-2 text-sm text-purple-600 animate-pulse">
+                  🎵 Reciting poem aloud...
+                </div>
+              )}
+            </div>
+
+            {/* Meaning */}
+            <div className="mt-8 p-6 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg border-l-4 border-yellow-400">
+              <h3 className="text-xl font-bold text-yellow-800 mb-4">
+                {poem.language === 'telugu' ? '📖 అర్థం:' : '📖 Meaning:'}
+              </h3>
+              <p className="text-lg text-yellow-800 leading-relaxed">
+                {poem.meaning}
+              </p>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+};
+
+// Fun Zone Grid
 const MoralGrid = ({ onNavigate, onBack }) => {
   const categories = [
     { id: 'panchatantra', name: 'Panchatantra Tales', emoji: '🦊', color: 'from-orange-100 to-red-200' },
