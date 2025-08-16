@@ -139,7 +139,7 @@ const HomeScreen = ({ onNavigate }) => {
           <p className="text-xl text-purple-600 font-medium">Choose your adventure!</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           <Card 
             className="p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br from-pink-100 to-rose-200 border-4 border-pink-300"
             onClick={() => onNavigate('aarna')}
@@ -181,6 +181,28 @@ const HomeScreen = ({ onNavigate }) => {
               <div className="text-6xl">📚</div>
               <h2 className="text-3xl font-bold text-amber-700">History Stories</h2>
               <p className="text-lg text-amber-600">Epic tales from Ramayana and Mahabharata!</p>
+            </div>
+          </Card>
+          
+          <Card 
+            className="p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br from-purple-100 to-violet-200 border-4 border-purple-300"
+            onClick={() => onNavigate('poems')}
+          >
+            <div className="text-center space-y-6">
+              <div className="text-6xl">🎵</div>
+              <h2 className="text-3xl font-bold text-purple-700">Poems</h2>
+              <p className="text-lg text-purple-600">Beautiful poems in Telugu and English!</p>
+            </div>
+          </Card>
+          
+          <Card 
+            className="p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br from-teal-100 to-cyan-200 border-4 border-teal-300"
+            onClick={() => onNavigate('funzone')}
+          >
+            <div className="text-center space-y-6">
+              <div className="text-6xl">🎮</div>
+              <h2 className="text-3xl font-bold text-teal-700">Fun Zone</h2>
+              <p className="text-lg text-teal-600">Puzzles and games for little ones!</p>
             </div>
           </Card>
         </div>
