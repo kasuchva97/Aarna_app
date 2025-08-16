@@ -1,259 +1,374 @@
+#!/usr/bin/env python3
+"""
+Backend Testing for Telugu Storybook App - Focused Story Implementation
+Testing exact requirements from review request:
+
+REQUIREMENTS VERIFICATION:
+1. **Aarna Adventures**: Should have 12 stories, each with 8 slides
+2. **Mythological Stories**: Should have Krishna (5), Hanuman (5), Ganesha (5), Rama (5) stories - each with 8 slides
+3. **Moral Stories**: Should have Panchatantra (6) and Animal Fables (6) stories - each with 8 slides  
+4. **Other sections**: History, Poems, Fun Zone should show "coming soon" (empty or no content)
+
+Expected total: 44 stories (12 + 5 + 5 + 5 + 5 + 6 + 6 = 44)
+"""
+
 import requests
-import sys
 import json
-from datetime import datetime
+import os
+from dotenv import load_dotenv
 
-class StorybookAPITester:
-    def __init__(self, base_url="https://telugu-tales.preview.emergentagent.com"):
-        self.base_url = base_url
-        self.api_url = f"{base_url}/api"
-        self.tests_run = 0
-        self.tests_passed = 0
+# Load environment variables
+load_dotenv('/app/frontend/.env')
+BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'http://localhost:8001')
+API_BASE = f"{BACKEND_URL}/api"
 
-    def run_test(self, name, method, endpoint, expected_status, data=None, check_response=None):
-        """Run a single API test"""
-        url = f"{self.api_url}/{endpoint}" if not endpoint.startswith('http') else endpoint
-        headers = {'Content-Type': 'application/json'}
-
-        self.tests_run += 1
-        print(f"\n🔍 Testing {name}...")
-        print(f"   URL: {url}")
-        
-        try:
-            if method == 'GET':
-                response = requests.get(url, headers=headers, timeout=10)
-            elif method == 'POST':
-                response = requests.post(url, json=data, headers=headers, timeout=10)
-            elif method == 'PUT':
-                response = requests.put(url, json=data, headers=headers, timeout=10)
-            elif method == 'DELETE':
-                response = requests.delete(url, headers=headers, timeout=10)
-
-            success = response.status_code == expected_status
-            
-            if success:
-                self.tests_passed += 1
-                print(f"✅ Passed - Status: {response.status_code}")
-                
-                # Additional response validation if provided
-                if check_response and response.status_code == 200:
-                    try:
-                        response_data = response.json()
-                        if check_response(response_data):
-                            print(f"   ✅ Response validation passed")
-                        else:
-                            print(f"   ⚠️  Response validation failed")
-                            success = False
-                            self.tests_passed -= 1
-                    except Exception as e:
-                        print(f"   ⚠️  Response validation error: {str(e)}")
-                
-                return success, response.json() if response.content else {}
-            else:
-                print(f"❌ Failed - Expected {expected_status}, got {response.status_code}")
-                if response.content:
-                    try:
-                        error_data = response.json()
-                        print(f"   Error: {error_data}")
-                    except:
-                        print(f"   Error: {response.text}")
-                return False, {}
-
-        except requests.exceptions.Timeout:
-            print(f"❌ Failed - Request timeout")
-            return False, {}
-        except requests.exceptions.ConnectionError:
-            print(f"❌ Failed - Connection error")
-            return False, {}
-        except Exception as e:
-            print(f"❌ Failed - Error: {str(e)}")
-            return False, {}
-
-    def test_health_endpoints(self):
-        """Test basic health and root endpoints"""
-        print("\n" + "="*50)
-        print("TESTING HEALTH ENDPOINTS")
-        print("="*50)
-        
-        # Test root endpoint
-        self.run_test("Root Endpoint", "GET", "", 200)
-        
-        # Test API root
-        self.run_test("API Root", "GET", "", 200)
-        
-        # Test health check
-        self.run_test("Health Check", "GET", "health", 200, 
-                     check_response=lambda r: 'status' in r and r['status'] == 'healthy')
-
-    def test_categories_endpoints(self):
-        """Test category endpoints"""
-        print("\n" + "="*50)
-        print("TESTING CATEGORIES ENDPOINTS")
-        print("="*50)
-        
-        # Test mythology categories
-        def check_mythology(response):
-            if not isinstance(response, list):
-                return False
-            expected_gods = ['krishna', 'hanuman', 'ganesha', 'rama', 'shiva', 'durga', 'lakshmi', 'saraswati']
-            found_ids = [item.get('id') for item in response]
-            return all(god_id in found_ids for god_id in expected_gods)
-        
-        self.run_test("Mythology Categories", "GET", "categories/mythology", 200,
-                     check_response=check_mythology)
-        
-        # Test moral categories  
-        def check_moral(response):
-            if not isinstance(response, list):
-                return False
-            expected_categories = ['panchatantra', 'animal-fables', 'classic-moral']
-            found_ids = [item.get('id') for item in response]
-            return all(cat_id in found_ids for cat_id in expected_categories)
-        
-        self.run_test("Moral Categories", "GET", "categories/moral", 200,
-                     check_response=check_moral)
-        
-        # Test invalid category type
-        self.run_test("Invalid Category Type", "GET", "categories/invalid", 404)
-
-    def test_stories_endpoints(self):
-        """Test story-related endpoints"""
-        print("\n" + "="*50)
-        print("TESTING STORIES ENDPOINTS")
-        print("="*50)
-        
-        # First initialize sample data
-        self.run_test("Initialize Sample Data", "POST", "init-data", 200)
-        
-        # Test get all stories
-        def check_stories_list(response):
-            return isinstance(response, list)
-        
-        success, stories_data = self.run_test("Get All Stories", "GET", "stories", 200,
-                                            check_response=check_stories_list)
-        
-        # Test get stories by category - Hanuman
-        def check_hanuman_stories(response):
-            if not isinstance(response, list):
-                return False
-            # Should have at least one story
-            return len(response) > 0 and any(story.get('category') == 'hanuman' for story in response)
-        
-        self.run_test("Get Hanuman Stories", "GET", "stories/category/hanuman", 200,
-                     check_response=check_hanuman_stories)
-        
-        # Test get stories by category - Animal Fables
-        def check_animal_fables(response):
-            if not isinstance(response, list):
-                return False
-            return len(response) > 0 and any(story.get('category') == 'animal-fables' for story in response)
-        
-        self.run_test("Get Animal Fables Stories", "GET", "stories/category/animal-fables", 200,
-                     check_response=check_animal_fables)
-        
-        # Test specific story - Hanuman Flies to the Sun
-        def check_hanuman_story(response):
-            return (response.get('id') == 'hanuman-sun' and 
-                   response.get('title') == 'Hanuman Flies to the Sun' and
-                   'slides' in response and len(response['slides']) > 0)
-        
-        self.run_test("Get Hanuman Sun Story", "GET", "stories/hanuman-sun", 200,
-                     check_response=check_hanuman_story)
-        
-        # Test specific story - Lion and Mouse
-        def check_lion_story(response):
-            return (response.get('id') == 'lion-mouse' and 
-                   response.get('title') == 'The Lion and the Mouse' and
-                   'slides' in response and len(response['slides']) > 0)
-        
-        self.run_test("Get Lion Mouse Story", "GET", "stories/lion-mouse", 200,
-                     check_response=check_lion_story)
-        
-        # Test non-existent story
-        self.run_test("Get Non-existent Story", "GET", "stories/non-existent", 404)
-
-    def test_story_crud_operations(self):
-        """Test creating, updating, and deleting stories"""
-        print("\n" + "="*50)
-        print("TESTING STORY CRUD OPERATIONS")
-        print("="*50)
-        
-        # Create a test story
-        test_story = {
-            "title": "Test Story",
-            "category": "test-category",
-            "description": "A test story for API testing",
-            "slides": [
-                {
-                    "image": "https://example.com/test.jpg",
-                    "telugu": "టెస్ట్ స్టోరీ",
-                    "english": "This is a test story",
-                    "audio": "test.mp3"
-                }
-            ]
+class BackendTester:
+    def __init__(self):
+        self.results = {
+            'total_tests': 0,
+            'passed_tests': 0,
+            'failed_tests': 0,
+            'test_details': []
         }
         
-        success, created_story = self.run_test("Create Test Story", "POST", "stories", 201, 
-                                             data=test_story)
-        
-        if success and 'id' in created_story:
-            story_id = created_story['id']
-            
-            # Test updating the story
-            updated_story = test_story.copy()
-            updated_story['title'] = "Updated Test Story"
-            
-            self.run_test("Update Test Story", "PUT", f"stories/{story_id}", 200,
-                         data=updated_story)
-            
-            # Test deleting the story
-            self.run_test("Delete Test Story", "DELETE", f"stories/{story_id}", 200)
-            
-            # Verify story is deleted
-            self.run_test("Verify Story Deleted", "GET", f"stories/{story_id}", 404)
+    def log_test(self, test_name, passed, details=""):
+        """Log test result"""
+        self.results['total_tests'] += 1
+        if passed:
+            self.results['passed_tests'] += 1
+            status = "✅ PASS"
         else:
-            print("⚠️  Skipping update/delete tests due to create failure")
-
-    def run_all_tests(self):
-        """Run all API tests"""
-        print("🚀 Starting My Little Storybook API Tests")
-        print(f"📍 Testing against: {self.base_url}")
+            self.results['failed_tests'] += 1
+            status = "❌ FAIL"
+            
+        result = f"{status}: {test_name}"
+        if details:
+            result += f" - {details}"
         
-        start_time = datetime.now()
+        self.results['test_details'].append(result)
+        print(result)
         
+    def test_api_health(self):
+        """Test basic API connectivity"""
         try:
-            self.test_health_endpoints()
-            self.test_categories_endpoints()
-            self.test_stories_endpoints()
-            self.test_story_crud_operations()
-        except KeyboardInterrupt:
-            print("\n⚠️  Tests interrupted by user")
+            response = requests.get(f"{API_BASE}/health", timeout=10)
+            if response.status_code == 200:
+                self.log_test("API Health Check", True, "Backend API is accessible")
+                return True
+            else:
+                self.log_test("API Health Check", False, f"Status code: {response.status_code}")
+                return False
         except Exception as e:
-            print(f"\n❌ Unexpected error during testing: {str(e)}")
+            self.log_test("API Health Check", False, f"Connection error: {str(e)}")
+            return False
+    
+    def initialize_database(self):
+        """Initialize database with focused stories"""
+        try:
+            response = requests.post(f"{API_BASE}/init-data", timeout=30)
+            if response.status_code == 200:
+                data = response.json()
+                self.log_test("Database Initialization", True, f"Response: {data.get('message', 'Success')}")
+                return True
+            else:
+                self.log_test("Database Initialization", False, f"Status code: {response.status_code}")
+                return False
+        except Exception as e:
+            self.log_test("Database Initialization", False, f"Error: {str(e)}")
+            return False
+    
+    def test_story_counts_by_category(self):
+        """Test exact story counts per category as per requirements"""
+        expected_counts = {
+            'aarna-adventures': 12,
+            'krishna': 5,
+            'hanuman': 5, 
+            'ganesha': 5,
+            'rama': 5,
+            'panchatantra': 6,
+            'animal-fables': 6
+        }
         
-        end_time = datetime.now()
-        duration = (end_time - start_time).total_seconds()
+        # Categories that should be empty (coming soon)
+        empty_categories = [
+            'ramayana', 'mahabharata',  # History categories
+            'shiva', 'durga', 'lakshmi', 'saraswati',  # Other mythology
+            'classic-moral', 'friendship-stories', 'kindness-stories'  # Other moral
+        ]
         
-        # Print final results
-        print("\n" + "="*60)
-        print("📊 FINAL TEST RESULTS")
-        print("="*60)
-        print(f"✅ Tests passed: {self.tests_passed}")
-        print(f"❌ Tests failed: {self.tests_run - self.tests_passed}")
-        print(f"📈 Total tests: {self.tests_run}")
-        print(f"⏱️  Duration: {duration:.2f} seconds")
+        all_passed = True
         
-        if self.tests_passed == self.tests_run:
-            print("🎉 All tests passed!")
-            return 0
+        # Test expected categories with stories
+        for category, expected_count in expected_counts.items():
+            try:
+                response = requests.get(f"{API_BASE}/stories/category/{category}", timeout=10)
+                if response.status_code == 200:
+                    stories = response.json()
+                    actual_count = len(stories)
+                    
+                    if actual_count == expected_count:
+                        self.log_test(f"Story Count - {category}", True, 
+                                    f"Expected {expected_count}, got {actual_count}")
+                    else:
+                        self.log_test(f"Story Count - {category}", False, 
+                                    f"Expected {expected_count}, got {actual_count}")
+                        all_passed = False
+                else:
+                    self.log_test(f"Story Count - {category}", False, 
+                                f"API error: {response.status_code}")
+                    all_passed = False
+            except Exception as e:
+                self.log_test(f"Story Count - {category}", False, f"Error: {str(e)}")
+                all_passed = False
+        
+        # Test empty categories (should have 0 stories)
+        for category in empty_categories:
+            try:
+                response = requests.get(f"{API_BASE}/stories/category/{category}", timeout=10)
+                if response.status_code == 200:
+                    stories = response.json()
+                    actual_count = len(stories)
+                    
+                    if actual_count == 0:
+                        self.log_test(f"Empty Category - {category}", True, 
+                                    f"Correctly shows 0 stories (coming soon)")
+                    else:
+                        self.log_test(f"Empty Category - {category}", False, 
+                                    f"Expected 0 stories, got {actual_count}")
+                        all_passed = False
+                else:
+                    self.log_test(f"Empty Category - {category}", False, 
+                                f"API error: {response.status_code}")
+                    all_passed = False
+            except Exception as e:
+                self.log_test(f"Empty Category - {category}", False, f"Error: {str(e)}")
+                all_passed = False
+        
+        return all_passed
+    
+    def test_total_story_count(self):
+        """Test total story count should be exactly 44"""
+        try:
+            response = requests.get(f"{API_BASE}/stories", timeout=10)
+            if response.status_code == 200:
+                stories = response.json()
+                total_count = len(stories)
+                expected_total = 44  # 12 + 5 + 5 + 5 + 5 + 6 + 6
+                
+                if total_count == expected_total:
+                    self.log_test("Total Story Count", True, 
+                                f"Expected {expected_total}, got {total_count}")
+                    return True
+                else:
+                    self.log_test("Total Story Count", False, 
+                                f"Expected {expected_total}, got {total_count}")
+                    return False
+            else:
+                self.log_test("Total Story Count", False, f"API error: {response.status_code}")
+                return False
+        except Exception as e:
+            self.log_test("Total Story Count", False, f"Error: {str(e)}")
+            return False
+    
+    def test_story_structure(self):
+        """Test that each story has exactly 8 slides and proper structure"""
+        categories_to_test = ['aarna-adventures', 'krishna', 'hanuman', 'ganesha', 'rama', 'panchatantra', 'animal-fables']
+        
+        all_passed = True
+        
+        for category in categories_to_test:
+            try:
+                response = requests.get(f"{API_BASE}/stories/category/{category}", timeout=10)
+                if response.status_code == 200:
+                    stories = response.json()
+                    
+                    for story in stories[:2]:  # Test first 2 stories from each category
+                        # Test slide count
+                        slide_count = len(story.get('slides', []))
+                        if slide_count == 8:
+                            self.log_test(f"Slide Count - {story['title']}", True, 
+                                        f"Has exactly 8 slides")
+                        else:
+                            self.log_test(f"Slide Count - {story['title']}", False, 
+                                        f"Expected 8 slides, got {slide_count}")
+                            all_passed = False
+                        
+                        # Test story structure
+                        required_fields = ['id', 'title', 'category', 'description', 'slides']
+                        missing_fields = [field for field in required_fields if field not in story]
+                        
+                        if not missing_fields:
+                            self.log_test(f"Story Structure - {story['title']}", True, 
+                                        "All required fields present")
+                        else:
+                            self.log_test(f"Story Structure - {story['title']}", False, 
+                                        f"Missing fields: {missing_fields}")
+                            all_passed = False
+                        
+                        # Test slide structure
+                        if story.get('slides'):
+                            first_slide = story['slides'][0]
+                            slide_fields = ['image', 'telugu', 'english', 'audio']
+                            missing_slide_fields = [field for field in slide_fields if field not in first_slide]
+                            
+                            if not missing_slide_fields:
+                                self.log_test(f"Slide Structure - {story['title']}", True, 
+                                            "Slides have all required fields")
+                            else:
+                                self.log_test(f"Slide Structure - {story['title']}", False, 
+                                            f"Missing slide fields: {missing_slide_fields}")
+                                all_passed = False
+                
+                else:
+                    self.log_test(f"Story Structure Test - {category}", False, 
+                                f"API error: {response.status_code}")
+                    all_passed = False
+                    
+            except Exception as e:
+                self.log_test(f"Story Structure Test - {category}", False, f"Error: {str(e)}")
+                all_passed = False
+        
+        return all_passed
+    
+    def test_category_apis(self):
+        """Test category API endpoints"""
+        category_types = ['mythology', 'moral', 'aarna', 'history']
+        
+        expected_categories = {
+            'mythology': ['krishna', 'hanuman', 'ganesha', 'rama', 'shiva', 'durga', 'lakshmi', 'saraswati'],
+            'moral': ['panchatantra', 'animal-fables', 'classic-moral', 'friendship-stories', 'kindness-stories'],
+            'aarna': ['aarna-adventures'],
+            'history': ['ramayana', 'mahabharata']
+        }
+        
+        all_passed = True
+        
+        for category_type in category_types:
+            try:
+                response = requests.get(f"{API_BASE}/categories/{category_type}", timeout=10)
+                if response.status_code == 200:
+                    categories = response.json()
+                    category_ids = [cat['id'] for cat in categories]
+                    expected_ids = expected_categories[category_type]
+                    
+                    if set(category_ids) == set(expected_ids):
+                        self.log_test(f"Categories API - {category_type}", True, 
+                                    f"All expected categories present: {len(category_ids)} categories")
+                    else:
+                        missing = set(expected_ids) - set(category_ids)
+                        extra = set(category_ids) - set(expected_ids)
+                        details = f"Missing: {missing}, Extra: {extra}" if missing or extra else "Categories match"
+                        self.log_test(f"Categories API - {category_type}", False, details)
+                        all_passed = False
+                else:
+                    self.log_test(f"Categories API - {category_type}", False, 
+                                f"API error: {response.status_code}")
+                    all_passed = False
+            except Exception as e:
+                self.log_test(f"Categories API - {category_type}", False, f"Error: {str(e)}")
+                all_passed = False
+        
+        return all_passed
+    
+    def test_content_quality(self):
+        """Test content quality - Telugu/English text presence"""
+        try:
+            # Test a few stories from different categories
+            test_stories = [
+                ('aarna-adventures', 'Aarna'),
+                ('krishna', 'Krishna'),
+                ('panchatantra', 'moral lesson')
+            ]
+            
+            all_passed = True
+            
+            for category, expected_content in test_stories:
+                response = requests.get(f"{API_BASE}/stories/category/{category}", timeout=10)
+                if response.status_code == 200:
+                    stories = response.json()
+                    if stories:
+                        story = stories[0]  # Test first story
+                        slides = story.get('slides', [])
+                        
+                        if slides:
+                            slide = slides[0]
+                            telugu_text = slide.get('telugu', '')
+                            english_text = slide.get('english', '')
+                            
+                            # Check if both Telugu and English content exist
+                            if telugu_text and english_text:
+                                self.log_test(f"Content Quality - {category}", True, 
+                                            "Both Telugu and English content present")
+                            else:
+                                self.log_test(f"Content Quality - {category}", False, 
+                                            f"Missing content - Telugu: {bool(telugu_text)}, English: {bool(english_text)}")
+                                all_passed = False
+                        else:
+                            self.log_test(f"Content Quality - {category}", False, "No slides found")
+                            all_passed = False
+                    else:
+                        self.log_test(f"Content Quality - {category}", False, "No stories found")
+                        all_passed = False
+                else:
+                    self.log_test(f"Content Quality - {category}", False, f"API error: {response.status_code}")
+                    all_passed = False
+            
+            return all_passed
+            
+        except Exception as e:
+            self.log_test("Content Quality Test", False, f"Error: {str(e)}")
+            return False
+    
+    def run_all_tests(self):
+        """Run all backend tests"""
+        print("=" * 80)
+        print("🧪 BACKEND TESTING - FOCUSED STORY IMPLEMENTATION")
+        print("=" * 80)
+        print(f"Testing against: {API_BASE}")
+        print()
+        
+        # Test API connectivity first
+        if not self.test_api_health():
+            print("❌ Cannot connect to backend API. Stopping tests.")
+            return False
+        
+        # Initialize database
+        print("\n📊 INITIALIZING DATABASE...")
+        self.initialize_database()
+        
+        # Run all tests
+        print("\n🔍 RUNNING COMPREHENSIVE TESTS...")
+        
+        self.test_total_story_count()
+        self.test_story_counts_by_category()
+        self.test_story_structure()
+        self.test_category_apis()
+        self.test_content_quality()
+        
+        # Print summary
+        print("\n" + "=" * 80)
+        print("📋 TEST SUMMARY")
+        print("=" * 80)
+        
+        for detail in self.results['test_details']:
+            print(detail)
+        
+        print(f"\n🎯 OVERALL RESULTS:")
+        print(f"   Total Tests: {self.results['total_tests']}")
+        print(f"   ✅ Passed: {self.results['passed_tests']}")
+        print(f"   ❌ Failed: {self.results['failed_tests']}")
+        
+        success_rate = (self.results['passed_tests'] / self.results['total_tests']) * 100 if self.results['total_tests'] > 0 else 0
+        print(f"   📊 Success Rate: {success_rate:.1f}%")
+        
+        if self.results['failed_tests'] == 0:
+            print("\n🎉 ALL TESTS PASSED! Focused story implementation is working correctly.")
+            return True
         else:
-            success_rate = (self.tests_passed / self.tests_run) * 100
-            print(f"⚠️  Success rate: {success_rate:.1f}%")
-            return 1
-
-def main():
-    tester = StorybookAPITester()
-    return tester.run_all_tests()
+            print(f"\n⚠️  {self.results['failed_tests']} tests failed. Please review the issues above.")
+            return False
 
 if __name__ == "__main__":
-    sys.exit(main())
+    tester = BackendTester()
+    success = tester.run_all_tests()
+    exit(0 if success else 1)
