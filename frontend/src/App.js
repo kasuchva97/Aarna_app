@@ -1489,6 +1489,12 @@ function App() {
       setCurrentCategory(param);
     } else if (screen === 'story') {
       setCurrentStoryId(param);
+    } else if (screen === 'poems-list') {
+      setCurrentCategory(param);
+    } else if (screen === 'poem') {
+      setCurrentStoryId(param);
+    } else if (screen === 'game') {
+      setCurrentStoryId(param);
     }
   };
 
