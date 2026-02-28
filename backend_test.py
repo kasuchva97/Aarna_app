@@ -1,3 +1,4 @@
+"""
 #!/usr/bin/env python3
 """
 Backend Testing for Telugu Storybook App - Focused Story Implementation
@@ -372,3 +373,4 @@ if __name__ == "__main__":
     tester = BackendTester()
     success = tester.run_all_tests()
     exit(0 if success else 1)
+"""

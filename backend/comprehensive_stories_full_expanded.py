@@ -1,3 +1,4 @@
+"""
 # Complete comprehensive story database for My Little Storybook
 # This contains ALL stories for Aarna's 4th birthday gift - EXPANDED VERSION
 
@@ -312,3 +313,4 @@ COMPREHENSIVE_STORIES_FULL = [
 COMPREHENSIVE_POEMS = [
     # Telugu and English poems as before...
 ]
+"""

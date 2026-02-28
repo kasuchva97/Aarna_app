@@ -1,3 +1,4 @@
+"""
 # Comprehensive story database for My Little Storybook
 # This contains all stories for Aarna's birthday gift
 
@@ -320,3 +321,4 @@ COMPREHENSIVE_STORIES = [
         ]
     }
 ]
+"""

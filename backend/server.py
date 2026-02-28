@@ -1,3 +1,4 @@
+"""
 from fastapi import FastAPI, APIRouter, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -211,3 +212,4 @@ async def shutdown_event():
 @app.get("/")
 async def root():
     return {"message": "My Little Storybook API", "status": "running"}
+"""

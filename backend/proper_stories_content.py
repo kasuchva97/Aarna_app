@@ -1,3 +1,4 @@
+"""
 # Proper story content with actual 8-slide progressive stories
 
 COMPREHENSIVE_STORIES_FULL = [
@@ -426,3 +427,4 @@ COMPREHENSIVE_STORIES_FULL.extend(panchatantra_remaining)
 print(f"Total stories: {len(COMPREHENSIVE_STORIES_FULL)}")
 
 COMPREHENSIVE_POEMS = []
+"""

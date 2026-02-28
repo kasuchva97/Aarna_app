@@ -1,3 +1,4 @@
+"""
 # Complete comprehensive story database for My Little Storybook
 # This contains ALL stories for Aarna's 4th birthday gift
 
@@ -511,3 +512,4 @@ E-I-E-I-O!""",
         "audio": "old-macdonald.mp3"
     }
 ]
+"""

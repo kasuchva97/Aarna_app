@@ -1,3 +1,4 @@
+"""
 #!/usr/bin/env python3
 """
 Comprehensive Database Testing for Telugu Storybook App
@@ -359,3 +360,4 @@ def main():
 if __name__ == "__main__":
     import sys
     sys.exit(main())
+"""

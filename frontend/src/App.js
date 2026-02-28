@@ -3,6 +3,7 @@ import './App.css';
 import { Button } from './components/ui/button';
 import { Card } from './components/ui/card';
 import { ArrowLeft, ArrowRight, Home, Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { supabase } from './lib/supabaseClient';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -15,24 +16,24 @@ const speakText = (text, lang = 'te-IN') => {
   if ('speechSynthesis' in window) {
     // Cancel any ongoing speech
     speechSynthesis.cancel();
-    
+
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
     utterance.rate = 0.8;
     utterance.pitch = 1.2;
     utterance.volume = 0.8;
-    
+
     // Try to get appropriate voice
     const voices = speechSynthesis.getVoices();
     const teluguVoice = voices.find(voice => voice.lang.includes('te'));
     const englishVoice = voices.find(voice => voice.lang.includes('en'));
-    
+
     if (lang === 'te-IN' && teluguVoice) {
       utterance.voice = teluguVoice;
     } else if (lang === 'en-US' && englishVoice) {
       utterance.voice = englishVoice;
     }
-    
+
     speechSynthesis.speak(utterance);
     return utterance;
   }
@@ -102,7 +103,7 @@ const SplashScreen = ({ onComplete }) => {
     const timer2 = setTimeout(() => setShowStars(true), 1000);
     const timer3 = setTimeout(() => setShowHearts(true), 1500);
     const timer4 = setTimeout(() => onComplete(), 5000);
-    
+
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
@@ -114,7 +115,7 @@ const SplashScreen = ({ onComplete }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 flex flex-col items-center justify-center relative overflow-hidden">
       {showConfetti && <Confetti />}
-      
+
       {/* Animated Stars */}
       {showStars && (
         <div className="absolute inset-0 pointer-events-none">
@@ -154,10 +155,10 @@ const SplashScreen = ({ onComplete }) => {
           ))}
         </div>
       )}
-      
+
       <div className="text-center space-y-8 max-w-md mx-auto px-6 z-10">
         <div className="text-8xl animate-bounce animate-infinite">🎉</div>
-        
+
         <div className="space-y-6">
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent animate-pulse">
             Happy 4th Birthday
@@ -169,13 +170,13 @@ const SplashScreen = ({ onComplete }) => {
             Your magical storybook awaits! ✨
           </p>
         </div>
-        
+
         <div className="flex justify-center space-x-4 text-3xl">
-          <span className="animate-bounce" style={{animationDelay: '0s'}}>🎂</span>
-          <span className="animate-bounce" style={{animationDelay: '0.2s'}}>✨</span>
-          <span className="animate-bounce" style={{animationDelay: '0.4s'}}>🎈</span>
-          <span className="animate-bounce" style={{animationDelay: '0.6s'}}>🎁</span>
-          <span className="animate-bounce" style={{animationDelay: '0.8s'}}>🌟</span>
+          <span className="animate-bounce" style={{ animationDelay: '0s' }}>🎂</span>
+          <span className="animate-bounce" style={{ animationDelay: '0.2s' }}>✨</span>
+          <span className="animate-bounce" style={{ animationDelay: '0.4s' }}>🎈</span>
+          <span className="animate-bounce" style={{ animationDelay: '0.6s' }}>🎁</span>
+          <span className="animate-bounce" style={{ animationDelay: '0.8s' }}>🌟</span>
         </div>
 
         <div className="mt-8">
@@ -199,9 +200,9 @@ const HomeScreen = ({ onNavigate }) => {
           </h1>
           <p className="text-xl text-purple-600 font-medium">Choose your adventure!</p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          <Card 
+          <Card
             className="p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br from-pink-100 to-rose-200 border-4 border-pink-300"
             onClick={() => onNavigate('aarna')}
           >
@@ -211,8 +212,8 @@ const HomeScreen = ({ onNavigate }) => {
               <p className="text-lg text-pink-600">Amazing adventures with Aarna, Ram, and Lahari!</p>
             </div>
           </Card>
-          
-          <Card 
+
+          <Card
             className="p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br from-blue-100 to-indigo-200 border-4 border-blue-300"
             onClick={() => onNavigate('mythology')}
           >
@@ -222,8 +223,8 @@ const HomeScreen = ({ onNavigate }) => {
               <p className="text-lg text-blue-600">Discover amazing tales of gods and heroes!</p>
             </div>
           </Card>
-          
-          <Card 
+
+          <Card
             className="p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br from-green-100 to-emerald-200 border-4 border-green-300"
             onClick={() => onNavigate('moral')}
           >
@@ -233,8 +234,8 @@ const HomeScreen = ({ onNavigate }) => {
               <p className="text-lg text-green-600">Learn valuable lessons through fun tales!</p>
             </div>
           </Card>
-          
-          <Card 
+
+          <Card
             className="p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br from-amber-100 to-yellow-200 border-4 border-amber-300"
             onClick={() => onNavigate('history')}
           >
@@ -244,8 +245,8 @@ const HomeScreen = ({ onNavigate }) => {
               <p className="text-lg text-amber-600">Epic tales from Ramayana and Mahabharata!</p>
             </div>
           </Card>
-          
-          <Card 
+
+          <Card
             className="p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br from-purple-100 to-violet-200 border-4 border-purple-300"
             onClick={() => onNavigate('poems')}
           >
@@ -255,8 +256,8 @@ const HomeScreen = ({ onNavigate }) => {
               <p className="text-lg text-purple-600">Beautiful poems in Telugu and English!</p>
             </div>
           </Card>
-          
-          <Card 
+
+          <Card
             className="p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br from-teal-100 to-cyan-200 border-4 border-teal-300"
             onClick={() => onNavigate('funzone')}
           >
@@ -275,61 +276,61 @@ const HomeScreen = ({ onNavigate }) => {
 // Mythology Grid
 const MythologyGrid = ({ onNavigate, onBack }) => {
   const gods = [
-    { 
-      id: 'krishna', 
-      name: 'Krishna', 
-      image: 'https://images.unsplash.com/photo-1641730259879-ad98e7db7bcb', 
+    {
+      id: 'krishna',
+      name: 'Krishna',
+      image: 'https://images.unsplash.com/photo-1641730259879-ad98e7db7bcb',
       emoji: '🦚',
-      fallback: 'https://images.pexels.com/photos/33444855/pexels-photo-33444855.jpeg' 
+      fallback: 'https://images.pexels.com/photos/33444855/pexels-photo-33444855.jpeg'
     },
-    { 
-      id: 'hanuman', 
-      name: 'Hanuman', 
-      image: 'https://images.unsplash.com/photo-1730191567375-e82ce67160df', 
+    {
+      id: 'hanuman',
+      name: 'Hanuman',
+      image: 'https://images.unsplash.com/photo-1730191567375-e82ce67160df',
       emoji: '🐒',
-      fallback: 'https://images.unsplash.com/photo-1564984069790-2d0767de5856' 
+      fallback: 'https://images.unsplash.com/photo-1564984069790-2d0767de5856'
     },
-    { 
-      id: 'ganesha', 
-      name: 'Ganesha', 
-      image: 'https://images.unsplash.com/photo-1567591391293-f9a99c77e128', 
+    {
+      id: 'ganesha',
+      name: 'Ganesha',
+      image: 'https://images.unsplash.com/photo-1567591391293-f9a99c77e128',
       emoji: '🐘',
-      fallback: 'https://images.unsplash.com/photo-1567591414240-e9c1e59f3e06' 
+      fallback: 'https://images.unsplash.com/photo-1567591414240-e9c1e59f3e06'
     },
-    { 
-      id: 'rama', 
-      name: 'Rama', 
-      image: 'https://images.unsplash.com/photo-1609309783328-b2fcbf559d14', 
+    {
+      id: 'rama',
+      name: 'Rama',
+      image: 'https://images.unsplash.com/photo-1609309783328-b2fcbf559d14',
       emoji: '🏹',
-      fallback: 'https://images.pexels.com/photos/30323414/pexels-photo-30323414.jpeg' 
+      fallback: 'https://images.pexels.com/photos/30323414/pexels-photo-30323414.jpeg'
     },
-    { 
-      id: 'shiva', 
-      name: 'Shiva', 
-      image: 'https://images.unsplash.com/photo-1566890910598-c5768889e83e', 
+    {
+      id: 'shiva',
+      name: 'Shiva',
+      image: 'https://images.unsplash.com/photo-1566890910598-c5768889e83e',
       emoji: '🔱',
-      fallback: 'https://images.pexels.com/photos/6556790/pexels-photo-6556790.jpeg' 
+      fallback: 'https://images.pexels.com/photos/6556790/pexels-photo-6556790.jpeg'
     },
-    { 
-      id: 'durga', 
-      name: 'Durga', 
-      image: 'https://images.pexels.com/photos/2969469/pexels-photo-2969469.jpeg', 
+    {
+      id: 'durga',
+      name: 'Durga',
+      image: 'https://images.pexels.com/photos/2969469/pexels-photo-2969469.jpeg',
       emoji: '👑',
-      fallback: 'https://images.pexels.com/photos/12428561/pexels-photo-12428561.jpeg' 
+      fallback: 'https://images.pexels.com/photos/12428561/pexels-photo-12428561.jpeg'
     },
-    { 
-      id: 'lakshmi', 
-      name: 'Lakshmi', 
-      image: 'https://images.pexels.com/photos/12428566/pexels-photo-12428566.jpeg', 
+    {
+      id: 'lakshmi',
+      name: 'Lakshmi',
+      image: 'https://images.pexels.com/photos/12428566/pexels-photo-12428566.jpeg',
       emoji: '🪷',
-      fallback: 'https://images.pexels.com/photos/16354577/pexels-photo-16354577.jpeg' 
+      fallback: 'https://images.pexels.com/photos/16354577/pexels-photo-16354577.jpeg'
     },
-    { 
-      id: 'saraswati', 
-      name: 'Saraswati', 
-      image: 'https://images.pexels.com/photos/16354577/pexels-photo-16354577.jpeg', 
+    {
+      id: 'saraswati',
+      name: 'Saraswati',
+      image: 'https://images.pexels.com/photos/16354577/pexels-photo-16354577.jpeg',
       emoji: '🎼',
-      fallback: 'https://images.pexels.com/photos/12428566/pexels-photo-12428566.jpeg' 
+      fallback: 'https://images.pexels.com/photos/12428566/pexels-photo-12428566.jpeg'
     },
   ];
 
@@ -343,18 +344,18 @@ const MythologyGrid = ({ onNavigate, onBack }) => {
           </Button>
           <h1 className="text-3xl font-bold text-purple-700">Choose Your God</h1>
         </div>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {gods.map((god) => (
-            <Card 
+            <Card
               key={god.id}
               className="p-6 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl bg-white border-3 border-purple-200"
               onClick={() => onNavigate('stories', god.id)}
             >
               <div className="text-center space-y-4">
                 <div className="w-full h-32 rounded-lg overflow-hidden bg-gradient-to-br from-purple-100 to-pink-100">
-                  <img 
-                    src={god.image} 
+                  <img
+                    src={god.image}
                     alt={god.name}
                     className="w-full h-full object-cover"
                     onError={(e) => {
@@ -395,10 +396,10 @@ const AarnaGrid = ({ onNavigate, onBack }) => {
           </Button>
           <h1 className="text-3xl font-bold text-pink-700">Aarna's Adventures</h1>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {categories.map((category) => (
-            <Card 
+            <Card
               key={category.id}
               className={`p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br ${category.color} border-4 border-pink-200`}
               onClick={() => onNavigate('stories', category.id)}
@@ -432,10 +433,10 @@ const HistoryGrid = ({ onNavigate, onBack }) => {
           </Button>
           <h1 className="text-3xl font-bold text-amber-700">Epic History Stories</h1>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {categories.map((category) => (
-            <Card 
+            <Card
               key={category.id}
               className={`p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br ${category.color} border-4 border-amber-200`}
               onClick={() => onNavigate('stories', category.id)}
@@ -469,10 +470,10 @@ const PoemsGrid = ({ onNavigate, onBack }) => {
           </Button>
           <h1 className="text-3xl font-bold text-purple-700">Beautiful Poems</h1>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {poemCategories.map((category) => (
-            <Card 
+            <Card
               key={category.id}
               className={`p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br ${category.color} border-4 border-purple-200`}
               onClick={() => onNavigate('poems-list', category.id)}
@@ -522,10 +523,10 @@ const PoemsList = ({ category, onNavigate, onBack }) => {
           </Button>
           <h1 className="text-3xl font-bold text-purple-700">Poems</h1>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {categoryPoems.map((poem) => (
-            <Card 
+            <Card
               key={poem.id}
               className="p-6 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-white border-3 border-purple-200"
               onClick={() => onNavigate('poem', poem.id)}
@@ -546,7 +547,7 @@ const PoemsList = ({ category, onNavigate, onBack }) => {
 // Poem Viewer Component
 const PoemViewer = ({ poemId, onBack }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  
+
   const poems = {
     // Telugu Poems
     'chandamama': {
@@ -579,7 +580,7 @@ const PoemViewer = ({ poemId, onBack }) => {
       meaning: 'అర్థం: ఈ కవిత చిన్న పిల్లల అమాయకత్వం గురించి చెబుతుంది. వారు ఎలా ఆట ఆడతారో, తల్లుల ప్రేమను ఎలా అనుభవిస్తారో తెలియజేస్తుంది.',
       illustration: 'https://images.unsplash.com/photo-1544776527-0818bd051bec'
     },
-    
+
     // English Poems
     'twinkle-star': {
       title: 'Twinkle Twinkle Little Star',
@@ -671,8 +672,8 @@ All through the town!`,
           <div className="space-y-8">
             {/* Illustration */}
             <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden">
-              <img 
-                src={poem.illustration} 
+              <img
+                src={poem.illustration}
                 alt={poem.title}
                 className="w-full h-full object-cover"
                 onError={(e) => {
@@ -695,13 +696,12 @@ All through the town!`,
 
             {/* Audio Control */}
             <div className="text-center">
-              <Button 
+              <Button
                 onClick={toggleAudio}
-                className={`${
-                  isPlaying 
-                    ? 'bg-red-600 hover:bg-red-700' 
+                className={`${isPlaying
+                    ? 'bg-red-600 hover:bg-red-700'
                     : 'bg-purple-600 hover:bg-purple-700'
-                } text-white px-8 py-4 text-xl rounded-full`}
+                  } text-white px-8 py-4 text-xl rounded-full`}
               >
                 {isPlaying ? (
                   <>
@@ -757,10 +757,10 @@ const FunZoneGrid = ({ onNavigate, onBack }) => {
           </Button>
           <h1 className="text-3xl font-bold text-teal-700">Fun Zone - Games & Puzzles</h1>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {games.map((game) => (
-            <Card 
+            <Card
               key={game.id}
               className={`p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br ${game.color} border-4 border-teal-200`}
               onClick={() => onNavigate('game', game.id)}
@@ -786,7 +786,7 @@ const PictureMatchGame = ({ onBack }) => {
     { id: 3, name: 'Ganesha', emoji: '🐘', matched: false },
     { id: 4, name: 'Lion', emoji: '🦁', matched: false },
   ]);
-  
+
   const [matches, setMatches] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [score, setScore] = useState(0);
@@ -798,7 +798,7 @@ const PictureMatchGame = ({ onBack }) => {
       setMatches([...matches, item.id]);
       setSelectedItem(null);
       setScore(score + 10);
-      
+
       if (matches.length + 1 === gameItems.length) {
         setGameComplete(true);
       }
@@ -834,13 +834,12 @@ const PictureMatchGame = ({ onBack }) => {
           {gameItems.map((item) => (
             <Card
               key={item.id}
-              className={`p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl border-4 ${
-                matches.includes(item.id) 
-                  ? 'bg-green-200 border-green-400' 
-                  : selectedItem?.id === item.id 
+              className={`p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl border-4 ${matches.includes(item.id)
+                  ? 'bg-green-200 border-green-400'
+                  : selectedItem?.id === item.id
                     ? 'bg-yellow-200 border-yellow-400'
                     : 'bg-white border-cyan-300 hover:border-cyan-400'
-              }`}
+                }`}
               onClick={() => handleItemClick(item)}
             >
               <div className="text-center space-y-4">
@@ -853,8 +852,8 @@ const PictureMatchGame = ({ onBack }) => {
 
         <div className="text-center mt-8">
           <p className="text-xl text-cyan-800 mb-4">
-            {gameComplete 
-              ? "Amazing! You completed the game!" 
+            {gameComplete
+              ? "Amazing! You completed the game!"
               : "Tap the same picture twice to match it!"}
           </p>
         </div>
@@ -905,10 +904,10 @@ const MoralGrid = ({ onNavigate, onBack }) => {
           </Button>
           <h1 className="text-3xl font-bold text-green-700">Choose Story Type</h1>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {categories.map((category) => (
-            <Card 
+            <Card
               key={category.id}
               className={`p-8 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl bg-gradient-to-br ${category.color} border-4 border-green-200`}
               onClick={() => onNavigate('stories', category.id)}
@@ -935,14 +934,15 @@ const StoriesList = ({ category, onNavigate, onBack }) => {
     const fetchStories = async () => {
       try {
         setLoading(true);
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || import.meta.env.REACT_APP_BACKEND_URL;
-        const response = await fetch(`${backendUrl}/api/stories/category/${category}`);
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        const { data, error } = await supabase
+          .from('stories')
+          .select('*')
+          .eq('category', category)
+          .order('created_at', { ascending: false });
+
+        if (error) {
+          throw new Error(error.message);
         }
-        
-        const data = await response.json();
         setStories(data);
         setError(null);
       } catch (err) {
@@ -962,7 +962,7 @@ const StoriesList = ({ category, onNavigate, onBack }) => {
   // Category names for display
   const categoryNames = {
     'aarna-adventures': "Aarna's Adventures",
-    'krishna': 'Krishna Stories', 
+    'krishna': 'Krishna Stories',
     'hanuman': 'Hanuman Stories',
     'ganesha': 'Ganesha Stories',
     'rama': 'Rama Stories',
@@ -1019,7 +1019,7 @@ const StoriesList = ({ category, onNavigate, onBack }) => {
               {categoryNames[category] || category}
             </h1>
           </div>
-          
+
           <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
             <div className="text-8xl mb-8">🚧</div>
             <h2 className="text-4xl font-bold text-purple-700 mb-4">Coming Soon!</h2>
@@ -1047,10 +1047,10 @@ const StoriesList = ({ category, onNavigate, onBack }) => {
             {categoryNames[category] || category} ({stories.length} stories)
           </h1>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {stories.map((story) => (
-            <Card 
+            <Card
               key={story.id}
               className="p-6 cursor-pointer transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl bg-white border-3 border-purple-200"
               onClick={() => onNavigate('story', story.id)}
@@ -1082,22 +1082,24 @@ const StoryViewer = ({ storyId, onBack }) => {
   const [error, setError] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  
+
   // Fetch story data from backend API
   useEffect(() => {
     if (!storyId) return;
-    
+
     const fetchStory = async () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/stories/${storyId}`);
-        
-        if (!response.ok) {
-          throw new Error(`Failed to load story: ${response.status}`);
+        const { data: storyData, error } = await supabase
+          .from('stories')
+          .select('*')
+          .eq('id', storyId)
+          .single();
+
+        if (error) {
+          throw new Error(error.message);
         }
-        
-        const storyData = await response.json();
         setStory(storyData);
       } catch (err) {
         console.error('Error fetching story:', err);
@@ -1119,7 +1121,7 @@ const StoryViewer = ({ storyId, onBack }) => {
     } else {
       setIsPlaying(true);
       const slide = story.slides[currentSlide];
-      
+
       // Play Telugu first, then English
       const teluguUtterance = speakText(slide.telugu, 'te-IN');
       if (teluguUtterance) {
@@ -1222,8 +1224,8 @@ const StoryViewer = ({ storyId, onBack }) => {
           <div className="space-y-8">
             {/* Story Image */}
             <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden">
-              <img 
-                src={currentSlideData.image} 
+              <img
+                src={currentSlideData.image}
                 alt={story.title}
                 className="w-full h-full object-cover"
                 onError={(e) => {
@@ -1254,13 +1256,12 @@ const StoryViewer = ({ storyId, onBack }) => {
 
             {/* Audio Controls */}
             <div className="text-center space-y-4">
-              <Button 
+              <Button
                 onClick={toggleAudio}
-                className={`${
-                  isPlaying 
-                    ? 'bg-red-600 hover:bg-red-700' 
+                className={`${isPlaying
+                    ? 'bg-red-600 hover:bg-red-700'
                     : 'bg-green-600 hover:bg-green-700'
-                } text-white px-8 py-4 text-xl rounded-full`}
+                  } text-white px-8 py-4 text-xl rounded-full`}
               >
                 {isPlaying ? (
                   <>
@@ -1283,7 +1284,7 @@ const StoryViewer = ({ storyId, onBack }) => {
 
             {/* Navigation */}
             <div className="flex justify-between items-center">
-              <Button 
+              <Button
                 onClick={prevSlide}
                 disabled={currentSlide === 0}
                 className="bg-purple-600 hover:bg-purple-700 disabled:bg-gray-300 text-white px-6 py-3 rounded-full"
@@ -1296,14 +1297,13 @@ const StoryViewer = ({ storyId, onBack }) => {
                 {story.slides.map((_, index) => (
                   <div
                     key={index}
-                    className={`w-3 h-3 rounded-full ${
-                      index === currentSlide ? 'bg-purple-600' : 'bg-gray-300'
-                    }`}
+                    className={`w-3 h-3 rounded-full ${index === currentSlide ? 'bg-purple-600' : 'bg-gray-300'
+                      }`}
                   />
                 ))}
               </div>
 
-              <Button 
+              <Button
                 onClick={nextSlide}
                 disabled={currentSlide === story.slides.length - 1}
                 className="bg-purple-600 hover:bg-purple-700 disabled:bg-gray-300 text-white px-6 py-3 rounded-full"
@@ -1329,7 +1329,7 @@ function App() {
   const navigate = (screen, param = null) => {
     setScreenStack(prev => [...prev, { screen: currentScreen, category: currentCategory, storyId: currentStoryId }]);
     setCurrentScreen(screen);
-    
+
     if (screen === 'stories') {
       setCurrentCategory(param);
     } else if (screen === 'story') {

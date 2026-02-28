@@ -1,3 +1,4 @@
+"""
 # Focused story database for Telugu Storybook App
 # Only Aarna Adventures, Mythological Stories, and Moral Stories
 # Each story has 8 slides as requested
@@ -192,3 +193,4 @@ COMPREHENSIVE_STORIES_FULL.extend([
 
 # Empty arrays for poems and games (will show "coming soon")
 COMPREHENSIVE_POEMS = []
+"""

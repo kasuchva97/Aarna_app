@@ -1,3 +1,4 @@
+"""
 #!/usr/bin/env python3
 """
 Generate all missing stories for the Telugu Storybook App
@@ -85,3 +86,4 @@ all_stories.extend(hanuman_stories)
 
 print(f"Generated {len(all_stories)} stories")
 print("Sample story:", json.dumps(all_stories[0], indent=2))
+"""

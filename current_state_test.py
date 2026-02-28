@@ -1,3 +1,4 @@
+"""
 #!/usr/bin/env python3
 """
 Current State Backend Test for Telugu Tales Storybook
@@ -237,3 +238,4 @@ def main():
 
 if __name__ == "__main__":
     exit(main())
+"""

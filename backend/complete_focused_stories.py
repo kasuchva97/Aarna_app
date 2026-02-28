@@ -1,3 +1,4 @@
+"""
 # Complete focused story database for Telugu Storybook App
 # Only 3 main categories: Aarna Adventures, Mythological Stories, Moral Stories
 # Each story has exactly 8 slides
@@ -408,3 +409,4 @@ COMPREHENSIVE_POEMS = []
 
 print(f"Total stories created: {len(COMPREHENSIVE_STORIES_FULL)}")
 print("Categories:", set([story['category'] for story in COMPREHENSIVE_STORIES_FULL]))
+"""
