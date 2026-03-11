@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@capacitor/android": "^8.2.0",
+    "@capacitor/cli": "^8.2.0",
+    "@capacitor/core": "^8.2.0",
     "@hookform/resolvers": "^5.0.1",
     "@radix-ui/react-accordion": "^1.2.8",
     "@radix-ui/react-alert-dialog": "^1.1.11",
@@ -77,6 +80,7 @@
     ]
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
     "@craco/craco": "^7.1.0",
     "@eslint/js": "9.23.0",
     "autoprefixer": "^10.4.20",

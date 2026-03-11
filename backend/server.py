@@ -12,7 +12,7 @@ from pydantic import BaseModel, Field
 from typing import List, Optional
 import uuid
 from datetime import datetime
-from proper_stories_content import COMPREHENSIVE_STORIES_FULL
+from data_seeds.proper_stories_content import COMPREHENSIVE_STORIES_FULL
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
